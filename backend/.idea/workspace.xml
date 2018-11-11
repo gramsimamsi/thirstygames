@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c44aeaf-96cb-475c-916a-35733375bcaf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bin/www" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/stylesheets/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../routes/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../routes/users.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../views/error.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../views/index.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../views/layout.pug" beforeDir="false" />
-    </list>
+    <list default="true" id="0c44aeaf-96cb-475c-916a-35733375bcaf" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -48,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+            <state relative-caret-position="435">
+              <caret line="29" column="16" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -129,12 +117,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541944940102</updated>
-      <workItem from="1541944941178" duration="1022000" />
+      <workItem from="1541944941178" duration="1566000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1022000" />
+    <option name="totallyTimeSpent" value="1566000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -147,7 +135,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" id="npm" sideWeight="0.50121653" side_tool="true" visible="true" weight="0.24986821" />
       <window_info id="Favorites" side_tool="true" />
@@ -178,8 +165,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+        <state relative-caret-position="435">
+          <caret line="29" column="16" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
         </state>
       </provider>
     </entry>
