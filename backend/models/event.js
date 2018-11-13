@@ -1,6 +1,7 @@
 /*******************************************
- *just a skeleton -> needs to be filled
+ event Schema
  ************************/
+
 
 var mongoose = require('mongoose');
 
@@ -8,30 +9,22 @@ var Schema = mongoose.Schema;
 
 var EventSchema = new Schema(
     {
-        /*
-        first_name: {type: String, required: true, max: 100},
-        family_name: {type: String, required: true, max: 100},
-        date_of_birth: {type: Date},
-        date_of_death: {type: Date},
-        */
+        //_id should be defined by default
+        event_name: {type: String, required: true, max: 100},
+        event_date: {type: Date, required: true},
+        event_logo: {type: String, required: false, max: 255} //path to icon
     }
 );
 
 // Virtual for author's full name
-EventSchema
+/*EventSchema
     .virtual('name')
     .get(function () {
         return this.family_name + ', ' + this.first_name;
     });
+*/
 
-// Virtual for author's lifespan
-EventSchema
-    .virtual('lifespan')
-    .get(function () {
-        return (this.date_of_death.getYear() - this.date_of_birth.getYear()).toString();
-    });
-
-// Virtual for author's URL
+// Virtual for event's URL
 EventSchema
     .virtual('url')
     .get(function () {
