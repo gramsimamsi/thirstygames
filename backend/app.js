@@ -1,8 +1,24 @@
+//DEBUG=thirstygames_wt/backend:* npm start
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+/***************************************************************
+ * controller part
+ **************************************************************/
+
+let usersRouter = require("./routes/users");
+
+
+/***************************************************************
+ * add routes to middleware
+ **************************************************************/
+
+app.use("", usersRouter);
+
 
 /***************************************************************
  * mongoDB specific part
