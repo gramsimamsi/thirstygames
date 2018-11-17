@@ -15,7 +15,7 @@ var UserSchema = new Schema(
         //_id should be defined by default
         user_name: {type: String, required: true, max: 100},
         user_password: {type: String, required: true, max: 100},
-        user_role: {type: Number, required: true},
+        user_role: {type: Number, required: true}
     }
 );
 
