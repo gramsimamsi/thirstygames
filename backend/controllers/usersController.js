@@ -5,6 +5,12 @@ exports.user_list = function(req, res) {
     res.send("hello World");
 };
 
+/*create a new user*/
+exports.new_user_post = function(req, res)
+{
+    //create user and add to database
+    res.send("User Creation not implemented yet" + req.params.id);
+}
 /*
 // Display detail page for a specific Author.
 exports.author_detail = function(req, res) {
