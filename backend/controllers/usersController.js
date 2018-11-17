@@ -1,9 +1,17 @@
 var UsersController = require('../models/userModel');
 
 // Display list of all users.
-exports.user_list = function(req, res) {
+exports.all_users_get = function(req, res) {
     res.send("hello World");
 };
+
+exports.all_users_delete = function(req, res)
+{
+    //delete all users
+    res.send("Delete all users");
+}
+
+
 
 /*create a new user*/
 exports.new_user_post = function(req, res)
