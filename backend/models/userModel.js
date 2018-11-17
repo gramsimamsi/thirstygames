@@ -13,6 +13,7 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema(
     {
         //_id should be defined by default
+        user_id: {type: String, required: true},
         user_name: {type: String, required: true, max: 100},
         user_password: {type: String, required: true, max: 100},
         user_role: {type: Number, required: true}

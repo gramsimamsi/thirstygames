@@ -28,8 +28,9 @@ var teams = []
 var beverages = []
 var events = []
 
-function userCreate(user_name, user_password, user_role, cb) {
+function userCreate(user_id, user_name, user_password, user_role, cb) {
     userdetail = {
+        user_id: user_id,
         user_name:user_name,
         user_password: user_password,
         user_role:user_role
@@ -48,8 +49,9 @@ function userCreate(user_name, user_password, user_role, cb) {
     }  );
 }
 
-function teamCreate(team_name, team_member_count, team_logo, team_alc_count, cb) {
+function teamCreate(team_id, team_name, team_member_count, team_logo, team_alc_count, cb) {
     teamdetail = {
+        team_id: team_id,
         team_name:team_name,
         team_logo:team_logo,
         team_member_count:team_member_count,
@@ -69,8 +71,9 @@ function teamCreate(team_name, team_member_count, team_logo, team_alc_count, cb)
     }  );
 }
 
-function beverageCreate(beverage_name, beverage_alc, cb) {
+function beverageCreate(beverage_id, beverage_name, beverage_alc, cb) {
     beveragedetail = {
+        beverage_id: beverage_id,
         beverage_name:beverage_name,
         beverage_alc:beverage_alc
     }
@@ -88,8 +91,9 @@ function beverageCreate(beverage_name, beverage_alc, cb) {
     }  );
 }
 
-function eventCreate(event_name, event_date, event_logo, cb) {
+function eventCreate(event_id, event_name, event_date, event_logo, cb) {
     eventdetail = {
+        event_id: event_id,
         event_name:event_name,
         event_date:event_date,
         event_logo:event_logo
@@ -111,19 +115,19 @@ function eventCreate(event_name, event_date, event_logo, cb) {
 function createUsers(cb) {
     async.parallel([
             function(callback) {
-                userCreate('Chris', 'fajsaijiejfakjau39uf8aiu', 0, callback);
+                userCreate('user_0', 'Chris', 'fajsaijiejfakjau39uf8aiu', 0, callback);
             },
             function(callback) {
-                userCreate('Tom', 'öeifieooijiajsfjfjaifjl', 1, callback);
+                userCreate('user_1', 'Tom', 'öeifieooijiajsfjfjaifjl', 1, callback);
             },
             function(callback) {
-                userCreate('Michi', 'aklsjieofajfsahfuifhkja', 1, callback);
+                userCreate('user_2', 'Michi', 'aklsjieofajfsahfuifhkja', 1, callback);
             },
             function(callback) {
-                userCreate('Anna', 'lakjfijfljfioajöflkjöai', 1, callback);
+                userCreate('user_3', 'Anna', 'lakjfijfljfioajöflkjöai', 1, callback);
             },
             function(callback) {
-                userCreate('Lukas', 'aöjefijesfölajöfojalgjäg', 2, callback);
+                userCreate('user_4', 'Lukas', 'aöjefijesfölajöfojalgjäg', 2, callback);
             }
         ],
         // optional callback
@@ -134,10 +138,10 @@ function createUsers(cb) {
 function createTeams(cb) {
     async.parallel([
             function(callback) {
-                teamCreate("INF", 666, 'inf_logo.png', 123456.99, callback);
+                teamCreate('team_0', 'INF', 666, 'inf_logo.png', 123456.99, callback);
             },
             function(callback) {
-                teamCreate("WIF", 69, "wif_logo.jpg", 5.0, callback);
+                teamCreate('team_1', 'WIF', 69, 'wif_logo.jpg', 5.0, callback);
             }
         ],
         // optional callback
@@ -148,13 +152,13 @@ function createTeams(cb) {
 function createBeverages(cb) {
     async.parallel([
             function(callback) {
-                beverageCreate("Bier", 5.0, callback);
+                beverageCreate('beverage_0', 'Bier', 5.0, callback);
             },
             function(callback) {
-                beverageCreate("Pfeffi", 18.0, callback);
+                beverageCreate('beverage_1', 'Pfeffi', 18.0, callback);
             },
             function(callback) {
-                beverageCreate("Weinschorle", 8.0, callback);
+                beverageCreate('beverage_2', 'Weinschorle', 8.0, callback);
             }
         ],
         // Optional callback
@@ -164,7 +168,7 @@ function createBeverages(cb) {
 function createEvent(cb) {
     async.parallel([
             function(callback) {
-                eventCreate('WINF-Barabend', '2018-10-18', 'barabend.png', callback);
+                eventCreate('event_0', 'WINF-Barabend', '2018-10-18', 'barabend.png', callback);
             }
         ],
         // Optional callback
