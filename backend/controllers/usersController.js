@@ -2,7 +2,7 @@ var UsersController = require('../models/userModel');
 
 // Display list of all users.
 exports.user_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: User list');
+    res.send("hello World");
 };
 
 /*
