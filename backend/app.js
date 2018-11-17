@@ -7,11 +7,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 /***************************************************************
- * controller part
+ * router part
  **************************************************************/
 
 let usersRouter = require("./routes/users");
-
+let beverageRouter = require("./routes/beverage");
+let eventRouter = require("./routes/event");
+let teamRouter = require("./routes/team");
+var indexRouter = require('./routes/index');
 
 /***************************************************************
  * mongoDB specific part
@@ -28,9 +31,6 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 
 
-var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -45,7 +45,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/beverage', beverageRouter);
+app.use('/event', eventRouter);
+app.use('/team', teamRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
