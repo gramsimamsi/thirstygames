@@ -3,7 +3,7 @@ var userModel = require('../models/userModel');
 // Display list of all users.
 exports.all_users_get = function(req, res) {
     //find all users in database
-    userModel.find({}, 'user_name')
+    userModel.find({})
         .exec(function (err, user_name_list)
     {
         if(err)

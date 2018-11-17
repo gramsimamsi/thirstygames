@@ -6,8 +6,9 @@ let teamController = require("../controllers/teamController");
 /*
     ALL TEAMS
  */
-/*
+
 router.get('/', teamController.all_teams_get);
+/*
 router.delete('/', teamController.all_teams_delete);
 */
 /*

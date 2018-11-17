@@ -5,8 +5,9 @@ let beverageController = require("../controllers/beverageController");
 /*
     ALL BEVERAGES
 */
-/*
+
 router.get('/', beverageController.all_beverages_get);
+/*
 router.delete('/', beverageController.all_beverages_delete);
 */
 /*
