@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-console.log('This script populates some test books, authors, genres and bookinstances to your database. Specified database as argument - e.g.: populatedb mongodb://your_username:your_password@your_dabase_url');
+//console.log('This script populates some test books, authors, genres and bookinstances to your database. Specified database as argument - e.g.: populatedb mongodb://your_username:your_password@your_dabase_url');
 
 // Get arguments passed on command line
 var userArgs = process.argv.slice(2);
@@ -26,12 +26,12 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection 
 var users = []
 var teams = []
 var beverages = []
-var event = []
+var events = []
 
-function userCreate(user_name, password, user_role) {
+function userCreate(user_name, user_password, user_role, cb) {
     userdetail = {
         user_name:user_name,
-        password: password,
+        user_password: user_password,
         user_role:user_role
     }
 
@@ -48,7 +48,7 @@ function userCreate(user_name, password, user_role) {
     }  );
 }
 
-function teamCreate(team_name, team_member_count, team_logo) {
+function teamCreate(team_name, team_member_count, team_logo, team_alc_count, cb) {
     teamdetail = {
         team_name:team_name,
         team_logo:team_logo,
@@ -64,12 +64,12 @@ function teamCreate(team_name, team_member_count, team_logo) {
             return
         }
         console.log('New Team: ' + team);
-        team.push(team)
+        teams.push(team)
         cb(null, team)
     }  );
 }
 
-function beverageCreate(beverage_name, beverage_alc) {
+function beverageCreate(beverage_name, beverage_alc, cb) {
     beveragedetail = {
         beverage_name:beverage_name,
         beverage_alc:beverage_alc
@@ -88,7 +88,7 @@ function beverageCreate(beverage_name, beverage_alc) {
     }  );
 }
 
-function eventCreate(event_name, event_date, event_logo) {
+function eventCreate(event_name, event_date, event_logo, cb) {
     eventdetail = {
         event_name:event_name,
         event_date:event_date,
@@ -111,19 +111,19 @@ function eventCreate(event_name, event_date, event_logo) {
 function createUsers(cb) {
     async.parallel([
             function(callback) {
-                userCreate('Chris', 'fajsaijiejfakjau39uf8aiuwhfuieh', 0, callback);
+                userCreate('Chris', 'fajsaijiejfakjau39uf8aiu', 0, callback);
             },
             function(callback) {
-                userCreate('Tom', 'öeifieooijiajsfjfjaifjlkjgoaijklbnfhöamvöaklnvöjöjfa', 1, callback);
+                userCreate('Tom', 'öeifieooijiajsfjfjaifjl', 1, callback);
             },
             function(callback) {
-                userCreate('Michi', 'aklsjieofajfsahfuifhkjahgikjöaggjuhraiuhgahvaluh', 1, callback);
+                userCreate('Michi', 'aklsjieofajfsahfuifhkja', 1, callback);
             },
             function(callback) {
-                userCreate('Anna', 'lakjfijfljfioajöflkjöaiojflkjaöoijfkahvuhgvbvjkh', 1, callback);
+                userCreate('Anna', 'lakjfijfljfioajöflkjöai', 1, callback);
             },
             function(callback) {
-                userCreate('Lukas', 'aöjefijesfölajöfojalgjägojgfgidkghsjkhgoishrgisu', 2, callback);
+                userCreate('Lukas', 'aöjefijesfölajöfojalgjäg', 2, callback);
             }
         ],
         // optional callback
@@ -134,10 +134,10 @@ function createUsers(cb) {
 function createTeams(cb) {
     async.parallel([
             function(callback) {
-                teamCreate("INF", 666, 'inf_logo.png', 123456.99);
+                teamCreate("INF", 666, 'inf_logo.png', 123456.99, callback);
             },
             function(callback) {
-                teamCreate("WIF", 69, "wif_logo.jpg", 5.0);
+                teamCreate("WIF", 69, "wif_logo.jpg", 5.0, callback);
             }
         ],
         // optional callback
@@ -148,13 +148,13 @@ function createTeams(cb) {
 function createBeverages(cb) {
     async.parallel([
             function(callback) {
-                beverageCreate("Bier", 5.0);
+                beverageCreate("Bier", 5.0, callback);
             },
             function(callback) {
-                beverageCreate("Pfeffi", 18.0);
+                beverageCreate("Pfeffi", 18.0, callback);
             },
             function(callback) {
-                beverageCreate("Weinschorle", 8.0);
+                beverageCreate("Weinschorle", 8.0, callback);
             }
         ],
         // Optional callback
@@ -164,7 +164,7 @@ function createBeverages(cb) {
 function createEvent(cb) {
     async.parallel([
             function(callback) {
-                eventCreate('WINF-Barabend', '2018-10-18', 'barabend.png');
+                eventCreate('WINF-Barabend', '2018-10-18', 'barabend.png', callback);
             }
         ],
         // Optional callback
@@ -183,7 +183,7 @@ async.series([
             console.log('FINAL ERR: '+err);
         }
         else {
-            console.log('BOOKInstances: '+bookinstances);
+            //console.log('BOOKInstances: '+bookinstances);
 
         }
         // All done, disconnect from database
