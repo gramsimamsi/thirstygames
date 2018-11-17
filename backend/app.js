@@ -14,7 +14,7 @@ let usersRouter = require("./routes/users");
 let beverageRouter = require("./routes/beverage");
 let eventRouter = require("./routes/event");
 let teamRouter = require("./routes/team");
-var indexRouter = require('./routes/index');
+let indexRouter = require('./routes/index');
 
 /***************************************************************
  * mongoDB specific part
@@ -28,8 +28,6 @@ mongoose.connect(mongoDB, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
-
-
 
 var app = express();
 

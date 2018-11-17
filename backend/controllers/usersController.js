@@ -2,7 +2,16 @@ var userModel = require('../models/userModel');
 
 // Display list of all users.
 exports.all_users_get = function(req, res) {
-    res.send("hello World");
+    //find all users in database
+    userModel.find({}, 'user_name')
+        .exec(function (err, user_name_list)
+    {
+        if(err)
+        {
+            return next(err);
+        }
+        res.send(user_name_list);
+    });
 };
 
 exports.all_users_delete = function(req, res)
@@ -14,7 +23,7 @@ exports.all_users_delete = function(req, res)
 
 
 /*create a new user*/
-exports.new_user_post = function(req, res)
+exports.single_user_post = function(req, res)
 {
     //create user and add to database
     res.send("User Creation not implemented yet" + req.params.id);
