@@ -11,7 +11,8 @@ var TeamSchema = new Schema(
         //_id should be defined by default
         team_name: {type: String, required: true, max: 100},
         team_member_count: {type: Number, required: false},
-        team_logo: {type: String, required: false, max: 255} //path to icon
+        team_logo: {type: String, required: false, max: 255}, //path to icon
+        team_alc_count: {type: Number, required: true}
     }
 );
 
