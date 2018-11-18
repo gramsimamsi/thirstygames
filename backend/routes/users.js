@@ -7,7 +7,7 @@ let userController = require("../controllers/usersController");
     ALL USERS
  */
 router.get('/', userController.all_users_get);
-router.delete('/', userController.all_users_delete)
+router.delete('/', userController.all_users_delete);
 /*
        END ALL USERS
  */
@@ -15,6 +15,7 @@ router.delete('/', userController.all_users_delete)
 /*
     SINGLE USER
  */
+router.get('/:user_id', userController.single_user_get);
 /*
 router.get('/:id', userController.single_user_get);
 router.post('/:id', userController.single_user_post);

@@ -14,6 +14,7 @@ router.delete('/', teamController.all_teams_delete);
 /*
     SINGLE TEAM
  */
+router.get('/:team_id', teamController.single_team_get);
 /*
 router.get('/:id', teamController.single_team_get);
 router.post('/:id', teamController.single_team_post);

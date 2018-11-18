@@ -27,7 +27,18 @@ exports.all_users_delete = function(req, res)
     });
 }
 
-
+exports.single_user_get = function(req, res)
+{
+    //get a single user by his user_id
+    userModel.find({user_id: req.params.user_id})
+        .exec(function (err, single_user_name)
+    {
+        if(err){
+            return next(err);
+        }
+        res.send(single_user_name);
+    });
+}
 
 /*create a new user*/
 exports.single_user_post = function(req, res)

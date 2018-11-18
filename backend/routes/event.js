@@ -17,4 +17,9 @@ router.put('/:id', eventController.single_event_put);
     END EVENT DATA
  */
 
+ /*
+    SINGLE EVENT
+  */
+router.get('/:event_id', eventController.single_event_get);
+
 module.exports = router;

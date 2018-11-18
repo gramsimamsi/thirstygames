@@ -27,5 +27,18 @@ exports.all_teams_delete = function(req, res)
         });
 }
 
+exports.single_team_get = function(req, res)
+{
+    //get a single team by his team_id
+    teamModel.find({team_id: req.params.team_id})
+        .exec(function (err, single_team_name)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send(single_team_name);
+        });
+}
+
 
 

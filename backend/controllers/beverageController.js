@@ -25,3 +25,16 @@ exports.all_beverages_delete = function(req, res)
             res.send("All beverages where deleted successfully");
         });
 }
+
+exports.single_beverage_get = function(req, res)
+{
+    //get a single beverage by his beverage_id
+    beverageModel.find({beverage_id: req.params.beverage_id})
+        .exec(function (err, single_beverage_name)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send(single_beverage_name);
+        });
+}
