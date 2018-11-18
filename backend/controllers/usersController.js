@@ -40,6 +40,19 @@ exports.single_user_get = function(req, res)
     });
 }
 
+exports.single_user_delete = function(req, res)
+{
+    //delete a single user by its user_id
+    userModel.remove({user_id: req.params.user_id})
+        .exec(function (err)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send('User was removed successfully');
+        });
+}
+
 /*create a new user*/
 exports.single_user_post = function(req, res)
 {

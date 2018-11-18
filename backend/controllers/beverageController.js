@@ -22,13 +22,13 @@ exports.all_beverages_delete = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send("All beverages where deleted successfully");
+            res.send('All beverages where deleted successfully');
         });
 }
 
 exports.single_beverage_get = function(req, res)
 {
-    //get a single beverage by his beverage_id
+    //get a single beverage by its beverage_id
     beverageModel.find({beverage_id: req.params.beverage_id})
         .exec(function (err, single_beverage_name)
         {
@@ -36,5 +36,18 @@ exports.single_beverage_get = function(req, res)
                 return next(err);
             }
             res.send(single_beverage_name);
+        });
+}
+
+exports.single_beverage_delete = function(req, res)
+{
+    //delete a single beverage by its beverage_id
+    beverageModel.remove({beverage_id: req.params.beverage_id})
+        .exec(function (err)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send('Beverage was removed successfully');
         });
 }

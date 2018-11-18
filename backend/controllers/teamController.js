@@ -23,7 +23,7 @@ exports.all_teams_delete = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send("All teams where deleted successfully");
+            res.send('All teams where deleted successfully');
         });
 }
 
@@ -40,5 +40,17 @@ exports.single_team_get = function(req, res)
         });
 }
 
+exports.single_team_delete = function(req, res)
+{
+    //delete a single team by its team_id
+    teamModel.remove({team_id: req.params.team_id})
+        .exec(function (err)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send('Team was removed successfully');
+        });
+}
 
 

@@ -13,6 +13,7 @@ router.delete('/', beverageController.all_beverages_delete);
     SINGLE BEVERAGE
  */
 router.get('/:beverage_id', beverageController.single_beverage_get);
+router.delete('/:beverage_id', beverageController.single_beverage_delete);
 /*
 router.get('/:id', beverageController.single_beverage_get);
 router.post('/:id', beverageController.single_beverage_post);

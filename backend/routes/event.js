@@ -21,5 +21,6 @@ router.put('/:id', eventController.single_event_put);
     SINGLE EVENT
   */
 router.get('/:event_id', eventController.single_event_get);
+router.delete('/:event_id', eventController.single_event_delete);
 
 module.exports = router;
