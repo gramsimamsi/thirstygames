@@ -12,3 +12,16 @@ exports.all_beverages_get = function(req, res) {
             res.send(beverage_name_list);
         });
 };
+
+exports.all_beverages_delete = function(req, res)
+{
+    //delete all beverages
+    beverageModel.remove({})
+        .exec(function(err)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send("All beverages where deleted successfully");
+        });
+}

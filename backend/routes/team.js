@@ -8,9 +8,9 @@ let teamController = require("../controllers/teamController");
  */
 
 router.get('/', teamController.all_teams_get);
-/*
+
 router.delete('/', teamController.all_teams_delete);
-*/
+
 /*
     SINGLE TEAM
  */

@@ -14,5 +14,18 @@ exports.all_teams_get = function(req, res) {
         });
 };
 
+exports.all_teams_delete = function(req, res)
+{
+    //delete all events
+    teamModel.remove({})
+        .exec(function (err)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send("All teams where deleted successfully");
+        });
+}
+
 
 

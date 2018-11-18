@@ -17,7 +17,14 @@ exports.all_users_get = function(req, res) {
 exports.all_users_delete = function(req, res)
 {
     //delete all users
-    res.send("Delete all users");
+    userModel.remove({})
+        .exec(function(err)
+    {
+        if(err){
+            return next(err);
+        }
+        res.send("All users where deleted successfully");
+    });
 }
 
 
