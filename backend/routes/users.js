@@ -18,9 +18,7 @@ router.delete('/', userController.all_users_delete);
 router.get('/:user_id', userController.single_user_get);
 router.delete('/:user_id', userController.single_user_delete);
 router.post('/', userController.single_user_post);
-/*
-router.put('/:id', userController.single_user_put);
-'/
+router.put('/:user_id', userController.single_user_put);
 /*
     SINGLE USER END
  */

@@ -68,3 +68,17 @@ exports.single_event_post = function(req, res)
         });
     });
 }
+
+/*update a new event*/
+exports.single_event_put = function(req, res)
+{
+    //update event in the database
+    eventModel.updateOne({event_id: req.params.event_id}, req.body)
+        .exec(function (err)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send('Event was updated successfully');
+        });
+}

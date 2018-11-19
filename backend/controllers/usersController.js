@@ -70,6 +70,20 @@ exports.single_user_post = function(req, res)
         });
     });
 }
+
+/*update a new user*/
+exports.single_user_put = function(req, res)
+{
+    //update user in the database
+    userModel.updateOne({user_id: req.params.user_id}, req.body)
+        .exec(function (err)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send('User was updated successfully');
+        });
+}
 /*
 // Display detail page for a specific Author.
 exports.author_detail = function(req, res) {

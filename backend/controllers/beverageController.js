@@ -69,3 +69,17 @@ exports.single_beverage_post = function(req, res)
         });
     });
 }
+
+/*update a new beverage*/
+exports.single_beverage_put = function(req, res)
+{
+    //update beverage in the database
+    beverageModel.updateOne({beverage_id: req.params.beverage_id}, req.body)
+        .exec(function (err)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send('Beverage was updated successfully');
+        });
+}

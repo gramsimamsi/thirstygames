@@ -71,4 +71,18 @@ exports.single_team_post = function(req, res)
     });
 }
 
+/*update a new team*/
+exports.single_team_put = function(req, res)
+{
+    //update team in the database
+    teamModel.updateOne({team_id: req.params.team_id}, req.body)
+        .exec(function (err)
+        {
+            if(err){
+                return next(err);
+            }
+            res.send('Team was updated successfully');
+        });
+}
+
 

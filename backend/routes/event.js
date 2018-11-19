@@ -9,9 +9,8 @@ let eventController = require("../controllers/eventController");
 router.get('/', eventController.all_events_get);
 router.delete('/', eventController.all_events_delete);
 router.post('/', eventController.single_event_post);
-/*
-router.put('/:id', eventController.single_event_put);
-*/
+router.put('/:event_id', eventController.single_event_put);
+
  /*
     END EVENT DATA
  */
