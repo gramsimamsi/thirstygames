@@ -51,3 +51,21 @@ exports.single_beverage_delete = function(req, res)
             res.send('Beverage was removed successfully');
         });
 }
+
+/*create a new beverage*/
+exports.single_beverage_post = function(req, res)
+{
+    //create beverage and add to database
+    beverageModel.countDocuments({}, function (err, count) {
+        req.body.beverage_id = 'beverage_' + count;
+        let newBeverage = new beverageModel( req.body );
+        newBeverage.save(function (err)
+        {
+            if (err) {
+                return next(err);
+            }
+            console.log('New Beverage: ' + newBeverage);
+            res.send(newBeverage);
+        });
+    });
+}

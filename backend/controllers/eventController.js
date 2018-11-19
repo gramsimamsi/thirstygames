@@ -50,3 +50,21 @@ exports.single_event_delete = function(req, res)
             res.send('Event was removed successfully');
         });
 }
+
+/*create a new event*/
+exports.single_event_post = function(req, res)
+{
+    //create event and add to database
+    eventModel.countDocuments({}, function (err, count) {
+        req.body.event_id = 'event_' + count;
+        let newEvent = new eventModel( req.body );
+        newEvent.save(function (err)
+        {
+            if (err) {
+                return next(err);
+            }
+            console.log('New Event: ' + newEvent);
+            res.send(newEvent);
+        });
+    });
+}

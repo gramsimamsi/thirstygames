@@ -53,4 +53,22 @@ exports.single_team_delete = function(req, res)
         });
 }
 
+/*create a new team*/
+exports.single_team_post = function(req, res)
+{
+    //create team and add to database
+    teamModel.countDocuments({}, function (err, count) {
+        req.body.team_id = 'team_' + count;
+        let newTeam = new teamModel( req.body );
+        newTeam.save(function (err)
+        {
+            if (err) {
+                return next(err);
+            }
+            console.log('New Team: ' + newTeam);
+            res.send(newTeam);
+        });
+    });
+}
+
 

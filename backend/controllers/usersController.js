@@ -57,7 +57,18 @@ exports.single_user_delete = function(req, res)
 exports.single_user_post = function(req, res)
 {
     //create user and add to database
-    res.send("User Creation not implemented yet" + req.params.id);
+    userModel.countDocuments({}, function (err, count) {
+        req.body.user_id = 'user_' + count;
+        let newUser = new userModel( req.body );
+        newUser.save(function (err)
+        {
+            if (err) {
+                return next(err);
+            }
+            console.log('New User: ' + newUser);
+            res.send(newUser);
+        });
+    });
 }
 /*
 // Display detail page for a specific Author.

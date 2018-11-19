@@ -10,10 +10,10 @@ var Schema = mongoose.Schema;
 var EventSchema = new Schema(
     {
         //_id should be defined by default
-        event_id: {type: String, required: true},
         event_name: {type: String, required: true, max: 100},
         event_date: {type: Date, required: true},
-        event_logo: {type: String, required: false, max: 255} //path to icon
+        event_logo: {type: String, required: false, max: 255}, //path to icon
+        event_id: {type: String, required: true}
     }
 );
 

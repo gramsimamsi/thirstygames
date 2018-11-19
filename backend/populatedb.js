@@ -23,17 +23,17 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-var users = []
-var teams = []
-var beverages = []
-var events = []
+var users = [];
+var teams = [];
+var beverages = [];
+var events = [];
 
-function userCreate(user_id, user_name, user_password, user_role, cb) {
+function userCreate(user_name, user_password, user_role, user_id, cb) {
     userdetail = {
-        user_id: user_id,
         user_name:user_name,
         user_password: user_password,
-        user_role:user_role
+        user_role:user_role,
+        user_id: user_id
     }
 
     var user = new User(userdetail);
@@ -49,13 +49,13 @@ function userCreate(user_id, user_name, user_password, user_role, cb) {
     }  );
 }
 
-function teamCreate(team_id, team_name, team_member_count, team_logo, team_alc_count, cb) {
+function teamCreate(team_name, team_member_count, team_logo, team_alc_count, team_id, cb) {
     teamdetail = {
-        team_id: team_id,
         team_name:team_name,
         team_logo:team_logo,
         team_member_count:team_member_count,
-        team_alc_count: team_alc_count
+        team_alc_count: team_alc_count,
+        team_id: team_id
     }
 1
     var team = new Team(teamdetail);
@@ -71,11 +71,11 @@ function teamCreate(team_id, team_name, team_member_count, team_logo, team_alc_c
     }  );
 }
 
-function beverageCreate(beverage_id, beverage_name, beverage_alc, cb) {
+function beverageCreate(beverage_name, beverage_alc, beverage_id, cb) {
     beveragedetail = {
-        beverage_id: beverage_id,
         beverage_name:beverage_name,
-        beverage_alc:beverage_alc
+        beverage_alc:beverage_alc,
+        beverage_id: beverage_id
     }
 
     var beverage = new Beverage(beveragedetail);
@@ -91,12 +91,12 @@ function beverageCreate(beverage_id, beverage_name, beverage_alc, cb) {
     }  );
 }
 
-function eventCreate(event_id, event_name, event_date, event_logo, cb) {
+function eventCreate(event_name, event_date, event_logo, event_id, cb) {
     eventdetail = {
-        event_id: event_id,
         event_name:event_name,
         event_date:event_date,
-        event_logo:event_logo
+        event_logo:event_logo,
+        event_id: event_id
     }
 
     var event = new Event(eventdetail);
@@ -115,19 +115,19 @@ function eventCreate(event_id, event_name, event_date, event_logo, cb) {
 function createUsers(cb) {
     async.parallel([
             function(callback) {
-                userCreate('user_0', 'Chris', 'fajsaijiejfakjau39uf8aiu', 0, callback);
+                userCreate('Chris', 'fajsaijiejfakjau39uf8aiu', 0, 'user_0',  callback);
             },
             function(callback) {
-                userCreate('user_1', 'Tom', 'öeifieooijiajsfjfjaifjl', 1, callback);
+                userCreate('Tom', 'öeifieooijiajsfjfjaifjl', 1,'user_1', callback);
             },
             function(callback) {
-                userCreate('user_2', 'Michi', 'aklsjieofajfsahfuifhkja', 1, callback);
+                userCreate('Michi', 'aklsjieofajfsahfuifhkja', 1,'user_2', callback);
             },
             function(callback) {
-                userCreate('user_3', 'Anna', 'lakjfijfljfioajöflkjöai', 1, callback);
+                userCreate('Anna', 'lakjfijfljfioajöflkjöai', 1,'user_3', callback);
             },
             function(callback) {
-                userCreate('user_4', 'Lukas', 'aöjefijesfölajöfojalgjäg', 2, callback);
+                userCreate( 'Lukas', 'aöjefijesfölajöfojalgjäg', 2, 'user_4', callback);
             }
         ],
         // optional callback
@@ -138,10 +138,10 @@ function createUsers(cb) {
 function createTeams(cb) {
     async.parallel([
             function(callback) {
-                teamCreate('team_0', 'INF', 666, 'inf_logo.png', 123456.99, callback);
+                teamCreate( 'INF', 666, 'inf_logo.png', 123456.99, 'team_0', callback);
             },
             function(callback) {
-                teamCreate('team_1', 'WIF', 69, 'wif_logo.jpg', 5.0, callback);
+                teamCreate('WIF', 69, 'wif_logo.jpg', 5.0, 'team_1', callback);
             }
         ],
         // optional callback
@@ -152,13 +152,13 @@ function createTeams(cb) {
 function createBeverages(cb) {
     async.parallel([
             function(callback) {
-                beverageCreate('beverage_0', 'Bier', 5.0, callback);
+                beverageCreate('Bier', 5.0, 'beverage_0', callback);
             },
             function(callback) {
-                beverageCreate('beverage_1', 'Pfeffi', 18.0, callback);
+                beverageCreate('Pfeffi', 18.0, 'beverage_1', callback);
             },
             function(callback) {
-                beverageCreate('beverage_2', 'Weinschorle', 8.0, callback);
+                beverageCreate('Weinschorle', 8.0, 'beverage_2',  callback);
             }
         ],
         // Optional callback
@@ -168,7 +168,7 @@ function createBeverages(cb) {
 function createEvent(cb) {
     async.parallel([
             function(callback) {
-                eventCreate('event_0', 'WINF-Barabend', '2018-10-18', 'barabend.png', callback);
+                eventCreate('WINF-Barabend', '2018-10-18', 'barabend.png', 'event_0', callback);
             }
         ],
         // Optional callback

@@ -9,9 +9,9 @@ var Schema = mongoose.Schema;
 var BeverageSchema = new Schema(
     {
         //_id should be defined by default
-        beverage_id: {type: String, required: true},
         beverage_name: {type: String, required: true, max: 100},
         beverage_alc: {type: Number, required: true},
+        beverage_id: {type: String, required: true}
     }
 );
 
