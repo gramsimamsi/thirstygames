@@ -10,7 +10,7 @@ exports.all_users_get = function(req, res) {
         {
             return next(err);
         }
-        res.send(user_name_list);
+        res.status(200).send(user_name_list);
     });
 };
 
@@ -23,7 +23,7 @@ exports.all_users_delete = function(req, res)
         if(err){
             return next(err);
         }
-        res.send("All users where deleted successfully");
+        res.status(204);
     });
 }
 
@@ -36,7 +36,7 @@ exports.single_user_get = function(req, res)
         if(err){
             return next(err);
         }
-        res.send(single_user_name);
+        res.status(200).send(single_user_name);
     });
 }
 
@@ -49,7 +49,7 @@ exports.single_user_delete = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('User was removed successfully');
+            res.status(204);
         });
 }
 
@@ -66,7 +66,7 @@ exports.single_user_post = function(req, res)
                 return next(err);
             }
             console.log('New User: ' + newUser);
-            res.send(newUser);
+            res.status(201);
         });
     });
 }
@@ -81,7 +81,7 @@ exports.single_user_put = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('User was updated successfully');
+            res.status(200);
         });
 }
 /*

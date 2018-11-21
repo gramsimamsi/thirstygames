@@ -9,7 +9,7 @@ exports.all_beverages_get = function(req, res) {
             {
                 return next(err);
             }
-            res.send(beverage_name_list);
+            res.staus(200).send(beverage_name_list);
         });
 };
 
@@ -22,7 +22,7 @@ exports.all_beverages_delete = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('All beverages where deleted successfully');
+            res.status(204);
         });
 }
 
@@ -35,7 +35,7 @@ exports.single_beverage_get = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send(single_beverage_name);
+            res.status(200).send(single_beverage_name);
         });
 }
 
@@ -48,7 +48,7 @@ exports.single_beverage_delete = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('Beverage was removed successfully');
+            res.status(204);
         });
 }
 
@@ -65,7 +65,7 @@ exports.single_beverage_post = function(req, res)
                 return next(err);
             }
             console.log('New Beverage: ' + newBeverage);
-            res.send(newBeverage);
+            res.status(201);
         });
     });
 }
@@ -80,6 +80,6 @@ exports.single_beverage_put = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('Beverage was updated successfully');
+            res.status(200);
         });
 }

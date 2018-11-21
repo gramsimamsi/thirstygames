@@ -10,7 +10,7 @@ exports.all_teams_get = function(req, res) {
             {
                 return next(err);
             }
-            res.send(team_name_list);
+            res.status(200).send(team_name_list);
         });
 };
 
@@ -23,7 +23,7 @@ exports.all_teams_delete = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('All teams where deleted successfully');
+            res.status(204);
         });
 }
 
@@ -36,7 +36,7 @@ exports.single_team_get = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send(single_team_name);
+            res.status(200).send(single_team_name);
         });
 }
 
@@ -49,7 +49,7 @@ exports.single_team_delete = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('Team was removed successfully');
+            res.status(204);
         });
 }
 
@@ -66,7 +66,7 @@ exports.single_team_post = function(req, res)
                 return next(err);
             }
             console.log('New Team: ' + newTeam);
-            res.send(newTeam);
+            res.status(201);
         });
     });
 }
@@ -81,7 +81,7 @@ exports.single_team_put = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('Team was updated successfully');
+            res.status(200);
         });
 }
 

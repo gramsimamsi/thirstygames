@@ -8,7 +8,7 @@ exports.all_events_get = function(req, res) {
             {
                 return next(err);
             }
-            res.send(event_list_name);
+            res.status(200).send(event_list_name);
         });
 };
 
@@ -21,7 +21,7 @@ exports.all_events_delete = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('All events where deleted successfully');
+            res.status(204);
         });
 }
 
@@ -34,7 +34,7 @@ exports.single_event_get = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send(single_event_name);
+            res.status(200).send(single_event_name);
         });
 }
 
@@ -47,7 +47,7 @@ exports.single_event_delete = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('Event was removed successfully');
+            res.status(204);
         });
 }
 
@@ -64,7 +64,7 @@ exports.single_event_post = function(req, res)
                 return next(err);
             }
             console.log('New Event: ' + newEvent);
-            res.send(newEvent);
+            res.status(201);
         });
     });
 }
@@ -79,6 +79,6 @@ exports.single_event_put = function(req, res)
             if(err){
                 return next(err);
             }
-            res.send('Event was updated successfully');
+            res.status(200);
         });
 }
