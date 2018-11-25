@@ -1,4 +1,4 @@
-var userModel = require('../models/userModel');
+let userModel = require('../models/userModel');
 
 // Display list of all users.
 exports.all_users_get = function(req, res) {

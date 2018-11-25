@@ -1,11 +1,11 @@
 //DEBUG=thirstygames_wt/backend:* npm start
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let bodyParser = require('body-parser');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
 /***************************************************************
  * router part
@@ -30,7 +30,7 @@ mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-var app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

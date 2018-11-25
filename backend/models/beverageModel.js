@@ -2,11 +2,11 @@
 beverage Schema
  ************************/
 
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var BeverageSchema = new Schema(
+let BeverageSchema = new Schema(
     {
         //_id should be defined by default
         beverage_name: {type: String, required: true, max: 100},

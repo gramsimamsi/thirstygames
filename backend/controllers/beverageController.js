@@ -1,4 +1,4 @@
-var beverageModel = require('../models/beverageModel');
+let beverageModel = require('../models/beverageModel');
 
 exports.all_beverages_get = function(req, res) {
     //find all beverages in database

@@ -1,4 +1,4 @@
-var teamModel = require('../models/teamModel');
+let teamModel = require('../models/teamModel');
 
 // Display list of all users.
 exports.all_teams_get = function(req, res) {

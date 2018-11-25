@@ -3,11 +3,11 @@
  ************************/
 
 
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var EventSchema = new Schema(
+let EventSchema = new Schema(
     {
         //_id should be defined by default
         event_name: {type: String, required: true, max: 100},

@@ -4,19 +4,19 @@
  Passwort-Hashing from Stackeoverflow -> https://stackoverflow.com/questions/14588032/mongoose-password-hashing
  ************************/
 
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 bcrypt = require('bcrypt'),
     SALT_WORK_FACTOR = 10;
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var UserSchema = new Schema(
+let UserSchema = new Schema(
     {
         //_id should be defined by default
         user_name: {type: String, required: true, max: 100},
         user_password: {type: String, required: true, max: 100},
         user_role: {type: Number, required: true},
-        user_id: {type: String, required: true}
+        user_id: {type: String, required: true} //JWT
     }
 );
 
@@ -38,7 +38,7 @@ UserSchema
 
 //taken from above stackoverflow-post, also example of usage there
 UserSchema.pre('save', function(next) {
-    var user = this;
+    let user = this;
 
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();

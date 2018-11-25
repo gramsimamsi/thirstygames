@@ -2,11 +2,11 @@
  team Schema
  ************************/
 
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var TeamSchema = new Schema(
+let TeamSchema = new Schema(
     {
         //_id should be defined by default
         team_name: {type: String, required: true, max: 100},
