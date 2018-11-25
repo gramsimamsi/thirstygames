@@ -19,7 +19,7 @@ class LoginHandler
 
         console.log(username);
         //get User from Database
-        userModel.findOne({user_name: username}).exec(function(err, user)
+        userModel.find({user_name: username}).exec(function(err, user)
         {
             if (err)
             {
@@ -29,7 +29,6 @@ class LoginHandler
                     message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
                 });
             }
-            console.log(username);
 
             if(username && password)
             {
