@@ -20,14 +20,6 @@ let UserSchema = new Schema(
     }
 );
 
-// Virtual for author's full name
-/*EventSchema
-    .virtual('name')
-    .get(function () {
-        return this.family_name + ', ' + this.first_name;
-    });
-*/
-
 // Virtual for event's URL
 UserSchema
     .virtual('url')

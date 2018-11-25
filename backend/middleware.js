@@ -11,14 +11,15 @@ let checkToken = (req, res, next) =>
 {
     let token = req.headers['x-access-token'] || req.headers['authorization']; //Express headers
 
-    if(token.startsWith('Bearer '))
-    {
-        //Remove Bearer from String
-        token = token.slice(7, token.length);
-    }
-    //now we can proceed with token
     if(token)
     {
+        if(token.startsWith('Bearer '))
+        {
+            //Remove Bearer from String
+            token = token.slice(7, token.length);
+        }
+    //now we can proceed with token
+
         //provided token is invalid
         jwt.verify(token, config.secret, (err, decoded) =>
         {
@@ -47,6 +48,7 @@ let checkToken = (req, res, next) =>
     }
 };
 
+//export so other modules can use it
 module.exports =
     {
         checkToken: checkToken

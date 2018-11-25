@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let middleware = require('../middleware');
 let teamController = require("../controllers/teamController");
 
 
@@ -7,17 +8,17 @@ let teamController = require("../controllers/teamController");
     ALL TEAMS
  */
 
-router.get('/', teamController.all_teams_get);
+router.get('/', middleware.checkToken, teamController.all_teams_get);
 
-router.delete('/', teamController.all_teams_delete);
+router.delete('/', middleware.checkToken, teamController.all_teams_delete);
 
 /*
     SINGLE TEAM
  */
-router.get('/:team_id', teamController.single_team_get);
-router.delete('/:team_id', teamController.single_team_delete);
-router.post('/', teamController.single_team_post);
-router.put('/:team_id', teamController.single_team_put);
+router.get('/:team_id', middleware.checkToken, teamController.single_team_get);
+router.delete('/:team_id', middleware.checkToken, teamController.single_team_delete);
+router.post('/', middleware.checkToken, teamController.single_team_post);
+router.put('/:team_id', middleware.checkToken, teamController.single_team_put);
 
 
 /*Beverage Counter per Team*/
