@@ -1,5 +1,6 @@
 const express = require('express');
 let userModel = require('../models/userModel');
+let bcrypt = require('bcrypt');
 
 let jwt = require('jsonwebtoken');
 let config = require('../jwtConfig');
@@ -21,6 +22,7 @@ class LoginHandler
         {
             if (err)
             {
+                console.log("Error in LoginHandler.js findOne -> " + err.toString());
                 //throw err;
                 res.sendStatus(401).json({
                     success: false,
@@ -31,10 +33,13 @@ class LoginHandler
             if(username && password)
             {
                 // test a matching password
-                user.comparePassword(password, function (err, isMatch) {
+                //user.comparePassword(password, user.user_password, function (err, isMatch)
+                bcrypt.compare(password, user.user_password, function (err, isMatch)
+                {
+
                     if (err) {
                         //throw err;
-                        res.send(401).json({
+                        res.status(401).json({
                             success: false,
                             message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
                         });
@@ -42,11 +47,21 @@ class LoginHandler
                     //generate token
                     if(isMatch)
                     {
+                        console.log("should generate a token now");
+
                         let token = jwt.sign({username: username}, config.secret, {expiresIn: TOKEN_EXPIRATION_TIME});
-                        res.sendStatus(200).json({
+                        res.status(200).json({
                             success: true,
                             message: 'AUTHENTICATION SUCCESSFULL',
                             token: token
+                        });
+                    }
+                    else
+                    {
+                        //no error, but nothing found
+                        res.status(401).json({
+                            success:false,
+                            message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
                         });
                     }
                 });
@@ -61,7 +76,7 @@ class LoginHandler
 
     index (req, res)
     {
-        res.json({
+        res.sendStatus(200).json({
             success: true,
             message: 'INDEX PAGE'
         });
