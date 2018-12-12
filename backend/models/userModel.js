@@ -50,14 +50,29 @@ UserSchema.pre('save', function(next) {
     });
 });
 
+/*
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch)
     {
         return err ? cb(err, false) : cb(null, isMatch);
     });
 };
-
-
+*/
+UserSchema.methods.comparePassword = function(candidatePassword) {
+    return new Promise(function(resolve,reject)
+    {
+        bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+            if (err)
+            {
+                reject(err);
+            }
+            else
+            {
+                resolve(isMatch);
+            }
+        });
+    });
+};
 
 
 //Export model

@@ -17,44 +17,33 @@ class LoginHandler
 
         console.log(username);
         console.log(password);
-        //get User from Database
-        userModel.findOne({user_name: username}).exec(function(err, user)
+
+        if(username && password)
         {
-            if (err)
+            userModel.findOne({user_name: username}).exec(function(err, user)
             {
-                console.log("Error in LoginHandler.js findOne -> " + err.toString());
-                //throw err;
-                res.sendStatus(401).json({
-                    success: false,
-                    message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
-                });
-            }
-
-            if(username && password)
-            {
-                // test a matching password
-                //user.comparePassword(password, user.user_password, function (err, isMatch)
-                bcrypt.compare(password, user.user_password, function (err, isMatch)
+                if (err)
                 {
+                    console.log("Error in LoginHandler.js findOne -> " + err.toString());
+                    //throw err;
+                    res.sendStatus(401).json({
+                        success: false,
+                        message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
+                    });
+                    return;
+                }
 
-                    if (err) {
-                        //throw err;
-                        res.status(401).json({
-                            success: false,
-                            message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
-                        });
-                    }
-                    //generate token
+                user.comparePassword(password).then(function (isMatch)
+                {
                     if(isMatch)
                     {
-                        console.log("should generate a token now");
-
                         let token = jwt.sign({username: username}, config.secret, {expiresIn: TOKEN_EXPIRATION_TIME});
                         res.status(200).json({
                             success: true,
                             message: 'AUTHENTICATION SUCCESSFULL',
                             token: token
                         });
+                        return;
                     }
                     else
                     {
@@ -63,15 +52,24 @@ class LoginHandler
                             success:false,
                             message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
                         });
+                        return;
                     }
-                });
-            }
-            else
-            {
-                console.log("Username ->" + username + " Passwort ->" + password);
-            }
-        });
-
+                }).catch(function (err)
+                {
+                    if (err) {
+                        res.status(401).json({
+                            success: false,
+                            message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
+                        });
+                    }
+                    return;
+                })
+            });
+        }
+        else
+        {
+            console.log("Username ->" + username + " Passwort ->" + password);
+        }
     }
 
     index (req, res)
