@@ -17,6 +17,7 @@ class LoginHandler
         console.log(username);
         console.log(password);
 
+
         if(username && password)
         {
             userModel.findOne({user_name: username}).exec(function(err, user)
@@ -32,7 +33,7 @@ class LoginHandler
                     return;
                 }
 
-                user.hashPassword(password).then(user.comparePassword(password, user.user_password).then(function (isMatch)
+                user.comparePassword(password, user.user_password).then(function (isMatch)
                 {
                     if(isMatch)
                     {
@@ -45,7 +46,7 @@ class LoginHandler
                     }
                     else
                     {
-                        console.log("password -> " + password + " user_password -> " + user.user_password);
+                        //console.log("password -> " + password + " user_password -> " + user.user_password);
                         //no error, but nothing found
                         res.status(401).json({
                             success:false,
@@ -61,11 +62,7 @@ class LoginHandler
                             message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
                         });
                     }
-                }).catch(function (err)
-                {
-                    if(err)
-                    console.log("could not hash password");
-                }))
+                })
             });
         }
         else
@@ -73,6 +70,7 @@ class LoginHandler
             console.log("Username ->" + username + " Passwort ->" + password);
         }
     }
+
 
     index (req, res)
     {
