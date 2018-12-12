@@ -18,6 +18,7 @@ class LoginHandler
         let password = req.params.user_password;
 
         console.log(username);
+        console.log(password);
         //get User from Database
         userModel.find({user_name: username}).exec(function(err, user)
         {
