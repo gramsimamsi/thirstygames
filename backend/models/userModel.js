@@ -5,8 +5,8 @@
  ************************/
 
 let mongoose = require('mongoose');
-bcrypt = require('bcrypt'),
-    SALT_WORK_FACTOR = 10;
+bcrypt = require('bcrypt');
+const SALT_WORK_FACTOR = 10;
 
 let Schema = mongoose.Schema;
 
@@ -50,24 +50,40 @@ UserSchema.pre('save', function(next) {
     });
 });
 
-/*
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch)
+//candidate Password needs to be hashed before comparison
+UserSchema.methods.hashPassword = function(passwordToHash)
+{
+    return new Promise(function(resolve, reject)
     {
-        return err ? cb(err, false) : cb(null, isMatch);
-    });
-};
-*/
-UserSchema.methods.comparePassword = function(candidatePassword) {
-    return new Promise(function(resolve,reject)
-    {
-        bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-            if (err)
+        bcrypt.hash(passwordToHash, SALT_WORK_FACTOR, function (err, hash) {
+
+            if(err)
             {
-                reject(err);
+                reject(new Error("Can not hash password"));
             }
             else
             {
+                console.log("Hashed Password -> " + hash);
+                resolve(hash);
+            }
+        });
+
+    });
+};
+
+UserSchema.methods.comparePassword = function(candidatePassword, user_password) {
+
+    return new Promise(function(resolve,reject)
+    {
+        bcrypt.compare(candidatePassword, user_password, function (err, isMatch) {
+
+            if (err)
+            {
+                reject(new Error("Error checking use password"));
+            }
+            else
+            {
+                console.log(isMatch === true ? 'passwords match' : 'passwords dont match');
                 resolve(isMatch);
             }
         });

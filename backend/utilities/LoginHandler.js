@@ -1,6 +1,5 @@
 const express = require('express');
 let userModel = require('../models/userModel');
-let bcrypt = require('bcrypt');
 
 let jwt = require('jsonwebtoken');
 let config = require('../jwtConfig');
@@ -33,7 +32,7 @@ class LoginHandler
                     return;
                 }
 
-                user.comparePassword(password).then(function (isMatch)
+                user.hashPassword(password).then(user.comparePassword(password, user.user_password).then(function (isMatch)
                 {
                     if(isMatch)
                     {
@@ -43,27 +42,30 @@ class LoginHandler
                             message: 'AUTHENTICATION SUCCESSFULL',
                             token: token
                         });
-                        return;
                     }
                     else
                     {
+                        console.log("password -> " + password + " user_password -> " + user.user_password);
                         //no error, but nothing found
                         res.status(401).json({
                             success:false,
                             message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
                         });
-                        return;
                     }
                 }).catch(function (err)
                 {
-                    if (err) {
+                    if (err)
+                    {
                         res.status(401).json({
                             success: false,
                             message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
                         });
                     }
-                    return;
-                })
+                }).catch(function (err)
+                {
+                    if(err)
+                    console.log("could not hash password");
+                }))
             });
         }
         else
