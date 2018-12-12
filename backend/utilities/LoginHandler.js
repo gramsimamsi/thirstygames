@@ -14,8 +14,8 @@ class LoginHandler
 {
     login(req, res)
     {
-        let username = req.param('username');
-        let password = req.param('password');
+        let username = req.params.user_name;
+        let password = req.params.user_password;
 
         console.log(username);
         //get User from Database
@@ -24,7 +24,7 @@ class LoginHandler
             if (err)
             {
                 //throw err;
-                res.send(403).json({
+                res.send(401).json({
                     success: false,
                     message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
                 });
@@ -36,14 +36,14 @@ class LoginHandler
                 user.comparePassword(password, function (err, isMatch) {
                     if (err) {
                         //throw err;
-                        res.send(403).json({
+                        res.send(401).json({
                             success: false,
                             message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
                         });
                     }
                     //generate token
                     let token = jwt.sign({username: username}, config.secret, {expiresIn: TOKEN_EXPIRATION_TIME});
-                    res.json({
+                    res.status(200).json({
                         success: true,
                         message: 'AUTHENTICATION SUCCESSFULL',
                         token: token
@@ -52,7 +52,7 @@ class LoginHandler
             }
             else
             {
-                console.log(username + " " + password);
+                console.log("Username ->" + username + " Passwort ->" + password);
             }
         });
 

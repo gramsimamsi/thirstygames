@@ -16,6 +16,7 @@ let beverageRouter = require("./routes/beverage");
 let eventRouter = require("./routes/event");
 let teamRouter = require("./routes/team");
 let indexRouter = require('./routes/index');
+let loginRouter = require('./routes/login');
 
 /***************************************************************
  * mongoDB specific part
@@ -47,6 +48,7 @@ app.use('/users', usersRouter);
 app.use('/beverage', beverageRouter);
 app.use('/event', eventRouter);
 app.use('/team', teamRouter);
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

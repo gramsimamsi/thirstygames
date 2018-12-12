@@ -43,7 +43,7 @@ let checkToken = (req, res, next) =>
         //no token was provided
         return res.status(401).json({
             success: false,
-            message: 'Token  not provided',
+            message: 'Token not provided',
         });
     }
 };
