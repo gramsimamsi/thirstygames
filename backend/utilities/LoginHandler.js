@@ -14,8 +14,8 @@ class LoginHandler
 {
     login(req, res)
     {
-        let username = req.params.user_name;
-        let password = req.params.user_password;
+        let username = req.body.user_name;
+        let password = req.body.user_password;
 
         console.log(username);
         console.log(password);
