@@ -27,7 +27,7 @@ let checkToken = (req, res, next) =>
            {
                return res.json({
                    success: false,
-                   message: 'TOKEN INVALID'
+                   message: res.status(401),
                });
            }
            else
@@ -43,7 +43,7 @@ let checkToken = (req, res, next) =>
         //no token was provided
         return res.json({
             success: false,
-            message: 'AUTH TOKEN NOT SUPPLIED'
+            message: res.status(401),
         });
     }
 };
