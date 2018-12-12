@@ -25,9 +25,9 @@ let checkToken = (req, res, next) =>
         {
            if(err)
            {
-               return res.json({
+               return res.status(401).json({
                    success: false,
-                   message: res.status(401),
+                   message: 'Token invalid',
                });
            }
            else
@@ -41,9 +41,9 @@ let checkToken = (req, res, next) =>
     else
     {
         //no token was provided
-        return res.json({
+        return res.status(401).json({
             success: false,
-            message: res.status(401),
+            message: 'Token  not provided',
         });
     }
 };
