@@ -1,0 +1,19 @@
+gültiger Accesstoken ->
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNocmlzIiwiaWF0IjoxNTQ0NzAzODE0LCJleHAiOjE1NDQ3MDc0MTR9.QbgFmmj9rVYVwRCZ0qfcyY3hGNjzChaV2uEGEnKWSaw
+
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNocmlzIiwiaWF0IjoxNTQ0NzA5NDczLCJleHAiOjE1NDQ3MTMwNzN9.AQ_fh5fM1T78qmzgZBnjDw2i0sqyy3huPQMKaxJvXiQ
+
+
+
+Chris-PW
+fajsaijiejfakjau39uf8aiu
+
+
+{
+	"user_name": "CoolKid",
+	"user_password": "secret123",
+	"user_role": 1,
+	"user_id": 100
+}
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNvb2xLaWQiLCJpYXQiOjE1NDQ3MTAzODYsImV4cCI6MTU0NDcxMzk4Nn0.SS8MhPiMIrIvbqgLlco6xRvTYWVouZjFsXBLHKaV734

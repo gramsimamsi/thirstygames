@@ -17,7 +17,7 @@ router.delete('/', middleware.checkToken, userController.all_users_delete);
  */
 router.get('/:user_id', middleware.checkToken, userController.single_user_get);
 router.delete('/:user_id', middleware.checkToken, userController.single_user_delete);
-router.post('/', middleware.checkToken, userController.single_user_post);
+router.post('/',userController.single_user_post);
 router.put('/:user_id', middleware.checkToken, userController.single_user_put);
 /*
     SINGLE USER END

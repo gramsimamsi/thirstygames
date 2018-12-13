@@ -16,17 +16,36 @@ let UserSchema = new Schema(
         user_name: {type: String, required: true, max: 100},
         user_password: {type: String, required: true, max: 100},
         user_role: {type: Number, required: true},
-        user_id: {type: String, required: true} //JWT
+        user_id: {type: String, required: true}
     }
 );
-
+/*
 // Virtual for event's URL
 UserSchema
     .virtual('url')
     .get(function () {
         return '/usercatalog/user/' + this._id;
     });
-
+*/
+//create hock to hash password before save function is executed
+UserSchema.pre("save", function(next)
+{
+    const user = this;
+    if(user.user_password === undefined)
+    {
+        return next();
+    }
+    UserSchema.methods.hashPassword(user.user_password).then(function(hash)
+    {
+        user.user_password = hash;
+        console.log("New User password hashed -> " + hash.toString());
+        next();
+    }).catch(function(err)
+    {
+        console.log("Could not hash new User password" + err.toString());
+        next();
+    })
+});
 
 //candidate password is hashed implizite -> use this function to hash passwords before store them in DB
 UserSchema.methods.hashPassword = function(passwordToHash)

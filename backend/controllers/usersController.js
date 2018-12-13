@@ -25,7 +25,7 @@ exports.all_users_delete = function(req, res)
         }
         res.status(204);
     });
-}
+};
 
 exports.single_user_get = function(req, res)
 {
@@ -38,7 +38,7 @@ exports.single_user_get = function(req, res)
         }
         res.status(200).send(single_user_name);
     });
-}
+};
 
 exports.single_user_delete = function(req, res)
 {
@@ -51,7 +51,7 @@ exports.single_user_delete = function(req, res)
             }
             res.status(204);
         });
-}
+};
 
 /*create a new user*/
 exports.single_user_post = function(req, res)
@@ -59,17 +59,21 @@ exports.single_user_post = function(req, res)
     //create user and add to database
     userModel.countDocuments({}, function (err, count) {
         req.body.user_id = 'user_' + count;
-        let newUser = new userModel( req.body );
-        newUser.save(function (err)
-        {
+
+        new userModel(req.body).save(err => {
             if (err) {
-                return next(err);
+                res.status(500).json({
+                    message: "COULD NOT CREATE NEW USER"
+                })
             }
-            console.log('New User: ' + newUser);
-            res.status(201);
+            else
+            {
+                console.log('New User: ' + newUser);
+                res.status(201).send();
+            }
         });
     });
-}
+};
 
 /*update a new user*/
 exports.single_user_put = function(req, res)
@@ -83,4 +87,4 @@ exports.single_user_put = function(req, res)
             }
             res.status(200);
         });
-}
+};
