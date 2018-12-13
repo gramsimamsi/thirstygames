@@ -42,15 +42,18 @@ exports.single_user_get = function(req, res)
 
 exports.single_user_delete = function(req, res)
 {
-    //delete a single user by its user_id
-    userModel.remove({user_id: req.params.user_id})
-        .exec(function (err)
+    userModel.deleteOne({user_id: req.body.user_id}, function(err)
+    {
+        if (err)
         {
-            if(err){
-                return next(err);
-            }
-            res.status(204);
-        });
+            console.log(err.toString());
+            return next(err);
+        }
+        else
+        {
+            res.sendStatus(204);
+        }
+    });
 };
 
 /*create a new user*/
@@ -68,7 +71,7 @@ exports.single_user_post = function(req, res)
             }
             else
             {
-                console.log('New User: ' + newUser);
+                console.log("User created successfully");
                 res.status(201).send();
             }
         });

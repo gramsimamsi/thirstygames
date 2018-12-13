@@ -9,9 +9,7 @@ const config = require('./jwtConfig');
 
 let checkToken = (req, res, next) =>
 {
-    console.log("hello from middleware");
     let token = req.headers['x-access-token'] || req.headers['authorization'] || req.body.token || req.params.token || req.query.token; //token can be passed in multiple ways
-    console.log("token -> " + token.toString());
     if(token)
     {
         jwt.verify(token, config.secret, (err, decoded) =>

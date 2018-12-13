@@ -16,7 +16,8 @@ let UserSchema = new Schema(
         user_name: {type: String, required: true, max: 100},
         user_password: {type: String, required: true, max: 100},
         user_role: {type: Number, required: true},
-        user_id: {type: String, required: true}
+        user_id: {type: String, required: true},
+        user_refresh_token: {type: String, required: false} //will be set by application automatically
     }
 );
 /*
@@ -38,7 +39,6 @@ UserSchema.pre("save", function(next)
     UserSchema.methods.hashPassword(user.user_password).then(function(hash)
     {
         user.user_password = hash;
-        console.log("New User password hashed -> " + hash.toString());
         next();
     }).catch(function(err)
     {
@@ -60,7 +60,6 @@ UserSchema.methods.hashPassword = function(passwordToHash)
             }
             else
             {
-                console.log("Hashed Password -> " + hash);
                 resolve(hash);
             }
         });
@@ -80,13 +79,12 @@ UserSchema.methods.comparePassword = function(candidatePassword, user_password) 
             }
             else
             {
-                console.log(isMatch === true ? 'passwords match' : 'passwords dont match');
+                //console.log(isMatch === true ? 'passwords match' : 'passwords dont match');
                 resolve(isMatch);
             }
         });
     });
 };
-
 
 //Export model
 module.exports = mongoose.model('User', UserSchema);

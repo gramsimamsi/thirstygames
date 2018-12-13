@@ -4,8 +4,6 @@ let userModel = require('../models/userModel');
 let jwt = require('jsonwebtoken');
 let config = require('../jwtConfig');
 
-const TOKEN_EXPIRATION_TIME =  '1h';
-
 
 class LoginHandler
 {
@@ -37,16 +35,34 @@ class LoginHandler
                 {
                     if(isMatch)
                     {
-                        let token = jwt.sign({username: username}, config.secret, {expiresIn: TOKEN_EXPIRATION_TIME});
-                        res.status(200).json({
-                            success: true,
-                            message: 'AUTHENTICATION SUCCESSFULL',
-                            token: token
-                        });
+                        let token = jwt.sign({username: username}, config.secret, {expiresIn: config.tokenExpirationTime});
+                        let refreshToken = jwt.sign({username: username}, config.refreshSecret, {expiresIn: config.refreshTokenExpirationTime});
+
+                        // save refresh-token in DB with every login
+                        userModel.findOneAndUpdate({user_name: username}, {user_refresh_token: refreshToken}, {upsert:true}, function(err, doc)
+                        {
+                            if(err)
+                            {
+                                console.log("could not update " + username.toString() + " with new refreshToken");
+                                res.status(401).json({
+                                    success:false,
+                                    message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
+                                });
+                            }
+                            else
+                            {
+                                //console.log("inserted new refresh-token -> user is logged in");
+                                res.status(200).json({
+                                    success: true,
+                                    message: 'AUTHENTICATION SUCCESSFULL',
+                                    token: token,
+                                    refreshToken: refreshToken
+                                });
+                            }
+                        })
                     }
                     else
                     {
-                        //console.log("password -> " + password + " user_password -> " + user.user_password);
                         //no error, but nothing found
                         res.status(401).json({
                             success:false,
@@ -57,6 +73,7 @@ class LoginHandler
                 {
                     if (err)
                     {
+                        console.log("catch -> " + err.toString());
                         res.status(401).json({
                             success: false,
                             message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
