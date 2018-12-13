@@ -9,18 +9,11 @@ const config = require('./jwtConfig');
 
 let checkToken = (req, res, next) =>
 {
-    let token = req.headers['x-access-token'] || req.headers['authorization']; //Express headers
-
+    console.log("hello from middleware");
+    let token = req.headers['x-access-token'] || req.headers['authorization'] || req.body.token || req.params.token || req.query.token; //token can be passed in multiple ways
+    console.log("token -> " + token.toString());
     if(token)
     {
-        if(token.startsWith('Bearer '))
-        {
-            //Remove Bearer from String
-            token = token.slice(7, token.length);
-        }
-    //now we can proceed with token
-
-        //provided token is invalid
         jwt.verify(token, config.secret, (err, decoded) =>
         {
            if(err)

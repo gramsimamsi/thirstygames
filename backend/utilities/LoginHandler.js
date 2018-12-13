@@ -71,7 +71,6 @@ class LoginHandler
         }
     }
 
-
     index (req, res)
     {
         res.sendStatus(200).json({
