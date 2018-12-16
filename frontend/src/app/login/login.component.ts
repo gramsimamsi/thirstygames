@@ -10,13 +10,18 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginServeService) { }
 
-  private username: String;
-  private password: String;
+  private username: string;
+  private password: string;
+  private token: string;
 
   login(): void
   {
-    this.loginService.submitLogin(this.username, this.password).subscribe();
+    this.loginService.submitLogin(this.username, this.password).subscribe(body => this.token = body.token);
+    console.log("token -> " + this.token);
+    localStorage.setItem(this.username, JSON.stringify(this.token))
   }
+
+
 
   ngOnInit() {
   }
