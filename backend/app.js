@@ -34,6 +34,19 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 let app = express();
 
+
+/***************************************************************
+ * CORS Configuration
+ **************************************************************/
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  next();
+});
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
