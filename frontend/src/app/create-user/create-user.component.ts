@@ -14,7 +14,9 @@ export class CreateUserComponent implements OnInit {
 
   matcher = new InputErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder)
+  constructor(private formBuilder: FormBuilder,
+              private createUserService: CreateUserServiceService
+              )
   {
     this.inputForm = this.formBuilder.group({
         username: '',
@@ -29,6 +31,13 @@ export class CreateUserComponent implements OnInit {
     let confirmPass = group.controls.confirmPassword.value;
 
     return pass === confirmPass ? null : { notSame: true }
+  }
+
+
+  addUser(): void
+  {
+    this.createUserService.createUser(this.inputForm.get("username").value, this.inputForm.get("password").value)
+      .subscribe(response => console.log(response));
   }
 
 ngOnInit() {
