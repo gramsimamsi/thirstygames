@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {CreateUserServiceService} from "../services/createUserService/create-user-service.service";
+import { InputErrorStateMatcher} from "../Utilites/InputErrorStateMatcher/input-error-state-matcher";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-user',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateUserComponent implements OnInit {
 
-  constructor() { }
+  inputForm: FormGroup;
 
-  ngOnInit() {
+  matcher = new InputErrorStateMatcher();
+
+  constructor(private formBuilder: FormBuilder)
+  {
+    this.inputForm = this.formBuilder.group({
+        username: '',
+        password: ['', [Validators.required]],
+        confirmPassword: ['']
+      },
+      { validator: this.checkPasswords });
+  }
+
+  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+    let pass = group.controls.password.value;
+    let confirmPass = group.controls.confirmPassword.value;
+
+    return pass === confirmPass ? null : { notSame: true }
+  }
+
+ngOnInit() {
   }
 
 }
