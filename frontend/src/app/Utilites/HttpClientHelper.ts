@@ -29,6 +29,4 @@ export class HttpClientHelper
       return of(result as T);
     };
   }
-
-
 }

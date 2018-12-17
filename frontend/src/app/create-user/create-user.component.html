@@ -31,7 +31,7 @@
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
     <mat-card-actions *ngIf="!inputForm.hasError('notSame')">
-      <button mat-raised-button color="primary">Create User</button>
+      <button mat-raised-button on-click="addUser()" color="primary">Create User</button>
     </mat-card-actions>
 </mat-card>
 

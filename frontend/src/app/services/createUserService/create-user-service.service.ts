@@ -10,7 +10,7 @@ import {catchError} from "rxjs/operators";
 })
 export class CreateUserServiceService {
 
-  private createURL = 'http://127.0.0.1:3000/users';
+  private createURL = 'users';
 
   constructor(private http: HttpClient) { }
 
