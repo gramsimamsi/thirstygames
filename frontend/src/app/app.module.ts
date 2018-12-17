@@ -16,6 +16,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { CreateUserComponent } from './create-user/create-user.component';
 import {environment} from "../environments/environment";
 import {BaseUrlInterceptor} from "./Utilites/base-urlinterceptor";
+import {AccessTokenInterceptor} from "./Utilites/accessToken-interceptor";
 
 
 @NgModule({
@@ -43,6 +44,11 @@ import {BaseUrlInterceptor} from "./Utilites/base-urlinterceptor";
     {
       provide: "BASE_API_URL",
       useValue: environment.apiBaseURL
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AccessTokenInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
