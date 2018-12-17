@@ -15,20 +15,22 @@ export class AccessTokenInterceptor implements HttpInterceptor {
 
   constructor(private auth: AuthService,
               private router: Router
-              ) {}
+  ) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     request = request.clone({
       setHeaders: {
-        accessToken: `${this.auth.getToken()}`
+        token: `${this.auth.getToken()}`
       }
     });
 
-    //return next.handle(request);
+    return next.handle(request);
 
     /*testimplementation for token expiration check */
 
+    /*
     return next.handle(request).do( (event: HttpEvent<any>) => {
 
       if(event instanceof HttpResponse)
@@ -46,5 +48,6 @@ export class AccessTokenInterceptor implements HttpInterceptor {
           }
         }
       })
+  }*/
   }
 }

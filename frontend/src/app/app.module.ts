@@ -17,13 +17,15 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import {environment} from "../environments/environment";
 import {BaseUrlInterceptor} from "./Utilites/base-urlinterceptor";
 import {AccessTokenInterceptor} from "./Utilites/accessToken-interceptor";
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
