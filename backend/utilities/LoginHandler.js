@@ -15,7 +15,6 @@ class LoginHandler
         console.log(username);
         console.log(password);
 
-
         if(username && password)
         {
             userModel.findOne({user_name: username}).exec(function(err, user)
@@ -84,6 +83,7 @@ class LoginHandler
         }
         else
         {
+            res.status(400);
             console.log("Username ->" + username + " Passwort ->" + password);
         }
     }
