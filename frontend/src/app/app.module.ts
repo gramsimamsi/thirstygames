@@ -12,8 +12,10 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AppRoutingModule} from "./app.routing.module";
 
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { CreateUserComponent } from './create-user/create-user.component';
+import {environment} from "../environments/environment";
+import {BaseUrlInterceptor} from "./Utilites/base-urlinterceptor";
 
 
 @NgModule({
@@ -32,7 +34,17 @@ import { CreateUserComponent } from './create-user/create-user.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseUrlInterceptor,
+      multi: true
+    },
+    {
+      provide: "BASE_API_URL",
+      useValue: environment.apiBaseURL
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

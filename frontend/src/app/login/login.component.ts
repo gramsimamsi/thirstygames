@@ -18,9 +18,11 @@ export class LoginComponent implements OnInit {
 
   login(): void
   {
-    this.loginService.submitLogin(this.username, this.password).subscribe(body => this.token = body.token);
-    console.log("token -> " + this.token);
-    localStorage.setItem(this.username, JSON.stringify(this.token));
+    this.loginService.submitLogin(this.username, this.password)
+      .subscribe(
+        body => localStorage.setItem(this.username, JSON.stringify(body.token)),
+        body => console.log("ERROR LOGIN_SERVICE GETTING token ->" + body.token)
+    );
   }
 
   redirectCreateUser(): void
