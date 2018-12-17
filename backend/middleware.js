@@ -12,6 +12,8 @@ let checkToken = (req, res, next) =>
     let token = req.headers['x-access-token'] || req.headers['authorization'] || req.body.token || req.params.token || req.query.token; //token can be passed in multiple ways
     if(token)
     {
+        /* ToDo currently neccessary because frontend sends token with " "  -> g means replace all ""*/
+        token = token.replace(/"/g,"");
         jwt.verify(token, config.secret, (err, decoded) =>
         {
            if(err)
