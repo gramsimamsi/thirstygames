@@ -9,6 +9,7 @@ const config = require('./jwtConfig');
 
 let checkToken = (req, res, next) =>
 {
+    //ToDo remove unnecessary token delivery methods (whould prefer  req.headers['x-access-token'])
     let token = req.headers['x-access-token'] || req.headers['authorization'] || req.body.token || req.params.token || req.query.token; //token can be passed in multiple ways
     if(token)
     {
