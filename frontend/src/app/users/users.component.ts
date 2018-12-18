@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../services/usersService/users.service";
-import {Observable} from "rxjs";
 import {User} from "../models/User";
 
 @Component({
@@ -19,7 +18,6 @@ export class UsersComponent implements OnInit {
     this.userService.getAllUsers().subscribe(
       users => {
         this.users = users;
-
       },
       error => console.log("ERROR GETTING USERS -> " + error.toString())
     );

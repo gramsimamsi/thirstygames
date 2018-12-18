@@ -1,4 +1,29 @@
+.list-view
+{
+  margin: 2%;
+  position: absolute;
+  left: 20%;
+  right: 20%;
+}
+
 .accordion
 {
   margin: 10%;
+}
+
+.delete-button
+{
+  position: absolute;
+  right: 0px;
+  margin: 0;
+}
+
+.list-item
+{
+  padding: 1px;
+}
+
+.list-item:hover
+{
+  color: blue;
 }

@@ -4,44 +4,53 @@
   Welcome {{username}} to your personal Command Center :)
 </mat-toolbar>
 
-  <mat-accordion class="accordion">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Manage Events
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-    </mat-expansion-panel>
-  </mat-accordion>
+  <div class="list-view">
+    <mat-accordion class="accordion">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Manage Events
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-  <mat-accordion class="accordion">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Manage Teams
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-    </mat-expansion-panel>
-  </mat-accordion>
+    <mat-accordion class="accordion">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Manage Teams
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-  <mat-accordion class="accordion">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Manage Users
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-    </mat-expansion-panel>
-  </mat-accordion>
+    <mat-accordion class="accordion">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Manage Users
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+          <mat-list-item *ngFor="let user of users" color="primary"class="list-item">
+            <span class="badge">{{user.user_name}}</span>
+            <button mat-icon-button on-click="console.log('User deleted')" class="delete-button">
+              <mat-icon matListicon>delete_outline</mat-icon>
+            </button>
+          </mat-list-item>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-  <mat-accordion class="accordion">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Manage Beverages
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-    </mat-expansion-panel>
-  </mat-accordion>
+    <mat-accordion class="accordion">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Manage Beverages
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
 
 </mat-card>
