@@ -18,6 +18,7 @@ import {environment} from "../environments/environment";
 import {BaseUrlInterceptor} from "./Utilites/base-urlinterceptor";
 import {AccessTokenInterceptor} from "./Utilites/accessToken-interceptor";
 import { UsersComponent } from './users/users.component';
+import { AdminWelcomePageComponent } from './admin-welcome-page/admin-welcome-page.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { UsersComponent } from './users/users.component';
     AppComponent,
     LoginComponent,
     CreateUserComponent,
-    UsersComponent
+    UsersComponent,
+    AdminWelcomePageComponent
   ],
   imports: [
     BrowserModule,
