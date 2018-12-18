@@ -1,3 +1,14 @@
 <p>
   users works!
 </p>
+
+<mat-selection-list color="primary" >
+  <mat-list-option *ngFor="let user of users" color="primary">
+      <span class="badge">{{user.user_name}}</span>
+  </mat-list-option>
+</mat-selection-list>
+
+
+
+
+
