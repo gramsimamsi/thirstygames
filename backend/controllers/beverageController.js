@@ -9,7 +9,7 @@ exports.all_beverages_get = function(req, res) {
             {
                 return next(err);
             }
-            res.staus(200).send(beverage_name_list);
+            res.status(200).send(beverage_name_list);
         });
 };
 
@@ -19,7 +19,8 @@ exports.all_beverages_delete = function(req, res)
     beverageModel.remove({})
         .exec(function(err)
         {
-            if(err){
+            if(err)
+            {
                 return next(err);
             }
             res.status(204);
@@ -64,6 +65,7 @@ exports.single_beverage_post = function(req, res)
             if (err) {
                 return next(err);
             }
+            //ToDo remove console.log()
             console.log('New Beverage: ' + newBeverage);
             res.status(201);
         });

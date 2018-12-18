@@ -63,6 +63,7 @@ exports.single_event_post = function(req, res)
             if (err) {
                 return next(err);
             }
+            //ToDo remove console.log()
             console.log('New Event: ' + newEvent);
             res.status(201);
         });

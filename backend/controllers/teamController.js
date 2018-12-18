@@ -65,6 +65,7 @@ exports.single_team_post = function(req, res)
             if (err) {
                 return next(err);
             }
+            //ToDo remove console.log()
             console.log('New Team: ' + newTeam);
             res.status(201);
         });

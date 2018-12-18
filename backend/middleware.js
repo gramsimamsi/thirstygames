@@ -12,7 +12,7 @@ let checkToken = (req, res, next) =>
     let token = req.headers['x-access-token'] || req.headers['authorization'] || req.body.token || req.params.token || req.query.token; //token can be passed in multiple ways
     if(token)
     {
-        /* ToDo currently neccessary because frontend sends token with " "  -> g means replace all ""*/
+        /* ToDo currently necessary because frontend sends token with " "  -> g means replace all ""*/
         token = token.replace(/"/g,"");
         jwt.verify(token, config.secret, (err, decoded) =>
         {
@@ -20,6 +20,7 @@ let checkToken = (req, res, next) =>
            {
                return res.status(401).json({
                    success: false,
+                   //ToDo remove message
                    message: 'Token invalid',
                });
            }
@@ -36,6 +37,7 @@ let checkToken = (req, res, next) =>
         //no token was provided
         return res.status(401).json({
             success: false,
+            //ToDo remove message
             message: 'Token not provided',
         });
     }

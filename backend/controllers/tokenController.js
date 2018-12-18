@@ -19,19 +19,23 @@ exports.token_refresh = function(req, res)
         {
             if(err)
             {
+                //ToDo remove console.log()
                 console.log("token_refresh could not find user in db");
                 res.status(500).json({
+                    //ToDo remove message
                     message: "COULD NOT REFRESH ACCESSTOKEN"
                 }).send();
             }
             else
             {
+                //ToDo remove console.log()
                 //console.log("db-token -> " + user.user_refresh_token.toString() + " send token -> " + refreshToken.toString());
                 if(user.user_refresh_token === refreshToken)
                 {
                     let token = jwt.sign({username: username}, config.secret, {expiresIn: config.tokenExpirationTime});
                     res.status(200).json({
                         success: true,
+                        //ToDo remove message
                         message: 'REFRESH ACCESSTOKEN SUCCESSFULL',
                         token: token,
                         refreshToken: refreshToken
@@ -39,8 +43,10 @@ exports.token_refresh = function(req, res)
                 }
                 else
                 {
+                    //ToDo remove console.log()
                     console.log("token do not match");
-                    res.status(500).json({
+                    res.status(400).json({
+                        //ToDo remove message
                         message: "COULD NOT REFRESH ACCESSTOKEN"
                     }).send();
                 }

@@ -66,11 +66,13 @@ exports.single_user_post = function(req, res)
         new userModel(req.body).save(err => {
             if (err) {
                 res.status(500).json({
+                    //ToDo remove message
                     message: "COULD NOT CREATE NEW USER"
                 })
             }
             else
             {
+                //ToDo remove console.log()
                 console.log("User created successfully");
                 res.status(201).send();
             }
