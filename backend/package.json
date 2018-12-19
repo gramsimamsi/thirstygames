@@ -15,7 +15,7 @@
     "debug": "~2.6.9",
     "eslint": "^5.9.0",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
+    "http-errors": "^1.7.1",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.11",
     "morgan": "~1.9.0",
