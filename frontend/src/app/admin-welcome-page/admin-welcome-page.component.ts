@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../models/User";
 import {UsersService} from "../services/usersService/users.service";
-import {UsersComponent} from "../users/users.component";
 
 @Component({
   selector: 'app-admin-welcome-page',
@@ -22,6 +21,14 @@ export class AdminWelcomePageComponent implements OnInit {
       users => this.users = users,
       error1 => console.log('ERROR ADMIN WELCOME PAGE -> ' + error1.toString())
     )
+  }
+
+  deleteSingleUser(user): void
+  {
+    this.userService.deleteSingleUser(user.user_id).subscribe(
+      response => {this.showAllUsers(); console.log("User deleted -> " + user.user_id)},
+      error => console.log("ERROR_DELETING_USER")
+    );
   }
 
   ngOnInit() {

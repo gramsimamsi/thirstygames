@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   private username: string;
   private password: string;
-  private token: string;
 
   login(): void
   {

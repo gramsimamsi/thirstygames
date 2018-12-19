@@ -4,6 +4,7 @@
   Welcome {{username}} to your personal Command Center :)
 </mat-toolbar>
 
+  <!--      MANAGE EVENTS   -->
   <div class="list-view">
     <mat-accordion class="accordion">
       <mat-expansion-panel>
@@ -15,6 +16,8 @@
       </mat-expansion-panel>
     </mat-accordion>
 
+    <!--      MANAGE TEAMS   -->
+
     <mat-accordion class="accordion">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -25,6 +28,8 @@
       </mat-expansion-panel>
     </mat-accordion>
 
+    <!--      MANAGE USERS   -->
+
     <mat-accordion class="accordion">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -32,14 +37,23 @@
             Manage Users
           </mat-panel-title>
         </mat-expansion-panel-header>
+          <mat-list-item color="primary"class="list-item">
+            <span id="add-button" class="position-button">
+              <a href="./users">
+              <mat-icon>add_circle_outline</mat-icon>
+              </a>
+            </span>
+          </mat-list-item>
           <mat-list-item *ngFor="let user of users" color="primary"class="list-item">
             <span class="badge">{{user.user_name}}</span>
-            <button mat-icon-button on-click="console.log('User deleted')" class="delete-button">
-              <mat-icon matListicon>delete_outline</mat-icon>
+            <button mat-icon-button on-click="deleteSingleUser(user)" class="position-button">
+              <mat-icon matListicon >delete</mat-icon>
             </button>
           </mat-list-item>
       </mat-expansion-panel>
     </mat-accordion>
+
+    <!--      MANAGE BEVERAGES   -->
 
     <mat-accordion class="accordion">
       <mat-expansion-panel>
