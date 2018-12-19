@@ -13,6 +13,19 @@
             Manage Events
           </mat-panel-title>
         </mat-expansion-panel-header>
+        <mat-list-item color="primary"class="list-item">
+            <span id="add-button" class="position-button">
+              <a href="./admin/events">
+              <mat-icon class="list-item">add_circle_outline</mat-icon>
+              </a>
+            </span>
+        </mat-list-item>
+        <mat-list-item *ngFor="let event of events" color="primary"class="list-item">
+          <span class="badge">{{event.event_name}}</span>
+          <button mat-icon-button on-click="removeSingleUser(event)" class="position-button">
+            <mat-icon matListicon >delete</mat-icon>
+          </button>
+        </mat-list-item>
       </mat-expansion-panel>
     </mat-accordion>
 
@@ -46,7 +59,7 @@
           </mat-list-item>
           <mat-list-item *ngFor="let user of users" color="primary"class="list-item">
             <span class="badge">{{user.user_name}}</span>
-            <button mat-icon-button on-click="deleteSingleUser(user)" class="position-button">
+            <button mat-icon-button on-click="removeSingleUser(user)" class="position-button">
               <mat-icon matListicon >delete</mat-icon>
             </button>
           </mat-list-item>

@@ -19,6 +19,7 @@ import {BaseUrlInterceptor} from "./Utilites/base-urlinterceptor";
 import {AccessTokenInterceptor} from "./Utilites/accessToken-interceptor";
 import { UsersComponent } from './users/users.component';
 import { AdminWelcomePageComponent } from './admin-welcome-page/admin-welcome-page.component';
+import { EventComponent } from './event/event.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AdminWelcomePageComponent } from './admin-welcome-page/admin-welcome-pa
     LoginComponent,
     CreateUserComponent,
     UsersComponent,
-    AdminWelcomePageComponent
+    AdminWelcomePageComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,
