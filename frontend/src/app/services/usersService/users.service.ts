@@ -15,7 +15,7 @@ export class UsersService {
   ) {}
 
   private usersGet = 'users'; /*'http://127.0.0.1:3000/login';*/
-  private singleUserDelete = 'users/:user_id=';
+  private singleUserDelete = 'users?user_id=';
 
   getAllUsers(): Observable<User[]>
   {

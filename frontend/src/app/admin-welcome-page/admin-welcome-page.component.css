@@ -2,8 +2,8 @@
 {
   margin: 2%;
   position: absolute;
-  left: 20%;
-  right: 20%;
+  left: 10%;
+  right: 10%;
 }
 
 .accordion
@@ -38,4 +38,9 @@
 #add-button:hover
 {
   color:blue;
+}
+
+.toolbar
+{
+  text-align: center;
 }
