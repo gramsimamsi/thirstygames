@@ -20,7 +20,7 @@
 
 .list-item
 {
-  padding: 1px;
+  padding: 1%;
 }
 
 .list-item:hover
@@ -31,7 +31,11 @@
 #add-button
 {
   transform: scale(1.3);
-  position: absolute;
   margin-right: 2%;
+  margin-top: 3%;
   padding-bottom: 30%;
+}
+#add-button:hover
+{
+  color:blue;
 }
