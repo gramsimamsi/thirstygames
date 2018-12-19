@@ -26,6 +26,7 @@ export class AuthService {
   }
 
 
+  // toDo needs to be tested
   public getTokenExpirationDate(token: string): Date
   {
     const decodedToken = jwt_decode(token);

@@ -14,9 +14,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path : '', component : LoginComponent},
   { path: 'users', component: CreateUserComponent},
-  { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/users'}},
-  { path: 'admin/welcome', component: AdminWelcomePageComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/users'}},
-  { path: 'admin/events', component:EventComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/users'}},
+  { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/login'}},
+  { path: 'admin/welcome', component: AdminWelcomePageComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/login'}},
+  { path: 'admin/events', component:EventComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/login'}},
   { path: 'logout', component: LogoutComponent}
 ];
 
