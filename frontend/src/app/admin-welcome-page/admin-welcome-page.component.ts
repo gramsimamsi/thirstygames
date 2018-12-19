@@ -3,6 +3,7 @@ import {User} from "../models/User";
 import {UsersService} from "../services/usersService/users.service";
 import {EventService} from "../services/eventService/event.service";
 import { Event } from "../models/Event";
+
 @Component({
   selector: 'app-admin-welcome-page',
   templateUrl: './admin-welcome-page.component.html',
@@ -18,7 +19,6 @@ export class AdminWelcomePageComponent implements OnInit {
   private username: string;
   users: User[];
   events: Event[];
-
 
 
   showAllEvents(): void
