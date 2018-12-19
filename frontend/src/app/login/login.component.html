@@ -1,6 +1,5 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <mat-card-title class="">Please logIN or signUP</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form class="example-form">
@@ -18,9 +17,8 @@
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button on-click="login()" color="primary">Login</button>
+    <button mat-raised-button on-click="login()" color="primary">Log in</button>
+    <button mat-raised-button on-click="redirectCreateUser()" color="primary">Sign in</button>
   </mat-card-actions>
-  <mat-card-actions>
-    <button mat-raised-button on-click="redirectCreateUser()" color="primary">Add New User</button>
-  </mat-card-actions>
+
 </mat-card>

@@ -1,3 +1,10 @@
-<p>
-  logout works!
-</p>
+<mat-card class="logout-card">
+  <h2 class="header">Logout successfully</h2>
+  <!--You need to import RouterModule in your component to make this work-->
+  <mat-card-actions routerLink="/login" >
+    <button mat-raised-button color="primary">Login</button>
+  </mat-card-actions>
+</mat-card>
+
+
+
