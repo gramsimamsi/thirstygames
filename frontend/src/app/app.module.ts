@@ -20,6 +20,7 @@ import {AccessTokenInterceptor} from "./Utilites/accessToken-interceptor";
 import { UsersComponent } from './users/users.component';
 import { AdminWelcomePageComponent } from './admin-welcome-page/admin-welcome-page.component';
 import { EventComponent } from './event/event.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { EventComponent } from './event/event.component';
     CreateUserComponent,
     UsersComponent,
     AdminWelcomePageComponent,
-    EventComponent
+    EventComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
