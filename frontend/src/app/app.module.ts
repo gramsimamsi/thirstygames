@@ -3,25 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import {MaterialModule} from "./material.module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MaterialModule} from './material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {AppRoutingModule} from "./app.routing.module";
+import {AppRoutingModule} from './app.routing.module';
 
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CreateUserComponent } from './create-user/create-user.component';
-import {environment} from "../environments/environment";
-import {BaseUrlInterceptor} from "./Utilites/base-urlinterceptor";
-import {AccessTokenInterceptor} from "./Utilites/accessToken-interceptor";
+import {environment} from '../environments/environment';
+import {BaseUrlInterceptor} from './Utilites/base-urlinterceptor';
+import {AccessTokenInterceptor} from './Utilites/accessToken-interceptor';
 import { UsersComponent } from './users/users.component';
 import { AdminWelcomePageComponent } from './admin-welcome-page/admin-welcome-page.component';
 import { EventComponent } from './event/event.component';
 import { LogoutComponent } from './logout/logout.component';
-
 
 @NgModule({
   declarations: [
@@ -50,7 +49,7 @@ import { LogoutComponent } from './logout/logout.component';
       multi: true
     },
     {
-      provide: "BASE_API_URL",
+      provide: 'BASE_API_URL',
       useValue: environment.apiBaseURL
     },
     {
