@@ -19,7 +19,6 @@ class LoginHandler
                 if (err)
                 {
                     console.log("Error in LoginHandler.js findOne -> " + err.toString());
-                    //throw err;
                     res.status(401).json({
                         success: false,
                         message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'

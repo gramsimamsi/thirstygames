@@ -9,10 +9,6 @@ exports.token_refresh = function(req, res)
     let username = req.body.user_name;
     let refreshToken = req.body.user_refresh_token;
 
-    console.log(username);
-    console.log(refreshToken);
-
-
     if(username && refreshToken)
     {
         userModel.findOne({user_name: username}).exec(function(err, user)
