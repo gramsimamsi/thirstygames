@@ -19,8 +19,10 @@ export class LoginComponent implements OnInit {
   {
     this.loginService.submitLogin(this.username, this.password)
       .subscribe(
-        body => { localStorage.setItem('accessToken', JSON.stringify(body.token));
-                        sessionStorage.setItem('username', JSON.stringify(this.username));
+        body => {
+                        localStorage.setItem('accessToken', JSON.stringify(body.token));
+                        localStorage.setItem('username', JSON.stringify(this.username));
+                        localStorage.setItem('refreshToken', JSON.stringify(body.refreshToken));
                         this.router.navigateByUrl('admin/welcome');
                       },
         body => console.log("ERROR LOGIN_SERVICE GETTING token ->" + body.token)
