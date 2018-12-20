@@ -2,7 +2,7 @@
 <div style="text-align:center">
   <mat-toolbar color="primary">
     <div fxHide.gt-xs>
-      <button mat-icon-button>
+      <button mat-icon-button (click)="idOfMatSidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
     </div>
@@ -27,23 +27,44 @@
         </li>
       </ul>
     </div>
-    <mat-sidenav-container>
-      <mat-sidenav-content>
-        <mat-sidenav mode="over" opened="false">
-          <mat-nav-list>
-            <mat-list-item >1 Item</mat-list-item>
-            <mat-list-item>2 Item</mat-list-item>
-            <mat-list-item>3 Item</mat-list-item>
-          </mat-nav-list>
-        </mat-sidenav>
-      </mat-sidenav-content>
-      <span class="version-info">Current build: 0.1</span>
-    </mat-sidenav-container>
+
   </mat-toolbar>
-
-
-
 </div>
+
+<mat-sidenav-container>
+  <mat-sidenav #idOfMatSidenav>
+    <mat-nav-list>
+      <a mat-list-item >1 Item</a>
+      <a mat-list-item>2 Item</a>
+      <a mat-list-item>3 Item</a>
+    </mat-nav-list>
+
+    <span class="version-info">Current build: 0.1</span>
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container> 
+
+<!--
+  
+<mat-sidenav-container class="example-sidenav-container"
+                      [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+    <mat-nav-list>
+      <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p *ngFor="let content of fillerContent">{{content}}</p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+-->
+
+
 
 <!--div>
 <app-top-nav class="fixed-topnav" fxHide.gt-xs></app-top-nav>
@@ -60,8 +81,3 @@
 <span class="version-info">Current build: {{version.full ? version.full : version}}</span>
 
 <-->
-
-
-<main>
-  <router-outlet></router-outlet>
-</main>
