@@ -1,42 +1,28 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
-  height: 100%;
-}
-
 mat-sidenav {
-  width: 250px;
+    min-width: 250px;
 }
 
-a {
-  text-decoration: none;
-  color: white;
+.fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+    */
+    flex: 1 1 auto;
+}
+ 
+.toolbar-object{
+    margin: 0 8px;
 }
 
-a:hover,
-a:active {
-  color: lightgray;
+.version-info{
+    position:fixed;
+    bottom:0;
 }
 
-.navigation-items {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
+#total-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;   
 }
-
-.icon {
-  display: inline-block;
-  height: 30px;
-  margin: 0 auto;
-  padding-right: 5px;
-  text-align: center;
-  vertical-align: middle;
-  width: 15%;
-}
-
-.label {
-  display: inline-block;
-  line-height: 30px;
-  margin: 0;
-  width: 85%;
-}
-
