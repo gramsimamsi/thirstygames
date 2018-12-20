@@ -25,15 +25,13 @@ export class LoginComponent implements OnInit {
                         localStorage.setItem('refreshToken', JSON.stringify(body.refreshToken));
                         this.router.navigateByUrl('admin/welcome');
                       },
-        body => console.log("ERROR LOGIN_SERVICE GETTING token ->" + body.token)
+        body => {
+          console.log("ERROR LOGIN_SERVICE GETTING token ->" + body.token);
+
+        }
+
     );
   }
-
-  redirectCreateUser(): void
-  {
-    this.router.navigateByUrl('users');
-  }
-
 
   ngOnInit() {
   }

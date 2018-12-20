@@ -1,7 +1,4 @@
 <mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>Please create a new user</mat-card-title>
-  </mat-card-header>
   <mat-card-content>
     <form class="example-form" [formGroup]="inputForm">
       <p>
@@ -29,7 +26,9 @@
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
     <mat-card-actions *ngIf="!inputForm.hasError('notSame')">
-      <button mat-raised-button on-click="addUser()" color="primary">Create User</button>
+      <button mat-raised-button on-click="addUser()" color="primary">Sign in</button>
+      <button mat-raised-button routerLink="/login" color="primary">Login</button>
+
     </mat-card-actions>
 </mat-card>
 
