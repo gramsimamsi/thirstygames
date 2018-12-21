@@ -4,13 +4,13 @@ version: '3' # specify docker-compose version
 services:
 
   frontend:
-    # restart: always
+    restart: always
     build: ./frontend # specify the directory of the Dockerfile
     ports:
       - "4200:4200" # specify port mapping
 
   backend:
-    # restart: always
+    restart: always
     build: ./backend # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports mapping
@@ -19,7 +19,7 @@ services:
 
   database:
     image: mongo # specify image to build container from
-    # restart: always
+    restart: always
     volumes:
       - ./data:/data/db
     ports:
