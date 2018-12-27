@@ -16,7 +16,7 @@ export class AdminWelcomePageComponent implements OnInit {
               ) { }
 
   panelOpenState = false;
-  private username: string;
+  username;
   users: User[];
   events: Event[];
 

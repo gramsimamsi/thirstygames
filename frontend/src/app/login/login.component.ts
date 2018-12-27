@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         body => {
                         localStorage.setItem('accessToken', JSON.stringify(body.token));
-                        localStorage.setItem('username', JSON.stringify(this.username));
+                        sessionStorage.setItem('username', JSON.stringify(this.username));
                         localStorage.setItem('refreshToken', JSON.stringify(body.refreshToken));
                         this.router.navigateByUrl('admin/welcome');
                       },
