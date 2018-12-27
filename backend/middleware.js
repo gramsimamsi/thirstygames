@@ -63,7 +63,6 @@ let checkToken = (req, res, next) =>
 
 let isAdmin = (req, res, next) =>
 {
-
     if(res.locals.user_role === userRoles.ADMIN )
     {
         //user is admin
@@ -78,14 +77,32 @@ let isAdmin = (req, res, next) =>
                 message: "Cum backk if u r admin bruuu",
             });
     }
-
 };
 
+
+//ToDo add check to routes -> currently you need admin-privileges for everything
+let isBarkeeper = (req, res, next) =>
+{
+ if(res.locals.user_role === userRoles.BARKEEPER)
+ {
+     console.log("We are Barkeeper or Viewer");
+     next();
+ }
+ else
+ {
+     return res.status(403).json(
+         {
+             success: false,
+             message: "Cum backk if u r barkeppha bruuu",
+         });
+ }
+};
 
 //export so other modules can use it
 module.exports =
     {
         checkToken: checkToken,
-        isAdmin: isAdmin
+        isAdmin: isAdmin,
+        isBarkeeper: isBarkeeper
     };
 
