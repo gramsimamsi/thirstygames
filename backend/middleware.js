@@ -4,6 +4,21 @@ In general I guess we can summarize a lot of logic in this file
 First I will use it only for JWT as explained in this tutorial -> https://medium.com/dev-bits/a-guide-for-adding-jwt-token-based-authentication-to-your-single-page-nodejs-applications-c403f7cf04f4
  */
 
+
+/*
+ToDo -> move this enum to a far more better fitting location
+ */
+
+const userRoles =
+    {
+        ADMIN: 0,
+        BARKEEPER: 1,
+        VIEWER: 2,
+        SEB_SPRINGER: 3
+    };
+
+
+
 let jwt = require('jsonwebtoken');
 const config = require('./jwtConfig');
 
@@ -27,6 +42,7 @@ let checkToken = (req, res, next) =>
            }
            else
            {
+               res.locals.user_role = jwt.decode(token).admin;
                req.decoded = decoded;
                next();
            }
@@ -44,9 +60,32 @@ let checkToken = (req, res, next) =>
     }
 };
 
+
+let isAdmin = (req, res, next) =>
+{
+
+    if(res.locals.user_role === userRoles.ADMIN )
+    {
+        //user is admin
+        console.log("Yes, we are ADMIN");
+        next();
+    }
+    else
+    {
+        return res.status(403).json(
+            {
+                success: false,
+                message: "Cum backk if u r admin bruuu",
+            });
+    }
+
+};
+
+
 //export so other modules can use it
 module.exports =
     {
-        checkToken: checkToken
-    }
+        checkToken: checkToken,
+        isAdmin: isAdmin
+    };
 
