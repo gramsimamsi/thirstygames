@@ -15,7 +15,7 @@ export class AuthGuardService implements CanActivate{
     private router: Router
   ) { }
 
-  canActivate(routeSnapShot: ActivatedRouteSnapshot): Observable<boolean>
+  canActivate(routeSnapShot: ActivatedRouteSnapshot): boolean
   {
     let redirect = routeSnapShot.data.authGuardRedirect;
     let isUserLoggedIn$ = this.authService.isLoggedIn();
@@ -31,13 +31,6 @@ export class AuthGuardService implements CanActivate{
     const tokenUserRole = jwt_decode(token).userRole;
     let userRole = routeSnapShot.data.role;
     //console.log("token -> " + token + " userRole -> " + userRole);
-    if(isUserLoggedIn$ && (tokenUserRole === userRole))
-    {
-      return isUserLoggedIn$;
-    }
-    else
-    {
-      return new Observable<false>();
-    }
+    return isUserLoggedIn$ && (tokenUserRole === userRole);
   }
 }
