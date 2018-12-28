@@ -21,6 +21,7 @@ import { UsersComponent } from './users/users.component';
 import { AdminWelcomePageComponent } from './admin-welcome-page/admin-welcome-page.component';
 import { EventComponent } from './event/event.component';
 import { LogoutComponent } from './logout/logout.component';
+import { BarkeeperWelcomePageComponent } from './barkeeper-welcome-page/barkeeper-welcome-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LogoutComponent } from './logout/logout.component';
     UsersComponent,
     AdminWelcomePageComponent,
     EventComponent,
-    LogoutComponent
+    LogoutComponent,
+    BarkeeperWelcomePageComponent
   ],
   imports: [
     BrowserModule,
