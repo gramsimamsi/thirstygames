@@ -33,8 +33,8 @@ class LoginHandler
                         if(isMatch)
                         {
                             console.log(user.user_role);
-                            let token = jwt.sign({username: username, "admin": user.user_role}, config.secret, {expiresIn: config.tokenExpirationTime});
-                            let refreshToken = jwt.sign({username: username, "admin": user.user_role}, config.refreshSecret, {expiresIn: config.refreshTokenExpirationTime});
+                            let token = jwt.sign({username: username, "userRole": user.user_role}, config.secret, {expiresIn: config.tokenExpirationTime});
+                            let refreshToken = jwt.sign({username: username, "userRole": user.user_role}, config.refreshSecret, {expiresIn: config.refreshTokenExpirationTime});
 
                             // save refresh-token in DB with every login
                             userModel.findOneAndUpdate({user_name: username}, {user_refresh_token: refreshToken}, {upsert:true}, function(err, doc)

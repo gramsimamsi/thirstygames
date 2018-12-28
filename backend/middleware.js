@@ -42,7 +42,7 @@ let checkToken = (req, res, next) =>
            }
            else
            {
-               res.locals.user_role = jwt.decode(token).admin;
+               res.locals.user_role = jwt.decode(token).userRole;
                req.decoded = decoded;
                next();
            }
