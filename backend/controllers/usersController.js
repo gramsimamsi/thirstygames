@@ -63,6 +63,9 @@ exports.single_user_post = function(req, res)
     userModel.countDocuments({}, function (err, count) {
         req.body.user_id = 'user_' + count;
 
+        //Todo change role of newly created user to 2 or higher
+        req.body.user_role = 1;
+
         new userModel(req.body).save(err => {
             if (err) {
                 res.status(500).json({
