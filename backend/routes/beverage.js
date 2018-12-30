@@ -7,7 +7,7 @@ let beverageController = require("../controllers/beverageController");
     ALL BEVERAGES
 */
 
-router.get('/', middleware.checkToken, middleware.isAdmin,beverageController.all_beverages_get);
+router.get('/', middleware.checkToken, middleware.isBarkeeper,beverageController.all_beverages_get);
 router.delete('/', middleware.checkToken, middleware.isAdmin, beverageController.all_beverages_delete);
 
 /*

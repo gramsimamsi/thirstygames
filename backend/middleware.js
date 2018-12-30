@@ -83,7 +83,7 @@ let isAdmin = (req, res, next) =>
 //ToDo add check to routes -> currently you need admin-privileges for everything
 let isBarkeeper = (req, res, next) =>
 {
- if(res.locals.user_role === userRoles.BARKEEPER)
+ if(res.locals.user_role === userRoles.BARKEEPER || res.locals.user_role === userRoles.ADMIN)
  {
      console.log("We are Barkeeper or Viewer");
      next();

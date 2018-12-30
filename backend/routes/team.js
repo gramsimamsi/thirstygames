@@ -8,7 +8,7 @@ let teamController = require("../controllers/teamController");
     ALL TEAMS
  */
 
-router.get('/', middleware.checkToken, middleware.isAdmin, teamController.all_teams_get);
+router.get('/', middleware.checkToken, middleware.isBarkeeper, teamController.all_teams_get);
 
 router.delete('/', middleware.checkToken, middleware.isAdmin, teamController.all_teams_delete);
 
