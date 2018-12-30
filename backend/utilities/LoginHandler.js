@@ -16,6 +16,7 @@ class LoginHandler
         {
             userModel.findOne({user_name: username}).exec(function(err, user)
             {
+                /*
                 if (err)
                 {
                     console.log("Error in LoginHandler.js findOne -> " + err.toString());
@@ -25,6 +26,7 @@ class LoginHandler
                     });
                     return;
                 }
+                */
 
                 if(user)
                 {
@@ -49,7 +51,6 @@ class LoginHandler
                                 }
                                 else
                                 {
-                                    //console.log("inserted new refresh-token -> user is logged in");
                                     res.status(200).json({
                                         success: true,
                                         message: 'AUTHENTICATION SUCCESSFULL',
@@ -79,9 +80,12 @@ class LoginHandler
                         }
                     })
                 }
-                else {
-                    res.status(401).send();
-                    console.log("No password provided");
+                else
+                {
+                    res.status(401).json({
+                        success:false,
+                        message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
+                    });
                 }
 
             });
