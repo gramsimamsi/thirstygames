@@ -1,5 +1,5 @@
 /*abstraction of User*/
-export class User
+export interface User
 {
   user_name: string;
   user_password: string;
