@@ -36,7 +36,7 @@ export class UsersComponent implements OnInit {
   removeSingleUser(user): void
   {
     this.userService.deleteSingleUser(user.user_id).subscribe(
-      response => {this.showAllUsers(); console.log("User deleted -> " + user.user_id)},
+      response => {this.showAllUsers(); console.log("User deleted -> " + user.user_id); this.snackBar.openSnackBar('Deleted');},
       () => this.snackBar.openSnackBar('Could not delete User: '  + user.user_id)
     );
   }

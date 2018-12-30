@@ -22,6 +22,8 @@ import { AdminWelcomePageComponent } from './admin-welcome-page/admin-welcome-pa
 import { EventComponent } from './event/event.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BarkeeperWelcomePageComponent } from './barkeeper-welcome-page/barkeeper-welcome-page.component';
+import { BeverageComponent } from './beverage/beverage.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { BarkeeperWelcomePageComponent } from './barkeeper-welcome-page/barkeepe
     EventComponent,
     LogoutComponent,
     BarkeeperWelcomePageComponent,
+    BeverageComponent,
+    TeamComponent,
 
   ],
   imports: [

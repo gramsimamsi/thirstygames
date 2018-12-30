@@ -12,7 +12,6 @@ import {MatTableDataSource} from "@angular/material";
 })
 export class EventComponent implements OnInit {
 
-
   constructor(private eventService: EventService,
               private snackBar: SnackBarService
   ) { }
@@ -29,16 +28,16 @@ export class EventComponent implements OnInit {
       events => {
         this.events = events;
         this.dataSource = new MatTableDataSource(events);
-
       },
-      () => this.snackBar.openSnackBar('Could not load users')
+      () => this.snackBar.openSnackBar('Could not load Events')
     )
   }
 
   removeSingleEvent(event): void
   {
+    this.snackBar.openSnackBar("Deleted");
     this.eventService.deleteSingleEvent(event.event_id).subscribe(
-      response => {this.showAllEvents(); console.log("Event deleted -> " + event.event_id)},
+      response => this.snackBar.openSnackBar('Deleted'),
       () => this.snackBar.openSnackBar('Could not delete Event: '  + event.event_id)
     );
   }
