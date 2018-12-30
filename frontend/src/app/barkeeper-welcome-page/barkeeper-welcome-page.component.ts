@@ -9,7 +9,7 @@ export class BarkeeperWelcomePageComponent implements OnInit {
 
   constructor() { }
 
-  username;
+  username: string;
 
   ngOnInit() {
     this.username = sessionStorage.getItem('username');

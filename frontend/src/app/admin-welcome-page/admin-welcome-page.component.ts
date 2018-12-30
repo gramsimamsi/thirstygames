@@ -9,11 +9,14 @@ import {ActivatedRoute} from "@angular/router";
 export class AdminWelcomePageComponent implements OnInit {
 
   activeTab: string;
+  private username: string;
 
   constructor(public router: ActivatedRoute) {
     this.activeTab = router.snapshot.params.tab;
   }
 
   ngOnInit(): void {
+
+    this.username = sessionStorage.getItem('username');
   }
 }
