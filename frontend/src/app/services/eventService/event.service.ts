@@ -21,7 +21,7 @@ export class EventService {
       .pipe(catchError(HttpClientHelper.handleError("ERROR_GETTING_ALL_EVENTS", [])))
   }
 
-  deleteSingleUser(eventID): Observable<any>
+  deleteSingleEvent(eventID): Observable<any>
   {
     return this.http.delete(this.deleteEventURL + eventID, HttpClientHelper.httpOptionsApplicationJSON)
       .pipe(catchError(HttpClientHelper.handleError("ERROR_DELETING_SINGLE_EVENT")))

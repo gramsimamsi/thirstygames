@@ -18,7 +18,8 @@ import {
   MatExpansionModule,
   MatSnackBarModule,
   MatTableModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatTabsModule,
 
 } from '@angular/material';
 
@@ -37,7 +38,8 @@ import {
     MatExpansionModule,
     MatSnackBarModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
 
   ],
   exports: [
@@ -54,7 +56,8 @@ import {
     MatExpansionModule,
     MatSnackBarModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
 
   ]
 })

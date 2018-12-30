@@ -1,4 +1,4 @@
-export class Event
+export interface Event
 {
   event_name: string;
   event_date: Date;

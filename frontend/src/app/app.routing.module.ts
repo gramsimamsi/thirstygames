@@ -15,10 +15,7 @@ import {userRoles} from "../environments/environment";
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path : '', component : LoginComponent},
-  { path: 'users', component: CreateUserComponent},
-  { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/login', role: userRoles.ADMIN}},
   { path: 'admin/welcome', component: AdminWelcomePageComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/login', role: userRoles.ADMIN}},
-  { path: 'admin/events', component: EventComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/login', role: userRoles.ADMIN}},
   { path: 'logout', component: LogoutComponent},
   {path: 'barkeeper/welcome', component: BarkeeperWelcomePageComponent, canActivate: [AuthGuardService], data: {authGuardRedirect: '/login', role: userRoles.BARKEEPER}}
 ];
