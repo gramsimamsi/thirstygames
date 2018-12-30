@@ -1,5 +1,6 @@
 import {HttpHeaders} from "@angular/common/http";
 import {Observable, of} from "rxjs";
+import {throwError} from 'rxjs'
 
 
 export class HttpClientHelper
@@ -25,8 +26,18 @@ export class HttpClientHelper
       // TODO: send the error to remote logging infrastructure
       console.log(`${operation} failed: ${error.message}`); // log to console instead
 
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
+      //pass error to subscriber (good idea?)
+      return  throwError(error.message)     //of(result as T);
     };
   }
 }
+
+/*
+different possibilities for error handling
+ -> with catch locally in service
+ -> with error locally at subscribe()
+ -> with httpInterceptor globally
+ */
+
+
+

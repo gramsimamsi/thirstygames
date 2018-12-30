@@ -32,7 +32,8 @@ import { BarkeeperWelcomePageComponent } from './barkeeper-welcome-page/barkeepe
     AdminWelcomePageComponent,
     EventComponent,
     LogoutComponent,
-    BarkeeperWelcomePageComponent
+    BarkeeperWelcomePageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,7 @@ import { BarkeeperWelcomePageComponent } from './barkeeper-welcome-page/barkeepe
       provide: HTTP_INTERCEPTORS,
       useClass: AccessTokenInterceptor,
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

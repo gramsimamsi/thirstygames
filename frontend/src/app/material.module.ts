@@ -4,7 +4,8 @@
 * */
 
 import {NgModule} from '@angular/core';
-import { MatSidenavModule,
+import {
+  MatSidenavModule,
   MatToolbarModule,
   MatIconModule,
   MatListModule,
@@ -15,6 +16,7 @@ import { MatSidenavModule,
   MatMenuModule,
   MatProgressSpinnerModule,
   MatExpansionModule,
+  MatSnackBarModule,
 
 } from '@angular/material';
 
@@ -31,6 +33,7 @@ import { MatSidenavModule,
     MatMenuModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
+    MatSnackBarModule,
 
   ],
   exports: [
@@ -45,7 +48,7 @@ import { MatSidenavModule,
     MatMenuModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
-
+    MatSnackBarModule,
 
   ]
 })
