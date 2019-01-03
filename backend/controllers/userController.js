@@ -1,5 +1,5 @@
 let userModel = require('../models/userModel');
-let users = require('../routes/users');
+let users = require('../routes/user');
 
 // Display list of all users.
 users.all_users_get = function(req, res, next) {

@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let middleware = require('../middleware');
-let userController = require("../controllers/usersController");
+let userController = require("../controllers/userController");
 
 /*
     ALL USERS

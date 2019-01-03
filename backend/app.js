@@ -11,7 +11,7 @@ let cors = require('cors');
  * router part
  **************************************************************/
 
-let usersRouter = require("./routes/users");
+let userRouter = require("./routes/user");
 let beverageRouter = require("./routes/beverage");
 let teamRouter = require("./routes/team");
 let indexRouter = require('./routes/index');
@@ -63,7 +63,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
 app.use('/beverage', beverageRouter);
 app.use('/team', teamRouter);
 app.use('/login', loginRouter);
