@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Location} from '@angular/common';
+import { SnackBarService } from './services/snackBarService/snack-bar.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,14 @@ import {Location} from '@angular/common';
 })
 export class AppComponent {
   location;
+  snackBarService;
 
-  constructor(location: Location) {
+  constructor(location: Location, snackBarService: SnackBarService) {
     this.location = location;
+    this.snackBarService = snackBarService;
    }
+
+  logout(): void {
+    this.snackBarService.openSnackBar('Logout successful');
+  }
 }
