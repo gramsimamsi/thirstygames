@@ -1,7 +1,10 @@
 let loginHandlerClass = require('../utilities/LoginHandler');
+let login = require('../routes/login');
 
-exports.single_user_login = function(req, res)
+login.single_user_login = function(req, res)
 {
     new loginHandlerClass().login(req, res);
 }
+
+module.exports = login;
 

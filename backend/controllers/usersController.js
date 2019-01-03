@@ -1,7 +1,8 @@
 let userModel = require('../models/userModel');
+let users = require('../routes/users');
 
 // Display list of all users.
-exports.all_users_get = function(req, res) {
+users.all_users_get = function(req, res) {
     //find all users in database
     userModel.find({})
         .exec(function (err, user_name_list)
@@ -14,7 +15,7 @@ exports.all_users_get = function(req, res) {
     });
 };
 
-exports.all_users_delete = function(req, res)
+users.all_users_delete = function(req, res)
 {
     //delete all users
     userModel.deleteMany({})
@@ -27,7 +28,7 @@ exports.all_users_delete = function(req, res)
     });
 };
 
-exports.single_user_get = function(req, res)
+users.single_user_get = function(req, res)
 {
     //get a single user by his user_id
     userModel.find({user_id: req.params.user_id})
@@ -40,7 +41,7 @@ exports.single_user_get = function(req, res)
     });
 };
 
-exports.single_user_delete = function(req, res)
+users.single_user_delete = function(req, res)
 {
     userModel.deleteOne({user_id: req.params.user_id})
         .exec(function(err) {
@@ -55,7 +56,7 @@ exports.single_user_delete = function(req, res)
 };
 
 /*create a new user*/
-exports.single_user_post = function(req, res)
+users.single_user_post = function(req, res)
 {
     //create user and add to database
     userModel.countDocuments({}, function (err, count) {
@@ -79,7 +80,7 @@ exports.single_user_post = function(req, res)
 };
 
 /*update a new user*/
-exports.single_user_put = function(req, res)
+users.single_user_put = function(req, res)
 {
     //update user in the database
     userModel.updateOne({user_id: req.params.user_id}, req.body)
@@ -91,3 +92,5 @@ exports.single_user_put = function(req, res)
             res.status(200).send();
         });
 };
+
+module.exports = users;

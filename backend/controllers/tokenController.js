@@ -1,10 +1,10 @@
 let userModel = require('../models/userModel');
 let jwt = require('jsonwebtoken');
 let config = require('../jwtConfig');
-
+let token = require('../routes/token');
 
 //todo username not required -> find user by refreshtoken and send back
-exports.token_refresh = function(req, res)
+token.token_refresh = function(req, res)
 {
     //request contains username and refreshtoken
     let username = req.body.user_name;
@@ -51,3 +51,5 @@ exports.token_refresh = function(req, res)
         })
     }
 };
+
+module.exports = token;

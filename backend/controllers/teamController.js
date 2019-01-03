@@ -1,7 +1,8 @@
 let teamModel = require('../models/teamModel');
+let team = require('../routes/team');
 
 // Display list of all users.
-exports.all_teams_get = function(req, res) {
+team.all_teams_get = function(req, res) {
     //find all users in database
     teamModel.find({})
         .exec(function (err, team_name_list)
@@ -14,7 +15,7 @@ exports.all_teams_get = function(req, res) {
         });
 };
 
-exports.all_teams_delete = function(req, res)
+team.all_teams_delete = function(req, res)
 {
     //delete all events
     teamModel.deleteMany({})
@@ -27,7 +28,7 @@ exports.all_teams_delete = function(req, res)
         });
 }
 
-exports.single_team_get = function(req, res)
+team.single_team_get = function(req, res)
 {
     //get a single team by his team_id
     teamModel.find({team_id: req.params.team_id})
@@ -40,7 +41,7 @@ exports.single_team_get = function(req, res)
         });
 }
 
-exports.single_team_delete = function(req, res)
+team.single_team_delete = function(req, res)
 {
     //delete a single team by its team_id
     teamModel.deleteOne({team_id: req.params.team_id})
@@ -55,7 +56,7 @@ exports.single_team_delete = function(req, res)
 }
 
 /*create a new team*/
-exports.single_team_post = function(req, res)
+team.single_team_post = function(req, res)
 {
     //create team and add to database
     teamModel.countDocuments({}, function (err, count) {
@@ -74,7 +75,7 @@ exports.single_team_post = function(req, res)
 }
 
 /*update a new team*/
-exports.single_team_put = function(req, res)
+team.single_team_put = function(req, res)
 {
     //update team in the database
     teamModel.updateOne({team_id: req.params.team_id}, req.body)
@@ -87,4 +88,4 @@ exports.single_team_put = function(req, res)
         });
 }
 
-
+module.exports = team;

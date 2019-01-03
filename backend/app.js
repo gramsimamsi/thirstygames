@@ -13,7 +13,6 @@ let cors = require('cors');
 
 let usersRouter = require("./routes/users");
 let beverageRouter = require("./routes/beverage");
-let eventRouter = require("./routes/event");
 let teamRouter = require("./routes/team");
 let indexRouter = require('./routes/index');
 let loginRouter = require('./routes/login');
@@ -66,7 +65,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/beverage', beverageRouter);
-app.use('/event', eventRouter);
 app.use('/team', teamRouter);
 app.use('/login', loginRouter);
 app.use('/token', tokenRouter);
