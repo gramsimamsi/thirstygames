@@ -30,8 +30,8 @@ users.all_users_delete = function(req, res)
 
 users.single_user_get = function(req, res)
 {
-    //get a single user by his user_id
-    userModel.find({user_id: req.params.user_id})
+    //get a single user by his _id
+    userModel.find({user_id: req.params._id})
         .exec(function (err, single_user_name)
     {
         if(err){
@@ -43,10 +43,10 @@ users.single_user_get = function(req, res)
 
 users.single_user_delete = function(req, res)
 {
-    userModel.deleteOne({user_id: req.params.user_id})
+    userModel.deleteOne({user_id: req.params._id})
         .exec(function(err) {
             if (err) {
-                console.log(req.params.user_id);
+                console.log(req.params._id);
                 //ToDo delete console log
                 console.log(err.toString());
                 return next(err);
@@ -83,7 +83,7 @@ users.single_user_post = function(req, res)
 users.single_user_put = function(req, res)
 {
     //update user in the database
-    userModel.updateOne({user_id: req.params.user_id}, req.body)
+    userModel.updateOne({user_id: req.params._id}, req.body)
         .exec(function (err)
         {
             if(err){

@@ -15,10 +15,10 @@ router.delete('/', middleware.checkToken, middleware.isAdmin, teamController.all
 /*
     SINGLE TEAM
  */
-router.get('/:team_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_get);
-router.delete('/:team_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_delete);
+router.get('/:_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_get);
+router.delete('/:_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_delete);
 router.post('/', middleware.checkToken, middleware.isAdmin, teamController.single_team_post);
-router.put('/:team_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_put);
+router.put('/:_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_put);
 
 
 //Todo remove

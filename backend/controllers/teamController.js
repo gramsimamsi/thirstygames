@@ -30,8 +30,8 @@ team.all_teams_delete = function(req, res)
 
 team.single_team_get = function(req, res)
 {
-    //get a single team by his team_id
-    teamModel.find({team_id: req.params.team_id})
+    //get a single team by his _id
+    teamModel.find({team_id: req.params._id})
         .exec(function (err, single_team_name)
         {
             if(err){
@@ -43,8 +43,8 @@ team.single_team_get = function(req, res)
 
 team.single_team_delete = function(req, res)
 {
-    //delete a single team by its team_id
-    teamModel.deleteOne({team_id: req.params.team_id})
+    //delete a single team by its _id
+    teamModel.deleteOne({team_id: req.params._id})
         .exec(function (err)
         {
             if(err)
@@ -78,7 +78,7 @@ team.single_team_post = function(req, res)
 team.single_team_put = function(req, res)
 {
     //update team in the database
-    teamModel.updateOne({team_id: req.params.team_id}, req.body)
+    teamModel.updateOne({team_id: req.params._id}, req.body)
         .exec(function (err)
         {
             if(err){

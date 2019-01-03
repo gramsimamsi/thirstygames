@@ -36,9 +36,9 @@ export class EventComponent implements OnInit {
   removeSingleEvent(event): void
   {
     this.snackBar.openSnackBar("Deleted");
-    this.eventService.deleteSingleEvent(event.event_id).subscribe(
+    this.eventService.deleteSingleEvent(event._id).subscribe(
       response => this.snackBar.openSnackBar('Deleted'),
-      () => this.snackBar.openSnackBar('Could not delete Event: '  + event.event_id)
+      () => this.snackBar.openSnackBar('Could not delete Event: '  + event._id)
     );
   }
 

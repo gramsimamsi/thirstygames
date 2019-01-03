@@ -36,9 +36,9 @@ export class TeamComponent implements OnInit {
   removeSingleTeam(team): void
   {
     this.snackBar.openSnackBar("Deleted");
-    this.teamService.deleteSingleTeam(team.team_id).subscribe(
+    this.teamService.deleteSingleTeam(team._id).subscribe(
       response => this.snackBar.openSnackBar('Deleted'),
-      () => this.snackBar.openSnackBar('Could not delete Team: '  + team.team_id)
+      () => this.snackBar.openSnackBar('Could not delete Team: '  + team._id)
     );
   }
 
