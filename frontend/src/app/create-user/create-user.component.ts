@@ -17,14 +17,14 @@ export class CreateUserComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private createUserService: CreateUserServiceService
               )
-  {
-    this.inputForm = this.formBuilder.group({
-        username: '',
-        password: ['', [Validators.required]],
-        confirmPassword: ['']
-      },
-      { validator: this.checkPasswords });
-  }
+              {
+                this.inputForm = this.formBuilder.group({
+                    username: '',
+                    password: ['', [Validators.required]],
+                    confirmPassword: ['']
+                  },
+                  { validator: this.checkPasswords });
+              }
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     let pass = group.controls.password.value;

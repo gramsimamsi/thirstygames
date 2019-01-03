@@ -16,19 +16,16 @@
       </p>
       <p>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" type="password" formControlName="confirmPassword" required="required" [errorStateMatcher]="matcher">
+          <input matInput placeholder="Password Confirmation" type="password" formControlName="confirmPassword" required="required" [errorStateMatcher]="matcher">
           <mat-error *ngIf="inputForm.hasError('notSame')">
             Passwords do not match
           </mat-error>
         </mat-form-field>
       </p>
     </form>
-    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
-    <mat-card-actions *ngIf="!inputForm.hasError('notSame')">
-      <button mat-raised-button on-click="addUser()" color="primary">Sign in</button>
-      <button mat-raised-button routerLink="/login" color="primary">Login</button>
-
+    <mat-card-actions>
+      <button mat-raised-button on-click="addUser()" color="primary">Sign Up</button>
     </mat-card-actions>
 </mat-card>
 
