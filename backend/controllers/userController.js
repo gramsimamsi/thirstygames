@@ -1,10 +1,10 @@
 let userModel = require('../models/userModel');
-let users = require('../routes/users');
+let users = require('../routes/user');
 
 // Display list of all users.
-users.all_users_get = function(req, res) {
+users.all_users_get = function(req, res, next) {
     //find all users in database
-    userModel.find({})
+    userModel.find({}, {_id : 1, user_name : 1, user_role : 1})
         .exec(function (err, user_name_list)
     {
         if(err)
@@ -15,7 +15,7 @@ users.all_users_get = function(req, res) {
     });
 };
 
-users.single_user_delete = function(req, res)
+users.single_user_delete = function(req, res, next)
 {
     userModel.deleteOne({_id: req.params._id})
         .exec(function(err) {
@@ -35,7 +35,7 @@ users.single_user_post = function(req, res)
     //Todo change role of newly created user to 2 or higher
     req.body.user_role = 1;
 
-    new userModel(req.body).save(err => {
+    new userModel(req.body).save((err, created_user) => {
         if (err) {
             res.status(500).json({
                 //ToDo remove message and just .send() instead of .json()
@@ -44,15 +44,23 @@ users.single_user_post = function(req, res)
         }
         //ToDo remove console.log()
         console.log("User created successfully");
-        res.status(201).send();
+        res.status(201).json({
+            "_id" : created_user._id,
+            "user_name" : created_user.user_name,
+            "user_role" : created_user.user_role
+        });
     });
 };
 
 /*update a new user*/
-users.single_user_put = function(req, res)
+users.single_user_put = function(req, res, next)
 {
+    if(!req.body.user_role)
+    {
+        return res.status(400).send();
+    }
     //update user in the database
-    userModel.updateOne({_id: req.params._id}, req.body)
+    userModel.updateOne({_id : req.params._id}, {user_role : req.body.user_role})
         .exec(function (err)
         {
             if(err){
