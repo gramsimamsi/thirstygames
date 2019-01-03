@@ -31,7 +31,7 @@ team.all_teams_delete = function(req, res)
 team.single_team_get = function(req, res)
 {
     //get a single team by his team_id
-    teamModel.find({team_id: req.params.team_id})
+    teamModel.find({_id: req.params._id})
         .exec(function (err, single_team_name)
         {
             if(err){
@@ -44,7 +44,7 @@ team.single_team_get = function(req, res)
 team.single_team_delete = function(req, res)
 {
     //delete a single team by its team_id
-    teamModel.deleteOne({team_id: req.params.team_id})
+    teamModel.deleteOne({_id: req.params._id})
         .exec(function (err)
         {
             if(err)
@@ -59,18 +59,15 @@ team.single_team_delete = function(req, res)
 team.single_team_post = function(req, res)
 {
     //create team and add to database
-    teamModel.countDocuments({}, function (err, count) {
-        req.body.team_id = 'team_' + count;
-        let newTeam = new teamModel( req.body );
-        newTeam.save(function (err)
-        {
-            if (err) {
-                return next(err);
-            }
-            //ToDo remove console.log()
-            console.log('New Team: ' + newTeam);
-            res.status(201).send();
-        });
+    let newTeam = new teamModel( req.body );
+    newTeam.save(function (err)
+    {
+        if (err) {
+            return next(err);
+        }
+        //ToDo remove console.log()
+        console.log('New Team: ' + newTeam);
+        res.status(201).send();
     });
 }
 
@@ -78,7 +75,7 @@ team.single_team_post = function(req, res)
 team.single_team_put = function(req, res)
 {
     //update team in the database
-    teamModel.updateOne({team_id: req.params.team_id}, req.body)
+    teamModel.updateOne({_id: req.params._id}, req.body)
         .exec(function (err)
         {
             if(err){

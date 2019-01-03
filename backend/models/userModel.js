@@ -16,7 +16,6 @@ let UserSchema = new Schema(
         user_name: {type: String, required: true, max: 100},
         user_password: {type: String, required: true, max: 100},
         user_role: {type: Number, required: true},
-        user_id: {type: String, required: true},
         user_refresh_token: {type: String, required: false} //will be set by application automatically
     }
 );
