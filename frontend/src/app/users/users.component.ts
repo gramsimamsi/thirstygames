@@ -20,6 +20,7 @@ export class UsersComponent implements OnInit {
   users: User[];
   displayedColumns: string[] = ['user_name', 'user_role', 'edit', 'delete'];
   dataSource: MatTableDataSource<User>;
+  selectedRole: string;
 
 
   showAllUsers(): void

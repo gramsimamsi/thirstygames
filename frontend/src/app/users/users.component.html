@@ -13,7 +13,16 @@
   <!-- User Role-->
   <ng-container matColumnDef="user_role">
     <th mat-header-cell *matHeaderCellDef>User Role</th>
-    <td mat-cell *matCellDef="let user" class="row"> {{user.user_role}} </td>
+    <td mat-cell *matCellDef="let user" class="row">
+      <mat-form-field>
+        <mat-select [(value)]="selectedRole">
+          <mat-option value="admin">Admin</mat-option>
+          <mat-option value="barkeeper">Barkeeper</mat-option>
+          <mat-option value="barkeeper">Applicant</mat-option>
+          <mat-option value="reject">Rejected</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
   </ng-container>
 
   <!-- Edit-button Column -->
@@ -39,10 +48,6 @@
   <tr mat-row *matRowDef="let user; columns: displayedColumns;">
   </tr>
 </table>
-
-<div class="add-button">
-  <button mat-fab color="primary" routerLink="/missing"><mat-icon>add</mat-icon></button>
-</div>
 
 
 
