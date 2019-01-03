@@ -15,11 +15,11 @@
     <th mat-header-cell *matHeaderCellDef>User Role</th>
     <td mat-cell *matCellDef="let user" class="row">
       <mat-form-field>
-        <mat-select [(value)]="selectedRole">
-          <mat-option value="admin">Admin</mat-option>
-          <mat-option value="barkeeper">Barkeeper</mat-option>
-          <mat-option value="barkeeper">Applicant</mat-option>
-          <mat-option value="reject">Rejected</mat-option>
+
+        <mat-select placeholder="Select Role">
+          <mat-option *ngFor="let role of userRoles" [value]="user.user_role">
+            {{role}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </td>

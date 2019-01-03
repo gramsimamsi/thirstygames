@@ -16,7 +16,7 @@ export class CreateUserServiceService {
 
   createUser(username, password): Observable<any>
   {
-    return this.http.post(this.createURL, {'user_name': username, 'user_password': password, 'user_role': 1, 'user_id': 100}, HttpClientHelper.httpOptionsApplicationJSON)
+    return this.http.post(this.createURL, {'user_name': username, 'user_password': password}, HttpClientHelper.httpOptionsApplicationJSON)
       .pipe(catchError(HttpClientHelper.handleError('CREATE_USER_ERROR')));
   }
 }
