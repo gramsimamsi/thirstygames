@@ -13,7 +13,7 @@ export class TeamService {
   constructor(private http: HttpClient) { }
 
   private getTeamsURL = "team";
-  private deleteTeamURL = "team/:team_id";
+  private deleteTeamURL = "team/";
 
   getAllTeams(): Observable<Team[]>
   {
