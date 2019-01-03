@@ -14,8 +14,8 @@ export class UsersService {
     private http: HttpClient,
   ) {}
 
-  private usersGet = 'users'; /*'http://127.0.0.1:3000/login';*/
-  private singleUserDelete = 'users?user_id=';
+  private usersGet = 'users'; /*'http://127.0.0.1:3000/users/user_id=user_5';*/
+  private singleUserDelete = 'users/';
 
   getAllUsers(): Observable<User[]>
   {

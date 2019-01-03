@@ -13,7 +13,7 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   private getEventsURL = "event";
-  private deleteEventURL = "event/:event_id";
+  private deleteEventURL = "event/";
 
   getAllEvents(): Observable<Event[]>
   {

@@ -13,7 +13,7 @@ export class BeverageService {
   constructor(private http: HttpClient) { }
 
   private beveragesGet = 'beverage';
-  private singleBeverageDelete = 'beverages?beverage_id=';
+  private singleBeverageDelete = 'beverage/';
 
   getAllBeverages(): Observable<Beverage[]>
   {

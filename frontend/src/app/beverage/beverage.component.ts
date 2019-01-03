@@ -34,7 +34,7 @@ export class BeverageComponent implements OnInit {
 
   removeSingleBeverage(beverage): void
   {
-    this.beverageService.deleteSingleBeverage(beverage.user_id).subscribe(
+    this.beverageService.deleteSingleBeverage(beverage.beverage_id).subscribe(
       response => this.snackBar.openSnackBar('Deleted'),
       () => this.snackBar.openSnackBar('Could not delete Beverage: '  + beverage.beverage_id)
     );
