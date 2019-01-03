@@ -15,13 +15,13 @@ exports.all_events_get = function(req, res) {
 exports.all_events_delete = function(req, res)
 {
     //delete all events
-    eventModel.remove({})
+    eventModel.deleteMany({})
         .exec(function(err)
         {
             if(err){
                 return next(err);
             }
-            res.status(204);
+            res.status(204).send();
         });
 }
 
@@ -41,13 +41,13 @@ exports.single_event_get = function(req, res)
 exports.single_event_delete = function(req, res)
 {
     //delete a single event by its event_id
-    eventModel.remove({event_id: req.params.event_id})
+    eventModel.deleteOne({event_id: req.params.event_id})
         .exec(function (err)
         {
             if(err){
                 return next(err);
             }
-            res.status(204);
+            res.status(204).send();
         });
 }
 
@@ -65,7 +65,7 @@ exports.single_event_post = function(req, res)
             }
             //ToDo remove console.log()
             console.log('New Event: ' + newEvent);
-            res.status(201);
+            res.status(201).send();
         });
     });
 }
@@ -80,6 +80,6 @@ exports.single_event_put = function(req, res)
             if(err){
                 return next(err);
             }
-            res.status(200);
+            res.status(200).send();
         });
 }

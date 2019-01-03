@@ -17,13 +17,13 @@ exports.all_users_get = function(req, res) {
 exports.all_users_delete = function(req, res)
 {
     //delete all users
-    userModel.remove({})
+    userModel.deleteMany({})
         .exec(function(err)
     {
         if(err){
             return next(err);
         }
-        res.status(204);
+        res.status(204).send();
     });
 };
 
@@ -42,18 +42,16 @@ exports.single_user_get = function(req, res)
 
 exports.single_user_delete = function(req, res)
 {
-    userModel.deleteOne({user_id: req.body.user_id}, function(err)
-    {
-        if (err)
-        {
-            console.log(err.toString());
-            return next(err);
-        }
-        else
-        {
-            res.sendStatus(204);
-        }
-    });
+    userModel.deleteOne({user_id: req.params.user_id})
+        .exec(function(err) {
+            if (err) {
+                console.log(req.params.user_id);
+                //ToDo delete console log
+                console.log(err.toString());
+                return next(err);
+            }
+            res.status(204).send();
+        });
 };
 
 /*create a new user*/
@@ -69,16 +67,13 @@ exports.single_user_post = function(req, res)
         new userModel(req.body).save(err => {
             if (err) {
                 res.status(500).json({
-                    //ToDo remove message
+                    //ToDo remove message and just .send() instead of .json()
                     message: "COULD NOT CREATE NEW USER"
                 })
             }
-            else
-            {
-                //ToDo remove console.log()
-                console.log("User created successfully");
-                res.status(201).send();
-            }
+            //ToDo remove console.log()
+            console.log("User created successfully");
+            res.status(201).send();
         });
     });
 };
@@ -93,6 +88,6 @@ exports.single_user_put = function(req, res)
             if(err){
                 return next(err);
             }
-            res.status(200);
+            res.status(200).send();
         });
 };

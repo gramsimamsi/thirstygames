@@ -17,13 +17,13 @@ exports.all_teams_get = function(req, res) {
 exports.all_teams_delete = function(req, res)
 {
     //delete all events
-    teamModel.remove({})
+    teamModel.deleteMany({})
         .exec(function (err)
         {
             if(err){
                 return next(err);
             }
-            res.status(204);
+            res.status(204).send();
         });
 }
 
@@ -43,13 +43,14 @@ exports.single_team_get = function(req, res)
 exports.single_team_delete = function(req, res)
 {
     //delete a single team by its team_id
-    teamModel.remove({team_id: req.params.team_id})
+    teamModel.deleteOne({team_id: req.params.team_id})
         .exec(function (err)
         {
-            if(err){
+            if(err)
+            {
                 return next(err);
             }
-            res.status(204);
+            res.status(204).send();
         });
 }
 
@@ -67,7 +68,7 @@ exports.single_team_post = function(req, res)
             }
             //ToDo remove console.log()
             console.log('New Team: ' + newTeam);
-            res.status(201);
+            res.status(201).send();
         });
     });
 }
@@ -82,7 +83,7 @@ exports.single_team_put = function(req, res)
             if(err){
                 return next(err);
             }
-            res.status(200);
+            res.status(200).send();
         });
 }
 

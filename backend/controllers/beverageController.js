@@ -16,14 +16,14 @@ exports.all_beverages_get = function(req, res) {
 exports.all_beverages_delete = function(req, res)
 {
     //delete all beverages
-    beverageModel.remove({})
+    beverageModel.deleteMany({})
         .exec(function(err)
         {
             if(err)
             {
                 return next(err);
             }
-            res.status(204);
+            res.status(204).send();
         });
 }
 
@@ -43,13 +43,13 @@ exports.single_beverage_get = function(req, res)
 exports.single_beverage_delete = function(req, res)
 {
     //delete a single beverage by its beverage_id
-    beverageModel.remove({beverage_id: req.params.beverage_id})
+    beverageModel.deleteOne({beverage_id: req.params.beverage_id})
         .exec(function (err)
         {
             if(err){
                 return next(err);
             }
-            res.status(204);
+            res.status(204).send();
         });
 }
 
@@ -67,7 +67,7 @@ exports.single_beverage_post = function(req, res)
             }
             //ToDo remove console.log()
             console.log('New Beverage: ' + newBeverage);
-            res.status(201);
+            res.status(201).send();
         });
     });
 }
@@ -82,6 +82,6 @@ exports.single_beverage_put = function(req, res)
             if(err){
                 return next(err);
             }
-            res.status(200);
+            res.status(200).send();
         });
 }
