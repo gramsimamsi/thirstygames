@@ -8,8 +8,7 @@ export const environment = {
 };
 
 
-export const userRoles =
-  {
+export const userRoles = {
     ADMIN: 0,
     BARKEEPER: 1,
     VIEWER: 2,
