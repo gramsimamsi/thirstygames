@@ -19,7 +19,6 @@ import {BaseUrlInterceptor} from './Utilites/base-urlinterceptor';
 import {AccessTokenInterceptor} from './Utilites/accessToken-interceptor';
 import { UsersComponent } from './users/users.component';
 import { AdminWelcomePageComponent } from './admin-welcome-page/admin-welcome-page.component';
-import { EventComponent } from './event/event.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BarkeeperWelcomePageComponent } from './barkeeper-welcome-page/barkeeper-welcome-page.component';
 import { BeverageComponent } from './beverage/beverage.component';
@@ -32,7 +31,6 @@ import { TeamComponent } from './team/team.component';
     CreateUserComponent,
     UsersComponent,
     AdminWelcomePageComponent,
-    EventComponent,
     LogoutComponent,
     BarkeeperWelcomePageComponent,
     BeverageComponent,
