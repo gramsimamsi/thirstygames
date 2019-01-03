@@ -10,12 +10,9 @@ let teamController = require("../controllers/teamController");
 
 router.get('/', middleware.checkToken, middleware.isBarkeeper, teamController.all_teams_get);
 
-router.delete('/', middleware.checkToken, middleware.isAdmin, teamController.all_teams_delete);
-
 /*
     SINGLE TEAM
  */
-router.get('/:_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_get);
 router.delete('/:_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_delete);
 router.post('/', middleware.checkToken, middleware.isAdmin, teamController.single_team_post);
 router.put('/:_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_put);
