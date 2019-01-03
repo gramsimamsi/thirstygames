@@ -3,6 +3,7 @@ let jwt = require('jsonwebtoken');
 let config = require('../jwtConfig');
 
 
+//todo username not required -> find user by refreshtoken and send back
 exports.token_refresh = function(req, res)
 {
     //request contains username and refreshtoken
@@ -28,7 +29,7 @@ exports.token_refresh = function(req, res)
                 //console.log("db-token -> " + user.user_refresh_token.toString() + " send token -> " + refreshToken.toString());
                 if(user.user_refresh_token === refreshToken)
                 {
-                    let token = jwt.sign({username: username}, config.secret, {expiresIn: config.tokenExpirationTime});
+                    let token = jwt.sign({username: username, "userRole": user.user_role}, config.secret, {expiresIn: config.tokenExpirationTime});
                     res.status(200).json({
                         success: true,
                         //ToDo remove message
