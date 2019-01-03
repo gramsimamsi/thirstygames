@@ -6,3 +6,9 @@
   color: blue;
   background-color: white;
 }
+
+.error-snackbar
+{
+  color: red;
+  background-color: white;
+}
