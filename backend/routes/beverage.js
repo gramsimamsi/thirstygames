@@ -13,9 +13,9 @@ router.delete('/', middleware.checkToken, middleware.isAdmin, beverageController
 /*
     SINGLE BEVERAGE
  */
-router.get('/:beverage_id', middleware.isAdmin, middleware.checkToken, beverageController.single_beverage_get);
-router.delete('/:beverage_id', middleware.isAdmin, middleware.checkToken, beverageController.single_beverage_delete);
+router.get('/:beverage_id', middleware.checkToken, middleware.isAdmin, beverageController.single_beverage_get);
+router.delete('/:beverage_id', middleware.checkToken, middleware.isAdmin, beverageController.single_beverage_delete);
 router.post('/', middleware.checkToken, middleware.isAdmin, beverageController.single_beverage_post);
-router.put('/:beverage_id', middleware.isAdmin, middleware.checkToken, beverageController.single_beverage_put);
+router.put('/:beverage_id', middleware.checkToken, middleware.isAdmin, beverageController.single_beverage_put);
 
 module.exports = router;

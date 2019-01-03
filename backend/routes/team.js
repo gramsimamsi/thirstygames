@@ -21,6 +21,7 @@ router.post('/', middleware.checkToken, middleware.isAdmin, teamController.singl
 router.put('/:team_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_put);
 
 
+//Todo remove
 /*Beverage Counter per Team*/
 /*
 router.post('/countAlc', teamController.count_alc_post);

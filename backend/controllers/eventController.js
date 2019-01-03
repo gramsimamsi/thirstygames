@@ -52,7 +52,7 @@ exports.single_event_delete = function(req, res)
 }
 
 /*create a new event*/
-exports.single_event_post = function(req, res)
+exports.single_event_post = function(req, res, next)
 {
     //create event and add to database
     eventModel.countDocuments({}, function (err, count) {
@@ -60,7 +60,7 @@ exports.single_event_post = function(req, res)
         let newEvent = new eventModel( req.body );
         newEvent.save(function (err)
         {
-            if (err) {
+            if(err) {
                 return next(err);
             }
             //ToDo remove console.log()
