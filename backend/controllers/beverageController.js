@@ -1,6 +1,7 @@
 let beverageModel = require('../models/beverageModel');
+let beverage = require('../routes/beverage');
 
-exports.all_beverages_get = function(req, res) {
+beverage.all_beverages_get = function(req, res) {
     //find all beverages in database
     beverageModel.find({})
         .exec(function (err, beverage_name_list)
@@ -13,7 +14,7 @@ exports.all_beverages_get = function(req, res) {
         });
 };
 
-exports.all_beverages_delete = function(req, res)
+beverage.all_beverages_delete = function(req, res)
 {
     //delete all beverages
     beverageModel.deleteMany({})
@@ -27,7 +28,7 @@ exports.all_beverages_delete = function(req, res)
         });
 }
 
-exports.single_beverage_get = function(req, res)
+beverage.single_beverage_get = function(req, res)
 {
     //get a single beverage by its beverage_id
     beverageModel.find({beverage_id: req.params.beverage_id})
@@ -40,7 +41,7 @@ exports.single_beverage_get = function(req, res)
         });
 }
 
-exports.single_beverage_delete = function(req, res)
+beverage.single_beverage_delete = function(req, res)
 {
     //delete a single beverage by its beverage_id
     beverageModel.deleteOne({beverage_id: req.params.beverage_id})
@@ -54,7 +55,7 @@ exports.single_beverage_delete = function(req, res)
 }
 
 /*create a new beverage*/
-exports.single_beverage_post = function(req, res)
+beverage.single_beverage_post = function(req, res)
 {
     //create beverage and add to database
     beverageModel.countDocuments({}, function (err, count) {
@@ -73,7 +74,7 @@ exports.single_beverage_post = function(req, res)
 }
 
 /*update a new beverage*/
-exports.single_beverage_put = function(req, res)
+beverage.single_beverage_put = function(req, res)
 {
     //update beverage in the database
     beverageModel.updateOne({beverage_id: req.params.beverage_id}, req.body)
@@ -85,3 +86,5 @@ exports.single_beverage_put = function(req, res)
             res.status(200).send();
         });
 }
+
+module.exports = beverage;
