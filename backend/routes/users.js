@@ -14,9 +14,9 @@ router.get('/', middleware.checkToken, middleware.isAdmin, userController.all_us
 /*
     SINGLE USER
  */
-router.delete('/:_id', middleware.checkToken,  middleware.isAdmin,userController.single_user_delete);
-router.post('/',userController.single_user_post); //create user -> no check for token or role obviously
-router.put('/:_id', middleware.checkToken,  middleware.isAdmin,userController.single_user_put);
+router.delete('/:_id', middleware.checkToken,  middleware.isAdmin, userController.single_user_delete);
+router.post('/', userController.single_user_post); //create user -> no check for token or role obviously
+router.put('/:_id', middleware.checkToken,  middleware.isAdmin, userController.single_user_put);
 /*
     SINGLE USER END
  */

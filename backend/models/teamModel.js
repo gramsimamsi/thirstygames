@@ -10,8 +10,7 @@ let TeamSchema = new Schema(
     {
         //_id should be defined by default
         team_name: {type: String, required: true, max: 100},
-        team_alc_count: {type: Number, required: true},
-        team_id: {type: String, required: true}
+        team_alc_count: {type: Number, required: true}
     }
 );
 
