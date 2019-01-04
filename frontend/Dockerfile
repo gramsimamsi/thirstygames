@@ -14,7 +14,7 @@ RUN npm run-script build
 # build the angular frontend on an nginx
 FROM nginx:1.15.7-alpine
 
-COPY --from=node /usr/src/app/dist /usr/share/nginx/html
+COPY --from=node /usr/src/app/dist/frontend /usr/share/nginx/html
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 

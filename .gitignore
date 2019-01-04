@@ -138,4 +138,4 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # Database
-thirstygames_wt/data
+data/
