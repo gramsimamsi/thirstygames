@@ -2,7 +2,7 @@ let teamModel = require('../models/teamModel');
 let team = require('../routes/team');
 
 // Display list of all users.
-team.all_teams_get = function(req, res) {
+team.all_teams_get = function(req, res, next) {
     //find all users in database
     teamModel.find({})
         .exec(function (err, team_name_list)
@@ -15,7 +15,7 @@ team.all_teams_get = function(req, res) {
         });
 };
 
-team.single_team_delete = function(req, res)
+team.single_team_delete = function(req, res, next)
 {
     //delete a single team by its team_id
     teamModel.deleteOne({_id: req.params._id})
@@ -30,7 +30,7 @@ team.single_team_delete = function(req, res)
 }
 
 /*create a new team*/
-team.single_team_post = function(req, res)
+team.single_team_post = function(req, res, next)
 {
     //create team and add to database
     let newTeam = new teamModel( req.body );
@@ -45,8 +45,8 @@ team.single_team_post = function(req, res)
     });
 }
 
-/*update a new team*/
-team.single_team_put = function(req, res)
+/*update a team*/
+team.single_team_put = function(req, res, next)
 {
     if(!req.body.team_alc_count || !req.body.team_name)
     {

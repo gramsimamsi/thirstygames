@@ -5,15 +5,16 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let webSocket = require('ws');
 let cors = require('cors');
 
 /***************************************************************
  * router part
  **************************************************************/
 
-let userRouter = require("./routes/user");
-let beverageRouter = require("./routes/beverage");
-let teamRouter = require("./routes/team");
+let userRouter = require('./routes/user');
+let beverageRouter = require('./routes/beverage');
+let teamRouter = require('./routes/team');
 let indexRouter = require('./routes/index');
 let loginRouter = require('./routes/login');
 let tokenRouter = require('./routes/token');
@@ -22,7 +23,7 @@ let tokenRouter = require('./routes/token');
  * mongoDB specific part
  * @type {*|Mongoose}
  **************************************************************/
-let mongoose = require("mongoose");
+let mongoose = require('mongoose');
 
 //connection setup -> remove hardcoded credentials *later*
 //ToDo Docker link wieder aktivieren
@@ -35,17 +36,16 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 let app = express();
 
-
 /***************************************************************
  * CORS Configuration
  **************************************************************/
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  next();
+    res.header("Access-Control-Allow-Origin", "*");
+    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    next();
 });
 
 app.use(cors());
@@ -71,18 +71,43 @@ app.use('/token', tokenRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.json({ error: err });
+    // render the error page
+    res.status(err.status || 500);
+    res.json({ error: err });
 });
 
+/***************************************************************
+ * Websocket Configuration
+ **************************************************************/
+
+let webSocketServer = new webSocket.Server({port: 8080});
+
+webSocketServer.on('connection', (socket) => {
+    socket.on('message', (message) => {
+        //ToDo remove
+        console.log(`received message: ${message}`);
+        //ToDo Schreibe in Datenbank
+        //ToDo Hole Daten aus DB
+        //Broadcast update an alle Clients
+        webSocketServer.clients.forEach((client) => {
+            if (client.readyState === webSocket.OPEN) {
+                //ToDo sende relevante Daten
+                client.send('Hi Angular');
+            }
+        });
+    });
+    //ToDo remove
+    socket.send('Server is listening');
+});
+
+exports.webSocketServer = webSocketServer;
 module.exports = app;
