@@ -6,7 +6,7 @@ let webSocketServer = require('../webSocket');
 // Display list of all users.
 team.all_teams_get = function(req, res, next) {
     //find all users in database
-    teamModel.find({})
+    teamModel.find({}, {_id : 1, team_name : 1, team_alc_count : 1})
         .exec(function (err, team_name_list)
         {
             if(err)
