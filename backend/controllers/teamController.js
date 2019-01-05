@@ -1,5 +1,7 @@
 let teamModel = require('../models/teamModel');
 let team = require('../routes/team');
+let webSocket = require('ws');
+let webSocketServer = require('../webSocket');
 
 // Display list of all users.
 team.all_teams_get = function(req, res, next) {
@@ -59,12 +61,17 @@ team.single_team_put = function(req, res, next)
             if(err) {
                 return next(err);
             }
-            teamModel.find({_id : req.params._id})
+            teamModel.find({_id : req.params._id},{team_name: req.body.team_name, team_alc_count: req.body.team_alc_count})
                 .exec(function (err, updated_team) {
                     if(err)
                     {
                         return next(err);
                     }
+                    webSocketServer.clients.forEach((client) => {
+                        if (client.readyState === webSocket.OPEN) {
+                            client.send(updated_team.toString());
+                        }
+                    });
                     res.status(200).send(updated_team);
                 });
         });

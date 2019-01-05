@@ -5,7 +5,6 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
-let webSocket = require('ws');
 let cors = require('cors');
 
 /***************************************************************
@@ -85,29 +84,4 @@ app.use(function(err, req, res, next) {
     res.json({ error: err });
 });
 
-/***************************************************************
- * Websocket Configuration
- **************************************************************/
-
-let webSocketServer = new webSocket.Server({port: 8080});
-
-webSocketServer.on('connection', (socket) => {
-    socket.on('message', (message) => {
-        //ToDo remove
-        console.log(`received message: ${message}`);
-        //ToDo Schreibe in Datenbank
-        //ToDo Hole Daten aus DB
-        //Broadcast update an alle Clients
-        webSocketServer.clients.forEach((client) => {
-            if (client.readyState === webSocket.OPEN) {
-                //ToDo sende relevante Daten
-                client.send('Hi Angular');
-            }
-        });
-    });
-    //ToDo remove
-    socket.send('Server is listening');
-});
-
-exports.webSocketServer = webSocketServer;
 module.exports = app;
