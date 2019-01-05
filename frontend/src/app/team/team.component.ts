@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {SnackBarService} from "../services/snackBarService/snack-bar.service";
-import {MatTableDataSource} from "@angular/material";
-import {Team} from "../models/Team";
-import {TeamService} from "../services/teamService/team.service";
+import {SnackBarService} from '../services/snackBarService/snack-bar.service';
+import {MatTableDataSource} from '@angular/material';
+import {Team} from '../models/Team';
+import {TeamService} from '../services/teamService/team.service';
 
 @Component({
   selector: 'app-team',
@@ -22,20 +22,22 @@ export class TeamComponent implements OnInit {
 
 
 
-  showAllTeams(): void
-  {
+  showAllTeams(): void {
     this.teamService.getAllTeams().subscribe(
       teams => {
         this.teams = teams;
         this.dataSource = new MatTableDataSource(teams);
       },
-      () => this.snackBar.openSnackBar('Could not load Teams')
-    )
+      (error) => {
+        console.log('getallteams-subscription gave error!');
+        console.log(error);
+        return this.snackBar.openSnackBar('Could not load Teams');
+      }
+    );
   }
 
-  removeSingleTeam(team): void
-  {
-    this.snackBar.openSnackBar("Deleted");
+  removeSingleTeam(team): void {
+    this.snackBar.openSnackBar('Deleted');
     this.teamService.deleteSingleTeam(team._id).subscribe(
       response => this.snackBar.openSnackBar('Deleted'),
       () => this.snackBar.openSnackBar('Could not delete Team: '  + team._id)
