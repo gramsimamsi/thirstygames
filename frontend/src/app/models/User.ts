@@ -1,6 +1,5 @@
 /*abstraction of User*/
-export interface User
-{
+export class User {
   user_name: string;
   user_password: string;
   user_role: number;
