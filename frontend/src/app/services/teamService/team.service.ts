@@ -93,9 +93,9 @@ export class TeamService {
     this.messages.subscribe(
       msg => {
         this.dataStore.items.splice(this.dataStore.items.map(t => t._id).indexOf(msg._id), 1, msg);
+        this._items.next(this.dataStore.items);
     });
 
-    this._items.next(this.dataStore.items);
   }
 
 }
