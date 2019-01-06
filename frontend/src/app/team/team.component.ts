@@ -17,7 +17,7 @@ export class TeamComponent implements OnInit {
   ) { }
 
   private teams: Team[];
-  displayedColumns: string[] = ['team_name', 'alc_count', 'edit', 'delete'];
+  displayedColumns: string[] = ['team_name', 'alc_count', 'delete'];
   dataSource: MatTableDataSource<Team>;
 
 
