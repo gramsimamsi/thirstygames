@@ -45,10 +45,10 @@ let httpsServer = https.createServer(credentials, app);
  */
 
 httpServer.listen(httpPort);
-httpServer.on('error', onError);
+httpServer.on('error', onHttpError);
 httpServer.on('listening', onHttpListening);
 httpsServer.listen(httpsPort);
-httpsServer.on('error', onError);
+httpsServer.on('error', onHttpsError);
 httpsServer.on('listening', onHttpsListening);
 
 /**
@@ -75,14 +75,42 @@ function normalizePort(val) {
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+function onHttpError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  let bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  let bind = typeof httpPort === 'string'
+    ? 'Pipe ' + httpPort
+    : 'Port ' + httpPort;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTPS server "error" event.
+ */
+
+function onHttpsError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  let bind = typeof httpsPort === 'string'
+      ? 'Pipe ' + httpsPort
+      : 'Port ' + httpsPort;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
