@@ -39,13 +39,4 @@ function normalizePort(val) {
 
 let webSocketServer = new webSocket.Server({port : 8080});
 
-webSocketServer.on('connection', (socket) => {
-    //ToDo remove
-    /*socket.send(JSON.stringify(
-        {
-            message: 'Server is connected'
-        }
-    ));*/
-});
-
 module.exports = webSocketServer;
