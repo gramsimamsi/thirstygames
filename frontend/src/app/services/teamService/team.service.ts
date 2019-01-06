@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, BehaviorSubject, from, of, timer} from 'rxjs';
+import {Observable, BehaviorSubject, from, of, timer, Subject} from 'rxjs';
 import {HttpClientHelper} from '../../Utilites/HttpClientHelper';
-import {catchError, mergeMap, map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {Team} from '../../models/Team';
 import { SnackBarService } from '../snackBarService/snack-bar.service';
-
+import {WebsocketService} from '../webSocketService/web-socket.service';
+import 'rxjs-compat/add/operator/map';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,30 @@ export class TeamService {
   private dataStore: {
     items: Team[];
   };
+  // needs to be public, so components can subscribe on it
+  public messages: Subject<Team>;
 
-  constructor(private http: HttpClient, private snackBarService: SnackBarService) {
-    console.log('creating team service');
+  constructor(private http: HttpClient,
+              private snackBarService: SnackBarService,
+              private webSocketService: WebsocketService
+              ) {
     this.dataStore = { items: [] };
     this._items = <BehaviorSubject<Team[]>>new BehaviorSubject([]);
     this.items = this._items.asObservable();
 
     this.updateTeams();
+
+    // init Websocket
+    this.messages = <Subject<any>>webSocketService
+      .connect()
+      .map((response: MessageEvent): Team => {
+             const obj = JSON.parse(response.data)[0];
+            return {
+              _id: obj._id,
+              team_name: obj.team_name,
+              team_alc_count: obj.team_alc_count
+            };
+        });
   }
 
   getAllTeams(): Observable<Team[]> {
@@ -72,12 +89,13 @@ export class TeamService {
   }
 
   keepUpdatedViaSocket(): void {
-    // TODO: manipulate the old Team[] data in this.dataStore.items so that it reflects the current server Team[] data
 
-    // once updated, this line pushes the new data to everybody who's interested for updating their stuff
+    this.messages.subscribe(
+      msg => {
+        this.dataStore.items.splice(this.dataStore.items.map(t => t._id).indexOf(msg._id), 1, msg);
+    });
+
     this._items.next(this.dataStore.items);
-
-    // TODO: write 'teamService.keepUpdatedViaSocket();' into ngOnInit of score view
   }
 
 }

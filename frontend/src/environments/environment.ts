@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseURL: 'http://127.0.0.1:3000'
+  apiBaseURL: 'http://127.0.0.1:3000',
+  webSocketURL: 'ws://127.0.0.1:8080'
 };
 
 

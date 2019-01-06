@@ -2,12 +2,10 @@ import {NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import {LoginComponent} from './login/login.component';
 import {AdminWelcomePageComponent} from './admin-welcome-page/admin-welcome-page.component';
 import {AuthGuardService} from './services/authGuard/auth-guard.service';
 import {BarkeeperWelcomePageComponent} from './barkeeper-welcome-page/barkeeper-welcome-page.component';
 import {userRoles} from '../environments/environment';
-import {CreateUserComponent} from './create-user/create-user.component';
 import {IndexComponent} from './index/index.component';
 
 const routes: Routes = [

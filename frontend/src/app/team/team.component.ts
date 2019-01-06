@@ -17,7 +17,7 @@ export class TeamComponent implements OnInit {
   ) { }
 
   private teams: Team[];
-  displayedColumns: string[] = ['team_name', 'member_count', 'alc_count', 'edit', 'delete'];
+  displayedColumns: string[] = ['team_name', 'alc_count', 'edit', 'delete'];
   dataSource: MatTableDataSource<Team>;
 
 
@@ -33,7 +33,7 @@ export class TeamComponent implements OnInit {
         console.log(error);
         return this.snackBar.openSnackBar('Could not load Teams');
       }
-    );
+  );
   }
 
   removeSingleTeam(team): void {
@@ -45,10 +45,14 @@ export class TeamComponent implements OnInit {
   }
 
 
+  updateViaSocket(): void {
+    console.log('Update triggered manually');
+    this.teamService.keepUpdatedViaSocket();
+  }
   ngOnInit() {
     this.teams = [];
     this.showAllTeams();
-
+    this.teamService.keepUpdatedViaSocket();
   }
 
 }
