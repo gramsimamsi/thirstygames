@@ -1,5 +1,5 @@
-export class Team {
+export interface Team {
+  _id: string;
   team_name: string;
   team_alc_count: number;
-  _id: string;
 }

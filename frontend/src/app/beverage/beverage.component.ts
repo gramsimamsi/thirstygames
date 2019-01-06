@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {SnackBarService} from "../services/snackBarService/snack-bar.service";
-import {MatTableDataSource} from "@angular/material";
-import {BeverageService} from "../services/beverageService/beverage.service";
-import {Beverage} from "../models/Beverage";
+import {SnackBarService} from '../services/snackBarService/snack-bar.service';
+import {MatTableDataSource} from '@angular/material';
+import {BeverageService} from '../services/beverageService/beverage.service';
+import {Beverage} from '../models/Beverage';
 
 @Component({
   selector: 'app-beverage',
@@ -17,12 +17,11 @@ export class BeverageComponent implements OnInit {
   ) { }
 
   beverage: Beverage[];
-  displayedColumns: string[] = ['beverage_name', 'beverage_alc', 'edit', 'delete'];
+  displayedColumns: string[] = ['beverage_name', 'beverage_alc', 'delete'];
   dataSource: MatTableDataSource<Beverage>;
 
 
-  showAllBeverages(): void
-  {
+  showAllBeverages(): void {
     this.beverageService.getAllBeverages().subscribe(
       beverages => {
         this.beverage = beverages;
@@ -32,8 +31,7 @@ export class BeverageComponent implements OnInit {
     );
   }
 
-  removeSingleBeverage(beverage): void
-  {
+  removeSingleBeverage(beverage): void {
     this.beverageService.deleteSingleBeverage(beverage._id).subscribe(
       response => this.snackBar.openSnackBar('Deleted'),
       () => this.snackBar.openSnackBar('Could not delete Beverage: '  + beverage._id)

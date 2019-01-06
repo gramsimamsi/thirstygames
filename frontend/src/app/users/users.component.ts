@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
 
   username;
   users: User[];
-  displayedColumns: string[] = ['user_name', 'user_role', 'edit', 'delete'];
+  displayedColumns: string[] = ['user_name', 'user_role', 'delete'];
   dataSource: MatTableDataSource<User>;
   userRoles = [userRoles['ADMIN'], userRoles['BARKEEPER']];
 

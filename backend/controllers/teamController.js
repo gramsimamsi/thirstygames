@@ -69,7 +69,7 @@ team.single_team_put = function(req, res, next)
                     }
                     webSocketServer.clients.forEach((client) => {
                         if (client.readyState === webSocket.OPEN) {
-                            client.send(updated_team.toString());
+                            client.send(JSON.stringify(updated_team));
                         }
                     });
                     res.status(200).send(updated_team);
