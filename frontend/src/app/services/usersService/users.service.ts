@@ -23,13 +23,12 @@ export class UsersService {
 
   deleteSingleUser(userID): Observable<any> {
     return this.http.delete(this.apiURL + '/' + userID, HttpClientHelper.httpOptionsApplicationJSON)
-      .pipe(catchError(HttpClientHelper.handleError('DELETE_SINGLE_USER_ERROR ->' + userID)));
+      .pipe(catchError(HttpClientHelper.handleError('DELETE_SINGLE_USER_ERROR ->' + userID, [])));
   }
 
-  /* Todo putApi expexts user_id, but this is not provided anymore
   putSingleUser(user): Observable<any> {
-    return this.http.put(this.apiURL + '/' + user.user_)
+    return this.http.put(this.apiURL + '/' + user._id, user, HttpClientHelper.httpOptionsApplicationJSON)
+      .pipe(catchError(HttpClientHelper.handleError('PUTTING_SINGLE_USER_ERROR', [])));
   }
-  */
 }
 

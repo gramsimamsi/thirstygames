@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
 
   username;
   users: User[];
-  displayedColumns: string[] = ['user_name', 'user_role', 'delete'];
+  displayedColumns: string[] = ['user_name', 'user_role_edit', 'delete'];
   dataSource: MatTableDataSource<User>;
   userRoles = [userRoles['ADMIN'], userRoles['BARKEEPER']];
 
@@ -40,6 +40,15 @@ export class UsersComponent implements OnInit {
     );
   }
 
+  updateSingleUser(user, value): void {
+
+    user.user_role = value;
+    console.log(user);
+    this.userService.putSingleUser(user).subscribe(
+    response => this.snackBar.openSnackBar('User ' + user.user_name + ' is now ' + value),
+      error => this.snackBar.openSnackBarError('Could not update user ' + user.user_name)
+    );
+  }
 
   ngOnInit() {
     this.users = [];
