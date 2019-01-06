@@ -44,11 +44,6 @@ export class TeamComponent implements OnInit {
     );
   }
 
-
-  updateViaSocket(): void {
-    console.log('Update triggered manually');
-    this.teamService.keepUpdatedViaSocket();
-  }
   ngOnInit() {
     this.teams = [];
     this.showAllTeams();
