@@ -26,6 +26,16 @@
     </td>
   </ng-container>
 
+  <!--  Dummy Button for Team Update -->
+  <ng-container matColumnDef="dummyUpdate">
+    <th mat-header-cell *matHeaderCellDef>Push the button for random alc_count</th>
+    <td mat-cell *matCellDef="let team" class="user-button" class="row">
+      <button mat-button on-click="updateSingleTeam(team)">
+        <mat-icon>cloud_upload</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

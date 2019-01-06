@@ -17,7 +17,7 @@ export class TeamComponent implements OnInit {
   ) { }
 
   private teams: Team[];
-  displayedColumns: string[] = ['team_name', 'alc_count', 'delete'];
+  displayedColumns: string[] = ['team_name', 'alc_count', 'delete', 'dummyUpdate'];
   dataSource: MatTableDataSource<Team>;
 
 
@@ -44,6 +44,13 @@ export class TeamComponent implements OnInit {
     );
   }
 
+  updateSingleTeam(team): void {
+    team.team_alc_count = Math.floor(Math.random() * 100);
+    this.teamService.putSingleTeam(team).subscribe(
+      response => this.snackBar.openSnackBar('Team updated successfully ' + team.team_name),
+      error => this.snackBar.openSnackBarError('Could not update team ' + team.team_name)
+    );
+  }
   ngOnInit() {
     this.teams = [];
     this.showAllTeams();

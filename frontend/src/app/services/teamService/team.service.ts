@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, BehaviorSubject, from, of, timer, Subject} from 'rxjs';
+import {Observable, BehaviorSubject, Subject} from 'rxjs';
 import {HttpClientHelper} from '../../Utilites/HttpClientHelper';
-import {catchError, map} from 'rxjs/operators';
+import {catchError, } from 'rxjs/operators';
 import {Team} from '../../models/Team';
 import { SnackBarService } from '../snackBarService/snack-bar.service';
 import {WebsocketService} from '../webSocketService/web-socket.service';
@@ -49,18 +49,14 @@ export class TeamService {
   getAllTeams(): Observable<Team[]> {
     return this.items;
   }
-
-  /*
-  getAllTeams(): Observable<Team[]> {
-    return this.http.get<Team[]>(this.teamURL, HttpClientHelper.httpOptionsApplicationJSON)
-      .pipe(catchError(HttpClientHelper.handleError('ERROR_GETTING_ALL_TEAMS', [])));
-  }
-  */
   deleteSingleTeam(teamID): Observable<any> {
   return this.http.delete(this.teamURL + '/' + teamID, HttpClientHelper.httpOptionsApplicationJSON)
     .pipe(catchError(HttpClientHelper.handleError('ERROR_DELETING_SINGLE_TEAM')));
   }
-
+  putSingleTeam(team): Observable<any> {
+    return this.http.put(this.teamURL + '/' + team._id, team, HttpClientHelper.httpOptionsApplicationJSON)
+      .pipe(catchError(HttpClientHelper.handleError('ERROR_PUTTING_SINGLE_USER')));
+  }
   updateTeams(): void {
 
     if (!this.loaded) {
