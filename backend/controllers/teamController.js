@@ -1,6 +1,8 @@
 let teamModel = require('../models/teamModel');
 let team = require('../routes/team');
 let webSocket = require('ws');
+//ToDo switch the following lines when wss works properly
+//let webSocketServer = require('../bin/www');
 let webSocketServer = require('../webSocket');
 
 // Display list of all users.
