@@ -25,7 +25,7 @@ let credentials = {
  */
 
 let httpPort = (ssl) ? normalizePort(process.env.PORT || '3443') : normalizePort(process.env.PORT || '3000');
-(ssl) ? app.set('port', httpPort) : app.set('port', httpPort);
+app.set('port', httpPort);
 
 /**
  * Create HTTP server.
