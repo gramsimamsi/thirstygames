@@ -9,8 +9,7 @@ let app = require('../app');
 let debug = require('debug')('demo:server');
 let fs = require('fs');
 let webSocket = require('ws');
-let http = require('http');
-let https = require('https');
+let http = (ssl) ? require('https') : require('http');
 
 /**
  * Create Credentials for https
@@ -32,7 +31,7 @@ let httpPort = (ssl) ? normalizePort(process.env.PORT || '3443') : normalizePort
  * Create HTTP server.
  */
 
-let httpServer = (ssl) ? https.createServer(credentials, app) : http.createServer(app);
+let httpServer = (ssl) ? http.createServer(credentials, app) : http.createServer(app);
 
 /**
  * Websocket Configuration
