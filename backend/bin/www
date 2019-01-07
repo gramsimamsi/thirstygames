@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 
+let ssl = false;      //Toggle between https (true) and http (false)
 let app = require('../app');
 let debug = require('debug')('demo:server');
 let fs = require('fs');
@@ -24,28 +25,20 @@ let credentials = {
  * Get port from environment and store in Express.
  */
 
-let httpPort = normalizePort(process.env.PORT || '3000');
-let httpsPort = normalizePort(process.env.PORT || '3443');
-app.set('port', httpPort);
-app.set('port', httpsPort);
+let httpPort = (ssl) ? normalizePort(process.env.PORT || '3443') : normalizePort(process.env.PORT || '3000');
+(ssl) ? app.set('port', httpPort) : app.set('port', httpPort);
 
 /**
  * Create HTTP server.
  */
 
-let httpServer = http.createServer(app);
-
-/**
- * Create HTTPS server
- */
-
-let httpsServer = https.createServer(credentials, app);
+let httpServer = (ssl) ? https.createServer(credentials, app) : http.createServer(app);
 
 /**
  * Websocket Configuration
  */
 
-let webSocketServer = new webSocket.Server({ server : httpsServer });
+let webSocketServer = (ssl) ? new webSocket.Server({ server : httpServer }) : new webSocket.Server({port : 8080});
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -54,9 +47,6 @@ let webSocketServer = new webSocket.Server({ server : httpsServer });
 httpServer.listen(httpPort);
 httpServer.on('error', onHttpError);
 httpServer.on('listening', onHttpListening);
-httpsServer.listen(httpsPort);
-httpsServer.on('error', onHttpsError);
-httpsServer.on('listening', onHttpsListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -107,34 +97,6 @@ function onHttpError(error) {
 }
 
 /**
- * Event listener for HTTPS server "error" event.
- */
-
-function onHttpsError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-
-  let bind = typeof httpsPort === 'string'
-      ? 'Pipe ' + httpsPort
-      : 'Port ' + httpsPort;
-
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-/**
  * Event listener for HTTP server "listening" event.
  */
 
@@ -146,29 +108,4 @@ function onHttpListening() {
   debug('Listening on ' + bind);
 }
 
-/**
- * Event listener for HTTPS server "listening" event.
- */
-
-function onHttpsListening() {
-  let addr = httpsServer.address();
-  let bind = typeof addr === 'string'
-      ? 'pipe ' + addr
-      : 'port ' + addr.port;
-  debug('Listening on ' + bind);
-}
-
-webSocketServer.on('connection', (socket) => {
-  socket.on('message', (message) => {
-    console.log(`Message received over WebSocket: ${message}`);
-    webSocketServer.clients.forEach((client) => {
-      if (client.readyState === webSocket.OPEN) {
-        client.send(JSON.stringify('Hi Google'));
-      }
-    });
-  });
-  socket.send('Hi');
-});
-
-//ToDo make this work
 module.exports = webSocketServer;

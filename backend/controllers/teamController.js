@@ -1,9 +1,6 @@
 let teamModel = require('../models/teamModel');
 let team = require('../routes/team');
 let webSocket = require('ws');
-//ToDo switch the following lines when wss works properly
-//let webSocketServer = require('../bin/www');
-let webSocketServer = require('../webSocket');
 
 // Display list of all users.
 team.all_teams_get = function(req, res, next) {
@@ -52,6 +49,8 @@ team.single_team_post = function(req, res, next)
 /*update a team*/
 team.single_team_put = function(req, res, next)
 {
+    let webSocketServer = require('../bin/www');
+
     if(!req.body.team_alc_count || !req.body.team_name)
     {
         return res.status(400).send();
