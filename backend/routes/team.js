@@ -15,7 +15,7 @@ router.get('/', middleware.checkToken, middleware.isBarkeeper, teamController.al
  */
 router.delete('/:_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_delete);
 router.post('/', middleware.checkToken, middleware.isAdmin, teamController.single_team_post);
-router.put('/:_id', middleware.checkToken, middleware.isAdmin, teamController.single_team_put);
+router.put('/:_id', middleware.checkToken, middleware.isBarkeeper, teamController.single_team_put);
 
 
 //Todo remove
