@@ -38,7 +38,7 @@ let httpServer = (ssl) ? https.createServer(credentials, app) : http.createServe
  * Websocket Configuration
  */
 
-let webSocketServer = (ssl) ? new webSocket.Server({ server : httpServer }) : new webSocket.Server({port : 8080});
+let webSocketServer = new webSocket.Server({ server : httpServer }) ;
 
 /**
  * Listen on provided port, on all network interfaces.
