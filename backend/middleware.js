@@ -17,8 +17,6 @@ const userRoles =
         SEB_SPRINGER: 3
     };
 
-
-
 let jwt = require('jsonwebtoken');
 const config = require('./jwtConfig');
 
@@ -42,6 +40,8 @@ let checkToken = (req, res, next) =>
            }
            else
            {
+               //check if time of expiration is near -> refresh token
+
                res.locals.user_role = jwt.decode(token).userRole;
                req.decoded = decoded;
                next();
