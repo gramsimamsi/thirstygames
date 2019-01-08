@@ -5,3 +5,5 @@ sudo apt install docker-ce=3:18.09.0~ce-3~ubuntu
 # apt-cache madison docker-ce
 sudo service docker start
 sudo docker-compose up
+sudo npm install async
+sudo node populatedb "mongodb://database/thirstyGames"
