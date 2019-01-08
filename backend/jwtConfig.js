@@ -20,7 +20,7 @@ module.exports =
     {
         secret: 'mySuperSecretSecretForJWTCreation',
         refreshSecret: 'esWirdEinfachNichtSicherer:D',
-        tokenExpirationTime: '20d',
+        tokenExpirationTime: '24h',
         refreshTokenExpirationTime: '1440h', // -> 60d
-        timeToRefresh: tokenExpirationTime * 0.9,
+        timeToRefresh: ' ',
     };

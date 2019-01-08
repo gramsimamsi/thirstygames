@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CreateUserServiceService} from '../services/createUserService/create-user-service.service';
 import { InputErrorStateMatcher} from '../Utilites/InputErrorStateMatcher/input-error-state-matcher';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {LoginServeService} from '../services/loginService/login-serve.service';
 
 @Component({
   selector: 'app-create-user',
@@ -15,7 +16,8 @@ export class CreateUserComponent implements OnInit {
   matcher = new InputErrorStateMatcher();
 
   constructor(private formBuilder: FormBuilder,
-              private createUserService: CreateUserServiceService
+              private createUserService: CreateUserServiceService,
+              private loginService: LoginServeService
               ) {
                 this.inputForm = this.formBuilder.group({
                     username: '',
@@ -34,8 +36,12 @@ export class CreateUserComponent implements OnInit {
 
 
   addUser(): void {
-    this.createUserService.createUser(this.inputForm.get('username').value, this.inputForm.get('password').value)
-      .subscribe(response => console.log(response));
+    const username = this.inputForm.get('username').value;
+    const password = this.inputForm.get('password').value;
+    this.createUserService.createUser(username, password)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 
 ngOnInit() {
