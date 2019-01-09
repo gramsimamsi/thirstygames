@@ -1,8 +1,8 @@
 //DEBUG=thirstygames_wt/backend:* npm start
 
 let createError = require('http-errors');
-let express = require('express');
 let path = require('path');
+let express = require('express');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let cors = require('cors');
@@ -13,7 +13,7 @@ let cors = require('cors');
 
 let userRouter = require('./routes/user');
 let beverageRouter = require('./routes/beverage');
-let teamRouter = require('./routes/team');
+let teamRouter_function = require('./routes/team');
 let indexRouter = require('./routes/index');
 let loginRouter = require('./routes/login');
 let tokenRouter = require('./routes/token');
@@ -33,47 +33,48 @@ mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-let app = express();
+module.exports = (app, websocketServer) => {
 
-/***************************************************************
- * CORS Configuration
- **************************************************************/
+    /***************************************************************
+     * CORS Configuration
+     **************************************************************/
 
-app.use(cors());
+    app.use(cors());
 
-/*
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-*/
+    /*
+    // view engine setup
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'pug');
+    */
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+    app.use(logger('dev'));
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/user', userRouter);
-app.use('/beverage', beverageRouter);
-app.use('/team', teamRouter);
-app.use('/login', loginRouter);
-app.use('/token', tokenRouter);
+    app.use('/', indexRouter);
+    app.use('/user', userRouter);
+    app.use('/beverage', beverageRouter);
+    app.use('/team', teamRouter_function(websocketServer));
+    app.use('/login', loginRouter);
+    app.use('/token', tokenRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    next(createError(404));
-});
+    app.use(function(req, res, next) {
+        next(createError(404));
+    });
 
 // error handler
-app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    app.use(function(err, req, res, next) {
+        // set locals, only providing error in development
+        res.locals.message = err.message;
+        res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.json({ error: err });
-});
+        // render the error page
+        res.status(err.status || 500);
+        res.json({ error: err });
+    });
 
-module.exports = app;
+    return app;
+};

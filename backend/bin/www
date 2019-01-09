@@ -4,12 +4,15 @@
  * Module dependencies.
  */
 
-let ssl = false;      //Toggle between https (true) and http (false)
-let app = require('../app');
+let ssl = true;      //Toggle between https (true) and http (false)
+let express = require('express');
+let app_function = require('../app');
 let debug = require('debug')('demo:server');
 let fs = require('fs');
 let webSocket = require('ws');
 let http = (ssl) ? require('https') : require('http');
+
+let app = express();
 
 /**
  * Create Credentials for https
@@ -19,13 +22,6 @@ let credentials = {
   key: fs.readFileSync('sslcert/server.key', 'utf8'),
   cert: fs.readFileSync('sslcert/server.cert', 'utf8')
 };
-
-/**
- * Get port from environment and store in Express.
- */
-
-let httpPort = (ssl) ? normalizePort(process.env.PORT || '3443') : normalizePort(process.env.PORT || '3000');
-app.set('port', httpPort);
 
 /**
  * Create HTTP server.
@@ -38,6 +34,14 @@ let httpServer = (ssl) ? http.createServer(credentials, app) : http.createServer
  */
 
 let webSocketServer = new webSocket.Server({ server : httpServer }) ;
+app = app_function(app, webSocketServer);
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+let httpPort = (ssl) ? normalizePort(process.env.PORT || '3443') : normalizePort(process.env.PORT || '3000');
+app.set('port', httpPort);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -106,5 +110,3 @@ function onHttpListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-
-module.exports = webSocketServer;
