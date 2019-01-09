@@ -1,11 +1,8 @@
-### Node Express template project
+# ThirstyGames
 
-This project is based on a GitLab [Project Template](https://docs.gitlab.com/ee/gitlab-basics/create-project.html).
+## What are ThirstyGames?
 
-Improvements can be proposed in the [original project](https://gitlab.com/gitlab-org/project-templates/express).
+Nutzen: Ein Webservice, mit welchem per Handyeingabe die (Team-differenzierte) Gesamtaufnahme von Alkohol im Laufe eines Events mitgetrackt und dargestellt werden kann.
 
-### CI/CD with Auto DevOps
-
-This template is compatible with [Auto DevOps](https://docs.gitlab.com/ee/topics/autodevops/).
-
-If Auto DevOps is not already enabled for this project, you can [turn it on](https://docs.gitlab.com/ee/topics/autodevops/#enabling-auto-devops) in the project settings.
+Actually we give you the opportunity, to track the amount of alcohol, which is consumed on your party.  
+You can create "teams", who can battle each other for the price 
