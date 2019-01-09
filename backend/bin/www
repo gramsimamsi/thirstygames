@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-let ssl = true;      //Toggle between https (true) and http (false)
+let ssl = false;      //Toggle between https (true) and http (false)
 let express = require('express');
 let app_function = require('../app');
 let debug = require('debug')('demo:server');
