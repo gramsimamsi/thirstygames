@@ -4,12 +4,14 @@ version: '3' # specify docker-compose version
 services:
 
   frontend:
+    container_name: thirstygames_wt_frontend
     restart: always
     build: ./frontend # specify the directory of the Dockerfile
     ports:
       - "4200:4200" # specify port mapping
 
   backend:
+    container_name: thirstygames_wt_backend
     restart: always
     build: ./backend # specify the directory of the Dockerfile
     ports:
@@ -19,6 +21,7 @@ services:
 
   database:
     image: mongo # specify image to build container from
+    container_name: thirstygames_wt_database
     restart: always
     volumes:
       - ./data:/data/db

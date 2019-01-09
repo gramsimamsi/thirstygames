@@ -26,8 +26,8 @@ let mongoose = require('mongoose');
 
 //connection setup -> remove hardcoded credentials *later*
 //ToDo Docker link wieder aktivieren
-//let mongoDB = 'mongodb://database/thirstyGames';
-let mongoDB = "mongodb://thirsty_game:Sj18538aNpi9kCEK3T8laF8LmJI7c13g@ds213053.mlab.com:13053/thirsty_game";
+let mongoDB = 'mongodb://database/thirstyGames';
+//let mongoDB = "mongodb://thirsty_game:Sj18538aNpi9kCEK3T8laF8LmJI7c13g@ds213053.mlab.com:13053/thirsty_game";
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;

@@ -7,38 +7,13 @@ select yn in "Yes" "No"; do
         No ) break;;
     esac
 done
-echo "Do you wish to install docker? [1/2]"
-select yn in "Yes" "No"; do
-    case ${yn} in
-        Yes ) sudo apt install docker-ce=3:18.09.0~ce-3~ubuntu;
-              #shows newest docker version
-              apt-cache madison docker-ce;
-              break;;
-        No ) break;;
-    esac
-done
-echo "Do you wish to start docker? [1/2]"
-select yn in "Yes" "No"; do
-    case ${yn} in
-        Yes ) sudo service docker start; break;;
-        No ) break;;
-    esac
-done
-echo "Do you wish to install docker-compose? [1/2]"
-select yn in "Yes" "No"; do
-    case ${yn} in
-        Yes ) sudo sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&
-            sudo chmod +x /usr/local/bin/docker-compose; break;;
-        No ) break;;
-    esac
-done
 
 sudo docker-compose up -d
 
 echo "Do you want to put startup credentials into the database? [1/2]"
 select yn in "Yes" "No"; do
     case ${yn} in
-        Yes ) sudo docker exec thirstygames_wt_database_1 bash -c "
+        Yes ) sudo docker exec thirstygames_wt[?]database_1 bash -c "
         mongo thirstyGames --eval 'db.users.save({ \"user_name\" : \"admin\", \"user_password\" : \"\$2b\$10\$S0qzD5J2WE.POZGzNH2Kou8MU/jwjhu0tRMM8rLebcuK1Gn5YRaVy\", \"user_role\" : 0 })' &&
         mongo thirstyGames --eval 'db.beverages.save({ \"beverage_name\" : \"Bier\", \"beverage_alc\" : 5.0 })' &&
         mongo thirstyGames --eval 'db.beverages.save({ \"beverage_name\" : \"Schnaps\", \"beverage_alc\" : 40.0 })' &&
