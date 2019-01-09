@@ -35,6 +35,6 @@ Mention that you have to install **docker** and **docker-compose**
         mongo thirstyGames --eval 'db.beverages.save({ \"beverage_name\" : \"Pfeffi\", \"beverage_alc\" : 18.0 })'
         "`
         
-### Uninstallation
+## Uninstallation
 
 Run `./clearDockerContainer.sh` in the top directory of your application
