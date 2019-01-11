@@ -1,53 +1,20 @@
 <div id="total-container">
-  <mat-toolbar color="primary">
-
-    <div class="toolbar-object">
-      <button mat-raised-button 
-        [disabled]="location.path()==='/login' ||
-                    location.path()==='' "
-        (click)="idOfMatSidenav.toggle()"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-
-    <div class="toolbar-object">
-      <span>
-        Thirsty Gaymes
-      </span>
-    </div>
-
-    <span class="fill-remaining-space"></span>
-
-    <span class="toolbar-object">
-        <button mat-raised-button 
-          routerLink="/login" 
-          [disabled]="location.path()==='/login' ||
-                      location.path()==='' "
-          (click)="logout()"
-        >
-          <mat-icon>exit_to_app</mat-icon>
-          Log Out
-        </button>
-    </span>
-
-  </mat-toolbar>
+  <app-toolbar [navMenuRef]=idOfMatSidenav></app-toolbar>
 
   <mat-sidenav-container>
     <mat-sidenav #idOfMatSidenav>
       <mat-action-list>
-        <button mat-list-item routerLink="/login">Login</button>
-        <button mat-list-item routerLink="">Home</button>
+        <button mat-list-item routerLink="/login" (click)="idOfMatSidenav.toggle()">Login</button>
+        <button mat-list-item routerLink="/barkeeper/welcome">welcome barkeeper</button>
+        <button mat-list-item routerLink="/admin/welcome">welcome admin</button>
+        <button mat-list-item routerLink="/score">score</button>
         <button mat-list-item routerLink="/login" (click)="logout();idOfMatSidenav.toggle()">Logout</button>
       </mat-action-list>
-
-      <!--span class="version-info">Current build: 0.1</span-->
     </mat-sidenav>
     
     <mat-sidenav-content>
-      <mat-card>
-        <router-outlet></router-outlet>
-      </mat-card>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container> 
 </div>
+  

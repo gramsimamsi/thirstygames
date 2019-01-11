@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+
+  <span class="toolbar-object">
+    <button mat-raised-button 
+      [disabled]="location.path()==='/login' ||
+                  location.path()==='' "
+      (click)="this.navMenuRef.toggle()"
+    >
+    <mat-icon>menu</mat-icon>
+    </button>
+  </span>
+
+  <span class="toolbar-object">
+    <span>
+      Thirsty Gaymes
+    </span>
+  </span>
+
+  <span class="fill-remaining-space"></span>
+
+  <span class="toolbar-object">
+      <button mat-raised-button 
+        routerLink="/login" 
+        [disabled]="location.path()==='/login' ||
+                    location.path()==='' "
+        (click)="logout()"
+      >
+        <mat-icon>exit_to_app</mat-icon>
+        Log Out
+      </button>
+  </span>
+
+</mat-toolbar>

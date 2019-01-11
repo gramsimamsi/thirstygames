@@ -23,6 +23,10 @@ import { BarkeeperWelcomePageComponent } from './barkeeper-welcome-page/barkeepe
 import { BeverageComponent } from './beverage/beverage.component';
 import { TeamComponent } from './team/team.component';
 import { IndexComponent } from './index/index.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ScoreComponent } from './score/score.component';
+
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { IndexComponent } from './index/index.component';
     BeverageComponent,
     TeamComponent,
     IndexComponent,
+    ToolbarComponent,
+    ScoreComponent,
 
   ],
   imports: [
@@ -46,6 +52,7 @@ import { IndexComponent } from './index/index.component';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ChartsModule,
   ],
   providers: [
     {
