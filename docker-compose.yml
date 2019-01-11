@@ -25,5 +25,5 @@ services:
     restart: always
     volumes:
       - ./data:/data/db
-    ports:
-      - "27017:27017" # specify port forwarding
+    expose:
+      - "27017" # "private" container -> only accessible on this port to others in this compose network!
