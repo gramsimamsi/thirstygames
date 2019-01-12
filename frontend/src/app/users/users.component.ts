@@ -3,7 +3,6 @@ import {UsersService} from '../services/usersService/users.service';
 import {User} from '../models/User';
 import {SnackBarService} from '../services/snackBarService/snack-bar.service';
 import {MatTableDataSource} from '@angular/material';
-import {userRoles} from '../../environments/environment';
 
 @Component({
   selector: 'app-users',
@@ -11,10 +10,6 @@ import {userRoles} from '../../environments/environment';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-
-  constructor(private userService: UsersService,
-              private snackBar: SnackBarService
-  ) { }
 
   username;
   users: User[];
@@ -26,6 +21,10 @@ export class UsersComponent implements OnInit {
     'BARKEEPER',
     'VIEWER',
     'SEB_SPRINGER'];
+
+  constructor(private userService: UsersService,
+              private snackBar: SnackBarService
+  ) { }
 
   showAllUsers(): void {
     this.userService.getAllItems().subscribe(
@@ -59,5 +58,4 @@ export class UsersComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }

@@ -12,20 +12,18 @@ import {LoginServeService} from '../services/loginService/login-serve.service';
 export class CreateUserComponent implements OnInit {
 
   inputForm: FormGroup;
-
   matcher = new InputErrorStateMatcher();
 
   constructor(private formBuilder: FormBuilder,
               private createUserService: CreateUserServiceService,
-              private loginService: LoginServeService
-              ) {
-                this.inputForm = this.formBuilder.group({
-                    username: '',
-                    password: ['', [Validators.required]],
-                    confirmPassword: ['']
-                  },
-                  { validator: this.checkPasswords });
-              }
+              private loginService: LoginServeService) {
+    this.inputForm = this.formBuilder.group({
+      username: '',
+      password: ['', [Validators.required]],
+      confirmPassword: ['']
+    },
+    { validator: this.checkPasswords });
+  }
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     const pass = group.controls.password.value;
@@ -33,7 +31,6 @@ export class CreateUserComponent implements OnInit {
 
     return pass === confirmPass ? null : { notSame: true };
   }
-
 
   addUser(): void {
     const username = this.inputForm.get('username').value;
@@ -44,7 +41,7 @@ export class CreateUserComponent implements OnInit {
       });
   }
 
-ngOnInit() {
+  ngOnInit() {
   }
 
 }

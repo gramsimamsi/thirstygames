@@ -11,15 +11,13 @@ import {Beverage} from '../models/Beverage';
 })
 export class BeverageComponent implements OnInit {
 
-
-  constructor(private beverageService: BeverageService,
-              private snackBar: SnackBarService
-  ) { }
-
   beverage: Beverage[];
   displayedColumns: string[] = ['beverage_name', 'beverage_alc'];
   dataSource: MatTableDataSource<Beverage>;
 
+  constructor(private beverageService: BeverageService,
+              private snackBar: SnackBarService
+  ) { }
 
   showAllBeverages(): void {
     this.beverageService.init();

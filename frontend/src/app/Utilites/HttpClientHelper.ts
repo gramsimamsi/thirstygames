@@ -1,17 +1,16 @@
 import {HttpHeaders} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {throwError} from 'rxjs';
-
 
 export class HttpClientHelper {
 
   static httpOptionsApplicationJSON = {
-  headers: new HttpHeaders(
-    {
-      'Content-Type': 'application/json'
-    }
-  )
-};
+    headers: new HttpHeaders(
+      {
+        'Content-Type': 'application/json'
+      }
+    )
+  };
 
   /**
    * Handle Http operation that failed.
@@ -19,7 +18,7 @@ export class HttpClientHelper {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-   static handleError<T> (operation = 'operation', result?: T) {
+  static handleError<T> (operation = 'operation') {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

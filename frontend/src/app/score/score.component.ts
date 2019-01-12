@@ -11,7 +11,9 @@ export class ScoreComponent implements OnInit {
 
   teamservice: TeamService;
   barChartData: any[];
-
+  public barChartLabels: string[] = ['Scores'];
+  public barChartType = 'bar';
+  public barChartLegend = false;
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     scales: {
@@ -24,9 +26,6 @@ export class ScoreComponent implements OnInit {
   },
     responsive: true
   };
-  public barChartLabels: string[] = ['Scores'];
-  public barChartType = 'bar';
-  public barChartLegend = false;
 
   constructor(teamservice: TeamService) {
     this.teamservice = teamservice;
@@ -57,5 +56,4 @@ export class ScoreComponent implements OnInit {
       }
     );
   }
-
 }

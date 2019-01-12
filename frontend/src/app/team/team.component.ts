@@ -11,16 +11,12 @@ import {TeamService} from '../services/teamService/team.service';
 })
 export class TeamComponent implements OnInit {
 
-
-  constructor(private teamService: TeamService,
-              private snackBar: SnackBarService
-  ) { }
-
   private teams: Team[];
   displayedColumns: string[] = ['team_name', 'alc_count', 'delete', 'dummyUpdate'];
   dataSource: MatTableDataSource<Team>;
 
-
+  constructor(private teamService: TeamService,
+              private snackBar: SnackBarService) { }
 
   showAllTeams(): void {
     this.teamService.getAllItems().subscribe(
@@ -64,5 +60,4 @@ export class TeamComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }

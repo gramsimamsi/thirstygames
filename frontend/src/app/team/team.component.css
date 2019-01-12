@@ -1,32 +1,5 @@
-
-table
-{
+table, mat-form-field {
   width: 75%;
   margin-left: 10%;
   margin-right: 10%;
-}
-
-.item:hover
-{
-  color: blue;
-}
-
-.row:hover
-{
-  color: blue;
-}
-
-.add-button:hover
-{
-  color:blue;
-}
-
-
-.user-button {
-  text-align: end;
-}
-
-.add-button {
-  margin-top: 3%;
-  text-align: end;
 }

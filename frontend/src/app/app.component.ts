@@ -9,7 +9,6 @@ import { SnackBarService } from './services/snackBarService/snack-bar.service';
 })
 export class AppComponent {
 
-
   location: Location;
   snackBarService: SnackBarService;
 

@@ -1,5 +1,4 @@
 <mat-card>
-  <div>
     <div style="display: block" *ngIf="barChartData.length > 0">
       <canvas baseChart
         [datasets]="barChartData"
@@ -8,5 +7,4 @@
         [legend]="barChartLegend"
         [chartType]="barChartType"></canvas>
     </div>
-  </div>
 </mat-card>
