@@ -1,8 +1,8 @@
-let express = require('express');
-let router = express.Router();
-let LoginHandler = require('../utilities/LoginHandler')
+const express = require('express');
+const router = express.Router();
+const LoginHandler = require('../utilities/LoginHandler');
 
-let loginHandler = new LoginHandler();
+const loginHandler = new LoginHandler();
 
 /* GET home page. */
 router.get('/', loginHandler.index);

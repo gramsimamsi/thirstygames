@@ -4,13 +4,13 @@
  * Module dependencies.
  */
 
-let ssl = false;      //Toggle between https (true) and http (false)
-let express = require('express');
-let app_function = require('../app');
-let debug = require('debug')('demo:server');
-let fs = require('fs');
-let webSocket = require('ws');
-let http = (ssl) ? require('https') : require('http');
+const ssl = false; // Toggle between https (true) and http (false)
+const express = require('express');
+const appFunction = require('../app');
+const debug = require('debug')('demo:server');
+const fs = require('fs');
+const webSocket = require('ws');
+const http = (ssl) ? require('https') : require('http');
 
 let app = express();
 
@@ -18,29 +18,39 @@ let app = express();
  * Create Credentials for https
  */
 
-let credentials = {
+const credentials = {
   key: fs.readFileSync('sslcert/server.key', 'utf8'),
-  cert: fs.readFileSync('sslcert/server.cert', 'utf8')
+  cert: fs.readFileSync('sslcert/server.cert', 'utf8'),
 };
 
 /**
  * Create HTTP server.
  */
 
-let httpServer = (ssl) ? http.createServer(credentials, app) : http.createServer(app);
+let httpServer;
+if (ssl) {
+  httpServer = http.createServer(credentials, app);
+} else {
+  httpServer = http.createServer(app);
+}
 
 /**
  * Websocket Configuration
  */
 
-let webSocketServer = new webSocket.Server({ server : httpServer }) ;
-app = app_function(app, webSocketServer);
+const webSocketServer = new webSocket.Server({server: httpServer});
+app = appFunction(app, webSocketServer);
 
 /**
  * Get port from environment and store in Express.
  */
 
-let httpPort = (ssl) ? normalizePort(process.env.PORT || '3443') : normalizePort(process.env.PORT || '3000');
+let httpPort;
+if (ssl) {
+  httpPort = normalizePort(process.env.PORT || '3443');
+} else {
+  httpPort = normalizePort(process.env.PORT || '3000');
+}
 app.set('port', httpPort);
 
 /**
@@ -53,10 +63,11 @@ httpServer.on('listening', onHttpListening);
 
 /**
  * Normalize a port into a number, string, or false.
+ * @param {let} val
+ * @return {let} httpPort
  */
-
 function normalizePort(val) {
-  let port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -73,14 +84,14 @@ function normalizePort(val) {
 
 /**
  * Event listener for HTTP server "error" event.
+ * @param {let} error
  */
-
 function onHttpError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  let bind = typeof httpPort === 'string'
+  const bind = typeof httpPort === 'string'
     ? 'Pipe ' + httpPort
     : 'Port ' + httpPort;
 
@@ -102,10 +113,9 @@ function onHttpError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onHttpListening() {
-  let addr = httpServer.address();
-  let bind = typeof addr === 'string'
+  const addr = httpServer.address();
+  const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);

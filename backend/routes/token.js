@@ -1,8 +1,7 @@
-let express = require('express');
-let router = express.Router();
-let middleware = require('../middleware');
-let tokenController = require("../controllers/tokenController");
+const express = require('express');
+const router = express.Router();
+const tokenController = require('../controllers/tokenController');
 
-router.post('/',tokenController.token_refresh);
+router.post('/', tokenController.token_refresh);
 
 module.exports = router;

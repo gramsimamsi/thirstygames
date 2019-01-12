@@ -1,11 +1,28 @@
-### Node Express template project
+# ThirstyGames
 
-This project is based on a GitLab [Project Template](https://docs.gitlab.com/ee/gitlab-basics/create-project.html).
+## What are ThirstyGames?
 
-Improvements can be proposed in the [original project](https://gitlab.com/gitlab-org/project-templates/express).
+### Tracking, interpreting and presenting of competititve and team-based consumption of predominantly hops-based liquids.
 
-### CI/CD with Auto DevOps
+Actually we give you the opportunity to track the amount of alcohol which is consumed on your party.  
+You can create "teams" who can compete with each other for the "My team drank more than the other team" price.
 
-This template is compatible with [Auto DevOps](https://docs.gitlab.com/ee/topics/autodevops/).
+## Installation
 
-If Auto DevOps is not already enabled for this project, you can [turn it on](https://docs.gitlab.com/ee/topics/autodevops/#enabling-auto-devops) in the project settings.
+### On Ferdora
+
+Run `./startscript_fedora.sh` in the top directory of the application
+
+### On other Linux distributions
+
+To execute this script you have to install **docker** and **docker-compose**
+
+Run `./startscript.sh` in the top directory of the application
+    
+## Stop the containers
+
+Run `./stopDocker.sh` in the top directory of your application
+    
+## Uninstallation
+
+Run `./clearDockerContainer.sh` in the top directory of your application
