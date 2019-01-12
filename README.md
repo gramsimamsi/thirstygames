@@ -17,7 +17,7 @@ Run `./startscript_fedora.sh` in the top directory of the application
 
 To execute this script you have to install **docker** and **docker-compose**
 
-Run `./startscript_ubuntu.sh` in the top directory of the application
+Run `./startscript.sh` in the top directory of the application
 
 ### On other devices
 
