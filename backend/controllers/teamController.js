@@ -39,6 +39,7 @@ module.exports = (webSocketServer) => {
       });
     },
     /* update a team*/
+    // TODO : this returns an array containing a single team as response. return only the team and TELL LUKAS, please :)
     single_team_put(req, res, next) {
       if (!req.body.team_alc_count || !req.body.team_name) {
         return res.status(400).send();
