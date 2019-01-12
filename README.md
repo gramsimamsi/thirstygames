@@ -1,11 +1,46 @@
-### Node Express template project
+# ThirstyGames
 
-This project is based on a GitLab [Project Template](https://docs.gitlab.com/ee/gitlab-basics/create-project.html).
+## What are ThirstyGames?
 
-Improvements can be proposed in the [original project](https://gitlab.com/gitlab-org/project-templates/express).
+### Tracking, interpreting and presenting of competititve and team-based consumption of predominantly hops-based liquids.
 
-### CI/CD with Auto DevOps
+Actually we give you the opportunity to track the amount of alcohol which is consumed on your party.  
+You can create "teams" who can compete with each other for the "My team drank more than the other team" price.
 
-This template is compatible with [Auto DevOps](https://docs.gitlab.com/ee/topics/autodevops/).
+## Installation
 
-If Auto DevOps is not already enabled for this project, you can [turn it on](https://docs.gitlab.com/ee/topics/autodevops/#enabling-auto-devops) in the project settings.
+### On Ferdora
+
+Run `./startscript_fedora.sh` in the top directory of the application
+
+### On other Linux distributions
+
+To execute this script you have to install **docker** and **docker-compose**
+
+Run `./startscript_ubuntu.sh` in the top directory of the application
+
+### On other devices
+
+Run the following applications in the top directory of the application  
+Mention that you have to install **docker** and **docker-compose**
+
+##### Run the application
+
+`sudo docker-compose up`
+
+##### Put startup credentials into database (after you run the application)
+
+`sudo docker exec thirstygames_wt_database_1 bash -c "
+        mongo thirstyGames --eval 'db.users.save({ \"user_name\" : \"admin\", \"user_password\" : \"\$2b\$10\$S0qzD5J2WE.POZGzNH2Kou8MU/jwjhu0tRMM8rLebcuK1Gn5YRaVy\", \"user_role\" : 0 })' &&
+        mongo thirstyGames --eval 'db.beverages.save({ \"beverage_name\" : \"Bier\", \"beverage_alc\" : 5.0 })' &&
+        mongo thirstyGames --eval 'db.beverages.save({ \"beverage_name\" : \"Schnaps\", \"beverage_alc\" : 40.0 })' &&
+        mongo thirstyGames --eval 'db.beverages.save({ \"beverage_name\" : \"Pfeffi\", \"beverage_alc\" : 18.0 })'
+        "`
+    
+## Stop the containers
+
+Run `./stopDocker.sh` in the top directory of your application
+    
+## Uninstallation
+
+Run `./clearDockerContainer.sh` in the top directory of your application
