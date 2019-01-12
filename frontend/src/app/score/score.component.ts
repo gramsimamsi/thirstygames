@@ -14,6 +14,14 @@ export class ScoreComponent implements OnInit {
 
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
+    scales: {
+      yAxes: [{
+          ticks: {
+              beginAtZero: true,
+              suggestedMax: 10
+          }
+      }]
+  },
     responsive: true
   };
   public barChartLabels: string[] = ['Scores'];
@@ -25,26 +33,26 @@ export class ScoreComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.teamservice.getAllTeams().subscribe(
+    this.teamservice.init();
+    this.teamservice.getAllItems().subscribe(
       (teams: Team[]) => {
 
         // clear old data
         this.barChartData = [];
 
-        // create temp array
-        const tempArr = [];
-
         teams.forEach( (team: Team) => {
-          tempArr.push(
+          this.barChartData.push(
             {
               data: [team.team_alc_count],
               label: team.team_name
             }
           );
-        });
 
-        // reassign barChartData to trigger changedetection
-        this.barChartData = tempArr;
+          // tell the autoscaling y axis to increase its upper display limit if necessary
+          if ((team.team_alc_count + 5) > this.barChartOptions.scales.yAxes[0].ticks.suggestedMax) {
+            this.barChartOptions.scales.yAxes[0].ticks.suggestedMax = team.team_alc_count + 5;
+          }
+        });
 
       }
     );

@@ -17,12 +17,13 @@ export class BeverageComponent implements OnInit {
   ) { }
 
   beverage: Beverage[];
-  displayedColumns: string[] = ['beverage_name', 'beverage_alc', 'delete'];
+  displayedColumns: string[] = ['beverage_name', 'beverage_alc'];
   dataSource: MatTableDataSource<Beverage>;
 
 
   showAllBeverages(): void {
-    this.beverageService.getAllBeverages().subscribe(
+    this.beverageService.init();
+    this.beverageService.getAllItems().subscribe(
       beverages => {
         this.beverage = beverages;
         this.dataSource = new MatTableDataSource(this.beverage);
@@ -31,11 +32,12 @@ export class BeverageComponent implements OnInit {
     );
   }
 
-  removeSingleBeverage(beverage): void {
-    this.beverageService.deleteSingleBeverage(beverage._id).subscribe(
-      response => this.snackBar.openSnackBar('Deleted'),
-      () => this.snackBar.openSnackBar('Could not delete Beverage: '  + beverage._id)
-    );
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   ngOnInit() {

@@ -12,19 +12,23 @@ import {userRoles} from '../../environments/environment';
 })
 export class UsersComponent implements OnInit {
 
-
   constructor(private userService: UsersService,
               private snackBar: SnackBarService
   ) { }
 
   username;
   users: User[];
-  displayedColumns: string[] = ['user_name', 'user_role_edit', 'delete'];
+  displayedColumns: string[] = ['user_name', 'user_role_edit'];
   dataSource: MatTableDataSource<User>;
-  userRoles = [userRoles['ADMIN'], userRoles['BARKEEPER']];
+  // userRoles = [userRoles['ADMIN'], userRoles['BARKEEPER']];
+  userRoles = [
+    'ADMIN',
+    'BARKEEPER',
+    'VIEWER',
+    'SEB_SPRINGER'];
 
   showAllUsers(): void {
-    this.userService.getAllUsers().subscribe(
+    this.userService.getAllItems().subscribe(
       users => {
         this.users = users;
         this.dataSource = new MatTableDataSource(users);
@@ -33,29 +37,27 @@ export class UsersComponent implements OnInit {
     );
   }
 
-  removeSingleUser(user): void {
-    this.userService.deleteSingleUser(user._id).subscribe(
-      response => this.snackBar.openSnackBar('Deleted'),
-      () => this.snackBar.openSnackBar('Could not delete User: '  + user._id)
-    );
-  }
-
   updateSingleUser(user, value): void {
 
     user.user_role = value;
     console.log(user);
-    this.userService.putSingleUser(user).subscribe(
-    response => this.snackBar.openSnackBar('User ' + user.user_name + ' is now ' + value),
-      error => this.snackBar.openSnackBarError('Could not update user ' + user.user_name)
-    );
+    this.userService.putSingleItem(user);
   }
 
   ngOnInit() {
     this.users = [];
     this.username = sessionStorage.getItem('username');
+    this.userService.init();
     this.showAllUsers();
 
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
 }
