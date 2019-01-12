@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {SnackBarService} from '../services/snackBarService/snack-bar.service';
 import {MatTableDataSource} from '@angular/material';
-import {Team} from '../models/Team';
-import {TeamService} from '../services/teamService/team.service';
+import { Team } from 'src/app/models/Team';
+import { TeamService } from 'src/app/services/teamService/team.service';
+import { SnackBarService } from 'src/app/services/snackBarService/snack-bar.service';
 
 @Component({
   selector: 'app-team',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CreateUserServiceService} from '../services/createUserService/create-user-service.service';
-import { InputErrorStateMatcher} from '../Utilites/InputErrorStateMatcher/input-error-state-matcher';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LoginServeService} from '../services/loginService/login-serve.service';
+import { InputErrorStateMatcher } from 'src/app/Utilites/InputErrorStateMatcher/input-error-state-matcher';
+import { CreateUserServiceService } from 'src/app/services/createUserService/create-user-service.service';
+import { LoginServeService } from 'src/app/services/loginService/login-serve.service';
 
 @Component({
   selector: 'app-create-user',

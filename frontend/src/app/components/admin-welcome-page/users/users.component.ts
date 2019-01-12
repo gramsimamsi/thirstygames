@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersService} from '../services/usersService/users.service';
-import {User} from '../models/User';
-import {SnackBarService} from '../services/snackBarService/snack-bar.service';
 import {MatTableDataSource} from '@angular/material';
+import { User } from 'src/app/models/User';
+import { UsersService } from 'src/app/services/usersService/users.service';
+import { SnackBarService } from 'src/app/services/snackBarService/snack-bar.service';
 
 @Component({
   selector: 'app-users',

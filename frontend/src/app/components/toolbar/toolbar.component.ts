@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SnackBarService } from '../services/snackBarService/snack-bar.service';
 import {Location} from '@angular/common';
+import { SnackBarService } from 'src/app/services/snackBarService/snack-bar.service';
 
 @Component({
   selector: 'app-toolbar',

@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Observable, BehaviorSubject} from 'rxjs';
 import {HttpClientHelper} from '../Utilites/HttpClientHelper';
-import {SnackBarService} from '../services/snackBarService/snack-bar.service';
+import {SnackBarService} from './snackBarService/snack-bar.service';
 
 export abstract class BaseService<T extends { _id: string }> {
 

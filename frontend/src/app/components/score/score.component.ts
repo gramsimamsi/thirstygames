@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TeamService } from '../services/teamService/team.service';
-import { Team } from '../models/Team';
+import { TeamService } from 'src/app/services/teamService/team.service';
+import { Team } from 'src/app/models/Team';
 
 @Component({
   selector: 'app-score',

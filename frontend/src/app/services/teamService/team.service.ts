@@ -4,7 +4,7 @@ import {Team} from '../../models/Team';
 import { SnackBarService } from '../snackBarService/snack-bar.service';
 import {WebsocketService} from '../webSocketService/web-socket.service';
 import 'rxjs-compat/add/operator/map';
-import { BaseService } from 'src/app/models/base.service';
+import { BaseService } from 'src/app/services/base.service';
 
 @Injectable({
   providedIn: 'root'

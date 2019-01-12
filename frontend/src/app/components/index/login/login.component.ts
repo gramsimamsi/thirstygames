@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginServeService} from '../services/loginService/login-serve.service';
 import {Router} from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
-import {userRoles} from '../../environments/environment';
-import {SnackBarService} from '../services/snackBarService/snack-bar.service';
+import { LoginServeService } from 'src/app/services/loginService/login-serve.service';
+import { SnackBarService } from 'src/app/services/snackBarService/snack-bar.service';
+import { userRoles } from 'src/environments/environment';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

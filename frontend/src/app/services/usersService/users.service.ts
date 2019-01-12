@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../../models/User';
-import { BaseService } from 'src/app/models/base.service';
+import { BaseService } from 'src/app/services/base.service';
 import { SnackBarService } from '../snackBarService/snack-bar.service';
 
 @Injectable({
