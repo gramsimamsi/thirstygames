@@ -7,19 +7,31 @@ users.all_users_get = function(req, res, next) {
   UserModel.find({}, {_id: 1, user_name: 1, user_role: 1})
       .exec(function(err, userNameList) {
         if (err) {
+          UserModel.find({_id: req.params._id})
+              .exec((err) => {
+                if (err) {
+                  res.status(400).send();
+                }
+              });
           return next(err);
         }
         res.status(200).send(userNameList);
       });
 };
 
-users.single_user_delete = function(req, res, next) {
+users.single_user_delete = function(req, res) {
   UserModel.deleteOne({_id: req.params._id})
       .exec(function(err) {
         if (err) {
+          UserModel.find({_id: req.params._id})
+              .exec((err) => {
+                if (err) {
+                  res.status(400).send();
+                }
+              });
           // ToDo delete console log
           console.log(err.toString());
-          return next(err);
+          res.status(400).send();
         }
         res.status(204).send();
       });
@@ -27,6 +39,9 @@ users.single_user_delete = function(req, res, next) {
 
 /* create a new user*/
 users.single_user_post = function(req, res) {
+  if (!req.body.user_name || !req.body.user_password) {
+    res.status(400).send();
+  }
   // create user and add to database
   // Todo change role of newly created user to 2 or higher
   req.body.user_role = 1;

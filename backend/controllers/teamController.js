@@ -8,8 +8,14 @@ module.exports = (webSocketServer) => {
     all_teams_get(req, res, next) {
       // find all users in database
       TeamModel.find({}, {_id: 1, team_name: 1, team_alc_count: 1})
-          .exec(function(err, teamNameList) {
+          .exec((err, teamNameList) => {
             if (err) {
+              TeamModel.find({_id: req.params._id})
+                  .exec((err) => {
+                    if (err) {
+                      res.status(400).send();
+                    }
+                  });
               return next(err);
             }
             res.status(200).send(teamNameList);
@@ -20,6 +26,12 @@ module.exports = (webSocketServer) => {
       TeamModel.deleteOne({_id: req.params._id})
           .exec(function(err) {
             if (err) {
+              TeamModel.find({_id: req.params._id})
+                  .exec((err) => {
+                    if (err) {
+                      res.status(400).send();
+                    }
+                  });
               return next(err);
             }
             res.status(204).send();
@@ -27,6 +39,9 @@ module.exports = (webSocketServer) => {
     },
     /* create a new team*/
     single_team_post(req, res, next) {
+      if (!req.body.team_name || !req.body.team_alc_count) {
+        res.status(400).send();
+      }
       // create team and add to database
       const newTeam = new TeamModel( req.body );
       newTeam.save(function(err, createdTeam) {
@@ -41,7 +56,7 @@ module.exports = (webSocketServer) => {
     /* update a team*/
     single_team_put(req, res, next) {
       if (!req.body.team_alc_count || !req.body.team_name) {
-        return res.status(400).send();
+        res.status(400).send();
       }
       // update team in the database
       TeamModel.updateOne(
@@ -53,8 +68,8 @@ module.exports = (webSocketServer) => {
               return next(err);
             }
             TeamModel.find(
-                {_id: req.params._id},
-                {team_name: req.body.team_name,
+                {_id: req.params._id}, {
+                  team_name: req.body.team_name,
                   team_alc_count: req.body.team_alc_count})
                 .exec(function(err, updatedTeam) {
                   if (err) {
