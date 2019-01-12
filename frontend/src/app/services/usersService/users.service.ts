@@ -4,31 +4,26 @@ import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {HttpClientHelper} from '../../Utilites/HttpClientHelper';
 import {User} from '../../models/User';
+import { BaseService } from 'src/app/models/base.service';
+import { SnackBarService } from '../snackBarService/snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersService extends BaseService<User> {
 
-  constructor(
-    private http: HttpClient,
-  ) {}
+  apiURL = 'user';
 
-  private apiURL = 'user';
-
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiURL, HttpClientHelper.httpOptionsApplicationJSON)
-      .pipe(catchError(HttpClientHelper.handleError('GET_ALL_USERS_ERROR', [])));
+  constructor(private _httpClient: HttpClient, private _snackBarService: SnackBarService) {
+    super(_httpClient, _snackBarService);
   }
 
-  deleteSingleUser(userID): Observable<any> {
-    return this.http.delete(this.apiURL + '/' + userID, HttpClientHelper.httpOptionsApplicationJSON)
-      .pipe(catchError(HttpClientHelper.handleError('DELETE_SINGLE_USER_ERROR ->' + userID, [])));
+  deleteSingleItem(id: string): void {
+    throw new Error('One does not simply delete users in the MVP!');
   }
 
-  putSingleUser(user): Observable<any> {
-    return this.http.put(this.apiURL + '/' + user._id, user, HttpClientHelper.httpOptionsApplicationJSON)
-      .pipe(catchError(HttpClientHelper.handleError('PUTTING_SINGLE_USER_ERROR', [])));
+  postSingleItem(itemWithoutId): void {
+    throw new Error('One does not simply create users via the userService, use createUserService instead!');
   }
 }
 

@@ -23,7 +23,7 @@ export class TeamComponent implements OnInit {
 
 
   showAllTeams(): void {
-    this.teamService.getAllTeams().subscribe(
+    this.teamService.getAllItems().subscribe(
       teams => {
         this.teams = teams;
         this.dataSource = new MatTableDataSource(teams);
@@ -37,24 +37,32 @@ export class TeamComponent implements OnInit {
   }
 
   removeSingleTeam(team): void {
-    this.snackBar.openSnackBar('Deleted');
-    this.teamService.deleteSingleTeam(team._id).subscribe(
-      response => this.snackBar.openSnackBar('Deleted'),
-      () => this.snackBar.openSnackBar('Could not delete Team: '  + team._id)
-    );
+    this.teamService.deleteSingleItem(team._id);
   }
 
   updateSingleTeam(team): void {
     team.team_alc_count = Math.floor(Math.random() * 100);
-    this.teamService.putSingleTeam(team).subscribe(
-      response => this.snackBar.openSnackBar('Team updated successfully ' + team.team_name),
-      error => this.snackBar.openSnackBarError('Could not update team ' + team.team_name)
-    );
+    this.teamService.putSingleItem(team);
   }
   ngOnInit() {
     this.teams = [];
+    this.teamService.init();
     this.showAllTeams();
-    this.teamService.keepUpdatedViaSocket();
+  }
+
+  createSingleTeam() {
+    const team = {
+      team_name: 'testTeam',
+      team_alc_count: 0};
+    this.teamService.postSingleItem(team);
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

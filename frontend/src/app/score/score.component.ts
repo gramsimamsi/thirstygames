@@ -33,7 +33,8 @@ export class ScoreComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.teamservice.getAllTeams().subscribe(
+    this.teamservice.init();
+    this.teamservice.getAllItems().subscribe(
       (teams: Team[]) => {
 
         // clear old data
