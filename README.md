@@ -13,7 +13,7 @@ You can create "teams" who can compete with each other for the "My team drank mo
 
 Run `./startscript_fedora.sh` in the top directory of the application
 
-### On Ubuntu
+### On other Linux distributions
 
 To execute this script you have to install **docker** and **docker-compose**
 
