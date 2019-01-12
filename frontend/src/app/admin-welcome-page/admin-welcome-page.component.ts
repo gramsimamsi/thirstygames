@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-admin-welcome-page',
@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 export class AdminWelcomePageComponent implements OnInit {
 
   activeTab: string;
-  private username: string;
+  username: string;
 
   constructor(public router: ActivatedRoute) {
     this.activeTab = router.snapshot.params.tab;

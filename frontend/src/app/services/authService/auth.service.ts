@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import "rxjs-compat/add/observable/of";
+import {Observable} from 'rxjs';
+import 'rxjs-compat/add/observable/of';
 import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
@@ -12,14 +12,12 @@ export class AuthService {
     return localStorage.getItem('accessToken');
   }
 
-  public isLoggedIn(): Observable<boolean>
-  {
-    let token = this.getToken();
-    if(token)
-    {
-      let tokenExpired = this.isTokenExpired(token);
+  public isLoggedIn(): Observable<boolean> {
+    const token = this.getToken();
+    if (token) {
+      const tokenExpired = this.isTokenExpired(token);
 
-      if(!tokenExpired) return Observable.of(true)
+      if (!tokenExpired) { return Observable.of(true); }
     }
 
     return Observable.of(false);
@@ -27,11 +25,10 @@ export class AuthService {
 
 
   // toDo needs to be tested
-  public getTokenExpirationDate(token: string): Date
-  {
+  public getTokenExpirationDate(token: string): Date {
     const decodedToken = jwt_decode(token);
 
-    if (decodedToken.exp === undefined) return null;
+    if (decodedToken.exp === undefined) { return null; }
 
     const date = new Date(0);
     date.setUTCSeconds(decodedToken.exp);
@@ -39,10 +36,9 @@ export class AuthService {
   }
 
 
-  isTokenExpired(token: string): boolean
-  {
+  isTokenExpired(token: string): boolean {
     const date = this.getTokenExpirationDate(token);
-    if(date === undefined) return false;
+    if (date === undefined) { return false; }
     return !(date.valueOf() > new Date().valueOf());
   }
 

@@ -1,0 +1,9 @@
+.fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+    */
+    flex: 1 1 auto;
+}
+ 
+.toolbar-object{
+    margin: 0 8px;
+}
