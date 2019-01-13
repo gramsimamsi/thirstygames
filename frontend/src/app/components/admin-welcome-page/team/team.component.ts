@@ -43,13 +43,6 @@ export class TeamComponent implements OnInit {
     this.showAllTeams();
   }
 
-  createSingleTeam() {
-    const team = {
-      team_name: 'testTeam',
-      team_alc_count: 0};
-    this.teamService.postSingleItem(team);
-  }
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
