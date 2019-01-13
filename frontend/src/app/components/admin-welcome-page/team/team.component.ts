@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {SnackBarService} from '../services/snackBarService/snack-bar.service';
 import {MatTableDataSource} from '@angular/material';
-import {Team} from '../models/Team';
-import {TeamService} from '../services/teamService/team.service';
+import { Team } from 'src/app/models/Team';
+import { TeamService } from 'src/app/services/teamService/team.service';
+import { SnackBarService } from 'src/app/services/snackBarService/snack-bar.service';
 
 @Component({
   selector: 'app-team',
@@ -11,16 +11,12 @@ import {TeamService} from '../services/teamService/team.service';
 })
 export class TeamComponent implements OnInit {
 
-
-  constructor(private teamService: TeamService,
-              private snackBar: SnackBarService
-  ) { }
-
   private teams: Team[];
   displayedColumns: string[] = ['team_name', 'alc_count', 'delete', 'dummyUpdate'];
   dataSource: MatTableDataSource<Team>;
 
-
+  constructor(private teamService: TeamService,
+              private snackBar: SnackBarService) { }
 
   showAllTeams(): void {
     this.teamService.getAllItems().subscribe(
@@ -64,5 +60,4 @@ export class TeamComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }

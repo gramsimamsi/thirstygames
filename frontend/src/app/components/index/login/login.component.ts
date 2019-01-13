@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginServeService} from '../services/loginService/login-serve.service';
 import {Router} from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
-import {userRoles} from '../../environments/environment';
-import {SnackBarService} from '../services/snackBarService/snack-bar.service';
+import { LoginServeService } from 'src/app/services/loginService/login-serve.service';
+import { SnackBarService } from 'src/app/services/snackBarService/snack-bar.service';
+import { userRoles } from 'src/environments/environment';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,12 +12,12 @@ import {SnackBarService} from '../services/snackBarService/snack-bar.service';
 })
 export class LoginComponent implements OnInit {
 
+  username: string;
+  password: string;
+
   constructor(private loginService: LoginServeService,
               private router: Router,
               private snackBar: SnackBarService) { }
-
-  private username: string;
-  private password: string;
 
   login(): void {
     this.loginService.submitLogin(this.username, this.password)
@@ -37,12 +38,11 @@ export class LoginComponent implements OnInit {
   }
 
   /*
-
   was sceptical about this approach, but STOVF ... :D
   https://stackoverflow.com/questions/51171468/how-to-achieve-role-based-redirection-after-login-in-angular-5
-   */
+  */
   redirectOnRole(token): void {
-      // get userRole from token
+    // get userRole from token
     const userRole = jwt_decode(token).userRole;
 
     switch (userRole) {
@@ -61,7 +61,5 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }

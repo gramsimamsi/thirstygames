@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {SnackBarService} from '../services/snackBarService/snack-bar.service';
 import {MatTableDataSource} from '@angular/material';
-import {BeverageService} from '../services/beverageService/beverage.service';
-import {Beverage} from '../models/Beverage';
+import { Beverage } from 'src/app/models/Beverage';
+import { BeverageService } from 'src/app/services/beverageService/beverage.service';
+import { SnackBarService } from 'src/app/services/snackBarService/snack-bar.service';
 
 @Component({
   selector: 'app-beverage',
@@ -11,15 +11,13 @@ import {Beverage} from '../models/Beverage';
 })
 export class BeverageComponent implements OnInit {
 
-
-  constructor(private beverageService: BeverageService,
-              private snackBar: SnackBarService
-  ) { }
-
   beverage: Beverage[];
   displayedColumns: string[] = ['beverage_name', 'beverage_alc'];
   dataSource: MatTableDataSource<Beverage>;
 
+  constructor(private beverageService: BeverageService,
+              private snackBar: SnackBarService
+  ) { }
 
   showAllBeverages(): void {
     this.beverageService.init();

@@ -2,12 +2,12 @@ import {NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import {AdminWelcomePageComponent} from './admin-welcome-page/admin-welcome-page.component';
 import {AuthGuardService} from './services/authGuard/auth-guard.service';
-import {BarkeeperWelcomePageComponent} from './barkeeper-welcome-page/barkeeper-welcome-page.component';
-import {userRoles} from '../environments/environment';
-import {IndexComponent} from './index/index.component';
-import { ScoreComponent } from './score/score.component';
+import { IndexComponent } from './components/index/index.component';
+import { AdminWelcomePageComponent } from './components/admin-welcome-page/admin-welcome-page.component';
+import { userRoles } from 'src/environments/environment';
+import { BarkeeperWelcomePageComponent } from './components/barkeeper-welcome-page/barkeeper-welcome-page.component';
+import { ScoreComponent } from './components/score/score.component';
 
 const routes: Routes = [
   { path : '', component : IndexComponent},

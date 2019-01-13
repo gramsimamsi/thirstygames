@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CreateUserServiceService} from '../services/createUserService/create-user-service.service';
-import { InputErrorStateMatcher} from '../Utilites/InputErrorStateMatcher/input-error-state-matcher';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LoginServeService} from '../services/loginService/login-serve.service';
+import { InputErrorStateMatcher } from 'src/app/Utilites/InputErrorStateMatcher/input-error-state-matcher';
+import { CreateUserServiceService } from 'src/app/services/createUserService/create-user-service.service';
+import { LoginServeService } from 'src/app/services/loginService/login-serve.service';
 
 @Component({
   selector: 'app-create-user',
@@ -12,20 +12,18 @@ import {LoginServeService} from '../services/loginService/login-serve.service';
 export class CreateUserComponent implements OnInit {
 
   inputForm: FormGroup;
-
   matcher = new InputErrorStateMatcher();
 
   constructor(private formBuilder: FormBuilder,
               private createUserService: CreateUserServiceService,
-              private loginService: LoginServeService
-              ) {
-                this.inputForm = this.formBuilder.group({
-                    username: '',
-                    password: ['', [Validators.required]],
-                    confirmPassword: ['']
-                  },
-                  { validator: this.checkPasswords });
-              }
+              private loginService: LoginServeService) {
+    this.inputForm = this.formBuilder.group({
+      username: '',
+      password: ['', [Validators.required]],
+      confirmPassword: ['']
+    },
+    { validator: this.checkPasswords });
+  }
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     const pass = group.controls.password.value;
@@ -33,7 +31,6 @@ export class CreateUserComponent implements OnInit {
 
     return pass === confirmPass ? null : { notSame: true };
   }
-
 
   addUser(): void {
     const username = this.inputForm.get('username').value;
@@ -44,7 +41,7 @@ export class CreateUserComponent implements OnInit {
       });
   }
 
-ngOnInit() {
+  ngOnInit() {
   }
 
 }

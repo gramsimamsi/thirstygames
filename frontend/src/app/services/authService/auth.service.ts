@@ -23,7 +23,6 @@ export class AuthService {
     return Observable.of(false);
   }
 
-
   // toDo needs to be tested
   public getTokenExpirationDate(token: string): Date {
     const decodedToken = jwt_decode(token);
@@ -34,7 +33,6 @@ export class AuthService {
     date.setUTCSeconds(decodedToken.exp);
     return date;
   }
-
 
   isTokenExpired(token: string): boolean {
     const date = this.getTokenExpirationDate(token);

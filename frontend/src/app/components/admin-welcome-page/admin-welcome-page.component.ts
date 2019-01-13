@@ -16,7 +16,6 @@ export class AdminWelcomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.username = sessionStorage.getItem('username');
   }
 }

@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {HttpClientHelper} from '../../Utilites/HttpClientHelper';
 import {User} from '../../models/User';
-import { BaseService } from 'src/app/models/base.service';
+import { BaseService } from 'src/app/services/base.service';
 import { SnackBarService } from '../snackBarService/snack-bar.service';
 
 @Injectable({
@@ -14,7 +11,7 @@ export class UsersService extends BaseService<User> {
 
   apiURL = 'user';
 
-  constructor(private _httpClient: HttpClient, private _snackBarService: SnackBarService) {
+  constructor(_httpClient: HttpClient, _snackBarService: SnackBarService) {
     super(_httpClient, _snackBarService);
   }
 

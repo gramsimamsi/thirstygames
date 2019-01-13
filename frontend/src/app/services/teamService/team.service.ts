@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, BehaviorSubject} from 'rxjs';
-import {HttpClientHelper} from '../../Utilites/HttpClientHelper';
 import {Team} from '../../models/Team';
 import { SnackBarService } from '../snackBarService/snack-bar.service';
 import {WebsocketService} from '../webSocketService/web-socket.service';
 import 'rxjs-compat/add/operator/map';
-import { BaseService } from 'src/app/models/base.service';
-import { Beverage } from 'src/app/models/Beverage';
+import { BaseService } from 'src/app/services/base.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +13,8 @@ export class TeamService  extends BaseService<Team> {
 
   apiURL = 'team';
 
-  constructor(private _httpClient: HttpClient,
-              private _snackBarService: SnackBarService,
+  constructor(_httpClient: HttpClient,
+              _snackBarService: SnackBarService,
               private webSocketService: WebsocketService
               ) {
     super(_httpClient, _snackBarService);
@@ -47,5 +44,4 @@ export class TeamService  extends BaseService<Team> {
         });
     }
   }
-
 }

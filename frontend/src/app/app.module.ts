@@ -7,26 +7,25 @@ import {MaterialModule} from './material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { LoginComponent } from './login/login.component';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AppRoutingModule} from './app.routing.module';
 
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { CreateUserComponent } from './create-user/create-user.component';
 import {environment} from '../environments/environment';
 import {BaseUrlInterceptor} from './Utilites/base-urlinterceptor';
 import {AccessTokenInterceptor} from './Utilites/accessToken-interceptor';
-import { UsersComponent } from './users/users.component';
-import { AdminWelcomePageComponent } from './admin-welcome-page/admin-welcome-page.component';
-import { BarkeeperWelcomePageComponent } from './barkeeper-welcome-page/barkeeper-welcome-page.component';
-import { BeverageComponent } from './beverage/beverage.component';
-import { TeamComponent } from './team/team.component';
-import { IndexComponent } from './index/index.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { ScoreComponent } from './score/score.component';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { LoginComponent } from './components/index/login/login.component';
+import { CreateUserComponent } from './components/index/create-user/create-user.component';
+import { UsersComponent } from './components/admin-welcome-page/users/users.component';
+import { AdminWelcomePageComponent } from './components/admin-welcome-page/admin-welcome-page.component';
+import { BarkeeperWelcomePageComponent } from './components/barkeeper-welcome-page/barkeeper-welcome-page.component';
+import { BeverageComponent } from './components/admin-welcome-page/beverage/beverage.component';
+import { TeamComponent } from './components/admin-welcome-page/team/team.component';
+import { IndexComponent } from './components/index/index.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ScoreComponent } from './components/score/score.component';
 
 @NgModule({
   declarations: [

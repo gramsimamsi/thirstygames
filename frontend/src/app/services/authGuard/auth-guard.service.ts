@@ -22,9 +22,7 @@ export class AuthGuardService implements CanActivate {
       .filter(isLoggedIn => !isLoggedIn && !!redirect)
       .subscribe(() => this.router.navigate([redirect]));
 
-
-
-    // check also role of user
+    // check role of user, too
     const token = localStorage.getItem('accessToken');
     const tokenUserRole = jwt_decode(token).userRole;
     const userRole = routeSnapShot.data.role;
