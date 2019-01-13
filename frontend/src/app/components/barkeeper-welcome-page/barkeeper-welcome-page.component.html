@@ -4,10 +4,19 @@
   </mat-toolbar>
 </mat-card>
 
-<!--Todo remove edit and delete button if user role is not admin-->
-<div id="table-tabs">
-  <mat-tab-group >
-    <mat-tab label="Beverages"><app-beverage></app-beverage></mat-tab>
-    <mat-tab label="Teams"><app-team></app-team></mat-tab>
-  </mat-tab-group>
-</div>
+<mat-grid-list [cols]="this.teams.length" rowHeight="fit">
+  <mat-grid-tile *ngFor="let team of teams" [colspan]="1" [rowspan]="this.beverages.length">
+    <mat-grid-tile-header>
+      {{team.team_name}}
+    </mat-grid-tile-header>
+    <div>
+      <ng-container *ngFor="let bev of beverages">
+        <div>
+          <button mat-raised-button color="primary" class="drink-button" (click)="sendDrink(bev._id, team._id)">
+            {{bev.beverage_name}}
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

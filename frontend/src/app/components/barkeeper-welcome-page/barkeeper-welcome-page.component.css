@@ -6,3 +6,21 @@
 {
   margin-bottom: 1%;
 }
+
+mat-grid-list {
+  height: 80vh;
+}
+
+mat-grid-tile {
+  /* TODO : set min-height and -width for case of too many teams? */
+}
+
+mat-grid-tile-header {
+  text-align: center;
+  font-weight: bold;
+}
+
+.drink-button {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
