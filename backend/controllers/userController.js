@@ -30,6 +30,10 @@ users.single_user_post = function(req, res, next) {
   if (req.body.user_name === undefined ||
     req.body.user_password === undefined) {
     res.status(400).send();
+  } else if (req.body.user_password.length <= 6) {
+    res.status(400).json({
+      'message': 'password is to short',
+    });
   } else {
     // create user and add to database
     // Todo change role of newly created user to 2 or higher
