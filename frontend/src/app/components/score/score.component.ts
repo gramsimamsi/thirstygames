@@ -27,6 +27,19 @@ export class ScoreComponent implements OnInit {
     responsive: true
   };
 
+  // hardcoded color codes for first, second and third place - all others are grey
+  public colors: Array<any> = [
+    {
+      backgroundColor: '#C98910'
+    },
+    {
+      backgroundColor: '#A8A8A8'
+    },
+    {
+      backgroundColor: '#965A38'
+    }
+  ];
+
   constructor(teamservice: TeamService) {
     this.teamservice = teamservice;
   }
