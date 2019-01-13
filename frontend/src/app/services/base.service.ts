@@ -69,13 +69,13 @@ export abstract class BaseService<T extends { _id: string }> {
       });
   }
 
-  deleteSingleItem(itemID: string): void {
+  deleteSingleItem(itemId: string): void {
     // optimistically delete the item we shall
-    const deletedItem: T[] = this.dataStore.items.splice(this.dataStore.items.map(t => t._id).indexOf(itemID), 1);
+    const deletedItem: T[] = this.dataStore.items.splice(this.dataStore.items.map(t => t._id).indexOf(itemId), 1);
     this._items.next(this.dataStore.items);
     this.snackBarService.openSnackBar('You deleted something!');
 
-    this.http.delete(this.apiURL + '/' + itemID, HttpClientHelper.httpOptionsApplicationJSON).subscribe(
+    this.http.delete(this.apiURL + '/' + itemId, HttpClientHelper.httpOptionsApplicationJSON).subscribe(
       // success case: everything already done, nothing to do here
       () => { },
       // error case: clear local itemArray and prompt an error message
@@ -108,5 +108,15 @@ export abstract class BaseService<T extends { _id: string }> {
     this.dataStore.items = [];
     this._items.next(this.dataStore.items);
     console.log('returning from servererror');
+  }
+
+  // helper class for invividual items
+  getOneItem(itemId): Observable<T> {
+    return this.getAllItems().map(
+      items => {
+        const filterResults = items.filter(item => item._id === itemId);
+        return (filterResults.length > 0) ? filterResults[0] : null;
+      }
+    );
   }
 }

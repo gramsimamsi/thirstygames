@@ -8,6 +8,7 @@ import { AdminWelcomePageComponent } from './components/admin-welcome-page/admin
 import { userRoles } from 'src/environments/environment';
 import { BarkeeperWelcomePageComponent } from './components/barkeeper-welcome-page/barkeeper-welcome-page.component';
 import { ScoreComponent } from './components/score/score.component';
+import { TeamEditComponent } from './components/admin-welcome-page/team/team-edit/team-edit.component';
 
 const routes: Routes = [
   { path : '', component : IndexComponent},
@@ -28,6 +29,9 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: {authGuardRedirect: '/login', role: userRoles.ADMIN}
   },
+  { path: 'editTeam/:teamId', component: TeamEditComponent },
+  { path: 'editTeam/', component: TeamEditComponent },
+  { path: 'editTeam', component: TeamEditComponent },
 ];
 
 @NgModule({

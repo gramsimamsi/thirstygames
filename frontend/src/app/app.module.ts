@@ -26,6 +26,7 @@ import { TeamComponent } from './components/admin-welcome-page/team/team.compone
 import { IndexComponent } from './components/index/index.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ScoreComponent } from './components/score/score.component';
+import { TeamEditComponent } from './components/admin-welcome-page/team/team-edit/team-edit.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ScoreComponent } from './components/score/score.component';
     IndexComponent,
     ToolbarComponent,
     ScoreComponent,
+    TeamEditComponent,
 
   ],
   imports: [

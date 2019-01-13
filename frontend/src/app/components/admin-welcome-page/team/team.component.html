@@ -26,6 +26,14 @@
     </td>
   </ng-container>
 
+  <!-- Edit-button Column -->
+  <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="edit-button"></th>
+      <td mat-cell *matCellDef="let team" class="edit-button">
+          <button mat-button routerLink="/editTeam/{{team._id}}"> <mat-icon>edit</mat-icon> </button>
+      </td>
+  </ng-container>
+
   <!--  Dummy Button for Team Update -->
   <ng-container matColumnDef="dummyUpdate">
     <th mat-header-cell *matHeaderCellDef>Push the button for random alc_count</th>
@@ -43,3 +51,7 @@
 <button mat-button on-click="createSingleTeam()">
   <mat-icon>add-test</mat-icon>
 </button>
+
+<div id="add-button">
+    <button mat-fab color="primary" routerLink="/editTeam"><mat-icon>add</mat-icon></button>
+</div>

@@ -3,3 +3,8 @@ table, mat-form-field {
   margin-left: 10%;
   margin-right: 10%;
 }
+
+#add-button {
+  margin: 12px 0;
+  text-align: end;
+}

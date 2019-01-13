@@ -11,8 +11,7 @@ import { SnackBarService } from 'src/app/services/snackBarService/snack-bar.serv
 })
 export class TeamComponent implements OnInit {
 
-  private teams: Team[];
-  displayedColumns: string[] = ['team_name', 'alc_count', 'delete', 'dummyUpdate'];
+  displayedColumns: string[] = ['team_name', 'alc_count', 'delete', 'dummyUpdate', 'edit'];
   dataSource: MatTableDataSource<Team>;
 
   constructor(private teamService: TeamService,
@@ -21,7 +20,6 @@ export class TeamComponent implements OnInit {
   showAllTeams(): void {
     this.teamService.getAllItems().subscribe(
       teams => {
-        this.teams = teams;
         this.dataSource = new MatTableDataSource(teams);
       },
       (error) => {
@@ -41,7 +39,6 @@ export class TeamComponent implements OnInit {
     this.teamService.putSingleItem(team);
   }
   ngOnInit() {
-    this.teams = [];
     this.teamService.init();
     this.showAllTeams();
   }
