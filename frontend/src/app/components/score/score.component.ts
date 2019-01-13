@@ -13,7 +13,7 @@ export class ScoreComponent implements OnInit {
   barChartData: any[];
   public barChartLabels: string[] = ['Scores'];
   public barChartType = 'bar';
-  public barChartLegend = false;
+  public barChartLegend = true;
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     scales: {
@@ -51,6 +51,12 @@ export class ScoreComponent implements OnInit {
           if ((team.team_alc_count + 5) > this.barChartOptions.scales.yAxes[0].ticks.suggestedMax) {
             this.barChartOptions.scales.yAxes[0].ticks.suggestedMax = team.team_alc_count + 5;
           }
+        });
+
+        // sort teams by team_alc_count, descending
+        this.barChartData = this.barChartData.sort(function(team1, team2) {
+          // Ascending: first age less than the previous
+          return team2.data - team1.data;
         });
 
       }
