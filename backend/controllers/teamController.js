@@ -38,8 +38,6 @@ module.exports = (webSocketServer) => {
           if (err) {
             return next(err);
           }
-          // ToDo remove console.log()
-          console.log('New Team: ' + newTeam);
           res.status(201).json({
             '_id': createdTeam._id,
             'team_name': createdTeam.team_name,
