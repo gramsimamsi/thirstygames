@@ -24,9 +24,14 @@ export class ScoreComponent implements OnInit {
           }
       }]
   },
+    animation: {
+      onComplete: function () {
+        // console.log('Animation completed');
+      },
+      onProgress: function () {}
+  },
     responsive: true
   };
-
   // hardcoded color codes for first, second and third place - all others are grey
   public colors: Array<any> = [
     {
