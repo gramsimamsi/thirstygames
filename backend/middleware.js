@@ -11,98 +11,90 @@ ToDo -> move this enum to a far more better fitting location
 
 const userRoles =
     {
-        ADMIN: 0,
-        BARKEEPER: 1,
-        VIEWER: 2,
-        SEB_SPRINGER: 3
+      ADMIN: 0,
+      BARKEEPER: 1,
+      VIEWER: 2,
+      SEB_SPRINGER: 3,
     };
 
-let jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const config = require('./jwtConfig');
 
-let checkToken = (req, res, next) =>
-{
-    //ToDo remove unnecessary token delivery methods (whould prefer  req.headers['x-access-token'])
-    let token = req.headers['x-access-token'] || req.headers['authorization'] || req.body.token || req.params.token || req.query.token; //token can be passed in multiple ways
-    if(token)
-    {
-        /* ToDo currently necessary because frontend sends token with " "  -> g means replace all ""*/
-        token = token.replace(/"/g,"");
-        jwt.verify(token, config.secret, (err, decoded) =>
-        {
-           if(err)
-           {
-               return res.status(401).json({
-                   success: false,
-                   //ToDo remove message
-                   message: 'Token invalid',
-               });
-           }
-           else
-           {
-               //check if time of expiration is near -> refresh token
-
-               res.locals.user_role = jwt.decode(token).userRole;
-               req.decoded = decoded;
-               next();
-           }
-        }
-        );
-    }
-    else
-    {
-        //no token was provided
+const checkToken = (req, res, next) => {
+  // ToDo remove unnecessary token delivery methods
+  //  (whould prefer  req.headers['x-access-token'])
+  let token = req.headers['x-access-token']
+    || req.headers['authorization']
+    || req.body.token
+    || req.params.token
+    || req.query.token; // token can be passed in multiple ways
+  if (token) {
+    // ToDo currently necessary because frontend sends token
+    //  with " "  -> g means replace all ""
+    token = token.replace(/"/g, '');
+    jwt.verify(token, config.secret, (err, decoded) => {
+      if (err) {
         return res.status(401).json({
-            success: false,
-            //ToDo remove message
-            message: 'Token not provided',
+          success: false,
+          // ToDo remove message
+          message: 'Token invalid',
         });
-    }
-};
+      } else {
+        // check if time of expiration is near -> refresh token
 
-
-let isAdmin = (req, res, next) =>
-{
-    if(res.locals.user_role === userRoles.ADMIN )
-    {
-        //user is admin
-        console.log("Yes, we are ADMIN");
+        res.locals.user_role = jwt.decode(token).userRole;
+        req.decoded = decoded;
         next();
+      }
     }
-    else
-    {
-        return res.status(403).json(
-            {
-                success: false,
-                message: "Cum backk if u r admin bruuu",
-            });
-    }
+    );
+  } else {
+    // no token was provided
+    return res.status(401).json({
+      success: false,
+      // ToDo remove message
+      message: 'Token not provided',
+    });
+  }
 };
 
 
-//ToDo add check to routes -> currently you need admin-privileges for everything
-let isBarkeeper = (req, res, next) =>
-{
- if(res.locals.user_role === userRoles.BARKEEPER || res.locals.user_role === userRoles.ADMIN)
- {
-     console.log("We are Barkeeper or Viewer");
-     next();
- }
- else
- {
-     return res.status(403).json(
-         {
-             success: false,
-             message: "Cum backk if u r barkeppha bruuu",
-         });
- }
+const isAdmin = (req, res, next) => {
+  if (res.locals.user_role === userRoles.ADMIN ) {
+    // user is admin
+    console.log('Yes, we are ADMIN');
+    next();
+  } else {
+    return res.status(403).json(
+        {
+          success: false,
+          message: 'Cum backk if u r admin bruuu',
+        });
+  }
 };
 
-//export so other modules can use it
+
+// ToDo add check to routes
+//  -> currently you need admin-privileges for everything
+const isBarkeeper = (req, res, next) => {
+  if (res.locals.user_role === userRoles.BARKEEPER
+    || res.locals.user_role === userRoles.ADMIN) {
+    console.log('We are Barkeeper or Viewer');
+    next();
+  } else {
+    return res.status(403).json(
+        {
+          success: false,
+          message: 'Cum backk if u r barkeppha bruuu',
+        });
+  }
+};
+
+// export so other modules can use it
 module.exports =
     {
-        checkToken: checkToken,
-        isAdmin: isAdmin,
-        isBarkeeper: isBarkeeper
+      checkToken: checkToken,
+      isAdmin: isAdmin,
+      isBarkeeper: isBarkeeper,
     };
 

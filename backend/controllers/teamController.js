@@ -18,11 +18,12 @@ module.exports = (webSocketServer) => {
     single_team_delete(req, res, next) {
       // delete a single team by its team_id
       TeamModel.deleteOne({_id: req.params._id})
-          .exec(function(err) {
+          .exec((err) => {
             if (err) {
-              return next(err);
+              res.status(404).send();
+            } else {
+              res.status(204).send();
             }
-            res.status(204).send();
           });
     },
     /* create a new team*/
@@ -56,7 +57,7 @@ module.exports = (webSocketServer) => {
               team_name: req.body.team_name,
               team_alc_count: req.body.team_alc_count,
             })
-            .exec(function(err) {
+            .exec((err) => {
               if (err) {
                 return next(err);
               }
