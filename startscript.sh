@@ -2,7 +2,7 @@
 
 databaseFilled=1
 
-if [[ -e data ]]
+if [ -e data ]
 then
     echo "Do you wish to remove the old database? [1/2]"
     select yn in "Yes" "No"; do
@@ -21,7 +21,7 @@ sudo docker-compose up -d
 
 sleep 1
 
-if [[ ${databaseFilled} -eq 0 ]]
+if [ ${databaseFilled} -eq 0 ]
 then
     sudo docker exec thirstygames_wt_database bash -c "
         mongo thirstyGames --eval 'db.users.save({ \"user_name\" : \"admin\", \"user_password\" : \"\$2b\$10\$S0qzD5J2WE.POZGzNH2Kou8MU/jwjhu0tRMM8rLebcuK1Gn5YRaVy\", \"user_role\" : 0 })' &&
