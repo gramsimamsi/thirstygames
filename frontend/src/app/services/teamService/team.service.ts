@@ -5,6 +5,8 @@ import { SnackBarService } from '../snackBarService/snack-bar.service';
 import {WebsocketService} from '../webSocketService/web-socket.service';
 import 'rxjs-compat/add/operator/map';
 import { BaseService } from 'src/app/services/base.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +45,18 @@ export class TeamService  extends BaseService<Team> {
             this._items.next(this.dataStore.items);
         });
     }
+  }
+
+  // uses base service, but rounds team_alc_count to 2 decimal points!
+  getAllItems(): Observable<Team[]> {
+    return super.getAllItems().pipe(
+      map((result: Team[] ) => {
+        result.forEach(team => {
+          team.team_alc_count = +team.team_alc_count.toFixed(2);
+        });
+        return result;
+      }
+    ));
   }
 
 }
