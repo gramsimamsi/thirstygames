@@ -21,14 +21,23 @@
   </div>
 </ng-container>
 
-<div>
-    <button 
-      [disabled]="teamNameFormControl.hasError('required')"
-      mat-raised-button color="primary"
-      (click)="sendEdit()"
-      routerLink="/admin/welcome"
-    >
-    <span *ngIf="!this.getTeamIdFromURL()">Add now</span>
-    <span *ngIf="this.getTeamIdFromURL()">Edit now</span>
-    </button>
+<div *ngIf="!this.getTeamIdFromURL()">
+  <button 
+    [disabled]="teamNameFormControl.hasError('required')"
+    mat-raised-button color="primary"
+    (click)="sendEdit()"
+    routerLink="/admin/welcome"
+  >
+  Add now
+  </button>
+</div>
+
+<div *ngIf="this.getTeamIdFromURL()">
+  <button
+    mat-raised-button color="primary"
+    (click)="sendEdit()"
+    routerLink="/admin/welcome"
+  >
+  Edit now
+  </button>
 </div>
