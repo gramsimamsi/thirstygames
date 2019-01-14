@@ -31,7 +31,6 @@ export class AccessTokenInterceptor implements HttpInterceptor {
 
     return next.handle(request)
       .catch(error => {
-        console.log('Auth-Token is expired');
         if (error instanceof HttpErrorResponse) {
           if (error.status === 401) {
             this.router.navigateByUrl('/');
