@@ -47,7 +47,6 @@ export abstract class BaseService<T extends { _id: string }> {
   }
 
   postSingleItem(itemWithoutId): void {
-    console.log('triggered postsingleitem');
     // optimistically add the item we shall, with a dummy id
     const optimisticItem: T = {...itemWithoutId};
     // use random number in case another post is set off before this one returns
@@ -88,7 +87,7 @@ export abstract class BaseService<T extends { _id: string }> {
     // optimistically edit the item we shall
     this.dataStore.items.splice(this.dataStore.items.map(t => t._id).indexOf(item._id), 1, item);
     this._items.next(this.dataStore.items);
-    // this.snackBarService.openSnackBar('You updated ' + item.getName() + '!');
+    this.snackBarService.openSnackBar('You updated something!');
 
     this.http.put(this.apiURL + '/' + item._id, item, HttpClientHelper.httpOptionsApplicationJSON).subscribe(
       // success case: everything already done, nothing to do here
