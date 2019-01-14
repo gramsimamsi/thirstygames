@@ -4,13 +4,13 @@ const config = require('../jwtConfig');
 const token = require('../routes/token');
 
 // todo username not required -> find user by refreshtoken and send back
-token.token_refresh = function(req, res) {
+token.token_refresh = (req, res) => {
   // request contains username and refreshtoken
   const username = req.body.user_name;
   const refreshToken = req.body.user_refresh_token;
 
   if (username && refreshToken) {
-    userModel.findOne({user_name: username}).exec(function(err, user) {
+    userModel.findOne({user_name: username}).exec((err, user) => {
       if (err) {
         // ToDo remove console.log()
         console.log('token_refresh could not find user in db');
