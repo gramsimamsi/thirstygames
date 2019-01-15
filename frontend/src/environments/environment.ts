@@ -4,10 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseURL: 'http://127.0.0.1:3000',
-  webSocketURL: 'ws://127.0.0.1:3000'
 };
-
 
 export const userRoles = {
     ADMIN: 0,
@@ -15,6 +12,12 @@ export const userRoles = {
     VIEWER: 2,
     SEB_SPRINGER: 3
   };
+
+export const userRolesArray = [
+  'Admin',
+  'Barkeeper',
+  'Scrub',
+  'Springer'];
 
 
 

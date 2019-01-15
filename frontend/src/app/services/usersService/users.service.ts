@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {User} from '../../models/User';
 import { BaseService } from 'src/app/services/base.service';
 import { SnackBarService } from '../snackBarService/snack-bar.service';
+import { userRolesArray } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,7 @@ import { SnackBarService } from '../snackBarService/snack-bar.service';
 export class UsersService extends BaseService<User> {
 
   apiURL = 'user';
-  userRoles = [
-    'Admin',
-    'Barkeeper',
-    'Scrub',
-    'Springer'];
+  userRoles = userRolesArray;
 
   constructor(_httpClient: HttpClient, _snackBarService: SnackBarService) {
     super(_httpClient, _snackBarService);

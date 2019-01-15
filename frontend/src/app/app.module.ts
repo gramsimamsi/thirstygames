@@ -68,10 +68,6 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
       multi: true
     },
     {
-      provide: 'BASE_API_URL',
-      useValue: environment.apiBaseURL
-    },
-    {
       provide: HTTP_INTERCEPTORS,
       useClass: AccessTokenInterceptor,
       multi: true
