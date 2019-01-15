@@ -1,11 +1,19 @@
-<mat-card>
+
+<div>
+  <mat-card>
     <div style="display: block" *ngIf="barChartData.length > 0">
+      <app-particles></app-particles>
+
       <canvas baseChart
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [legend]="barChartLegend"
-        [chartType]="barChartType"
-        [colors]="colors"></canvas>
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="colors"></canvas>
     </div>
-</mat-card>
+  </mat-card>
+
+</div>
+
+

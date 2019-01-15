@@ -30,6 +30,7 @@ import { TeamEditComponent } from './components/admin-welcome-page/team/team-edi
 import { UserEditComponent } from './components/admin-welcome-page/users/user-edit/user-edit.component';
 import { GuestPageComponent } from './components/guest-page/guest-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { ParticlesComponent } from './components/particles/particles.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
     TeamEditComponent,
     UserEditComponent,
     GuestPageComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    ParticlesComponent
 
   ],
   imports: [

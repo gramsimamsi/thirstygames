@@ -27,7 +27,7 @@ export class ScoreComponent implements OnInit {
   },
     animation: {
       onComplete: function () {
-        // console.log('Animation completed');
+
       },
       onProgress: function () {}
   },
