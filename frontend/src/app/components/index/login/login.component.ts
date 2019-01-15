@@ -56,6 +56,9 @@ export class LoginComponent implements OnInit {
         // joa better do sth here :D
         this.router.navigateByUrl('imATeaPot');
         break;
+      case userRoles.DENIED:
+        this.router.navigateByUrl('score');
+        break;
       default:
         this.router.navigateByUrl('noBarkeeperYet');
         break;

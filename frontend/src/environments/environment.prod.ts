@@ -6,14 +6,16 @@ export const userRoles = {
   ADMIN: 0,
   BARKEEPER: 1,
   VIEWER: 2,
-  SEB_SPRINGER: 3
+  SEB_SPRINGER: 3,
+  DENIED: 4,
 };
 
 export const userRolesArray = [
 'Admin',
 'Barkeeper',
 'Scrub',
-'Springer'];
+'Springer',
+'Denied'];
 
 export const scoreColorCodes = [
   {

@@ -15,6 +15,7 @@ const userRoles =
       BARKEEPER: 1,
       VIEWER: 2,
       SEB_SPRINGER: 3,
+      DENIED: 4,
     };
 
 const jwt = require('jsonwebtoken');
