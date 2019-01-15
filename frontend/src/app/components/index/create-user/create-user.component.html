@@ -3,12 +3,12 @@
     <form class="example-form" [formGroup]="inputForm">
       <p>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username" formControlName="username" required="required">
+          <input matInput placeholder="Username" formControlName="username" required="required" (keydown.enter)="addUser()">
         </mat-form-field>
       </p>
       <p>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" type="password" formControlName="password" required="required">
+          <input matInput placeholder="Password" type="password" formControlName="password" required="required" (keydown.enter)="addUser()">
         <mat-error *ngIf="inputForm.hasError('required', ['password'])">
           Please re-enter password
         </mat-error>
