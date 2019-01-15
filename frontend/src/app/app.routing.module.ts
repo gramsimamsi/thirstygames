@@ -9,14 +9,17 @@ import { userRoles } from 'src/environments/environment';
 import { BarkeeperWelcomePageComponent } from './components/barkeeper-welcome-page/barkeeper-welcome-page.component';
 import { ScoreComponent } from './components/score/score.component';
 import { TeamEditComponent } from './components/admin-welcome-page/team/team-edit/team-edit.component';
+import { UserEditComponent } from './components/admin-welcome-page/users/user-edit/user-edit.component';
 
 const routes: Routes = [
   { path : '', component : IndexComponent},
   { path: 'login', component: IndexComponent},
+  { path: 'score', component: ScoreComponent},
   { path: 'admin/welcome',
     component: AdminWelcomePageComponent,
     canActivate: [AuthGuardService],
-    data: {authGuardRedirect: '/login', role: userRoles.ADMIN}
+    data: {authGuardRedirect: '/login',
+    role: userRoles.ADMIN}
   },
   { path: 'barkeeper/welcome',
     component: BarkeeperWelcomePageComponent,
@@ -24,14 +27,42 @@ const routes: Routes = [
     data: {authGuardRedirect: '/login',
     role: userRoles.ADMIN}
   },
-  { path: 'score',
-    component: ScoreComponent,
+  { path: 'editTeam/:teamId',
+    component: TeamEditComponent,
     canActivate: [AuthGuardService],
-    data: {authGuardRedirect: '/login', role: userRoles.ADMIN}
+    data: {authGuardRedirect: '/login',
+    role: userRoles.ADMIN}
   },
-  { path: 'editTeam/:teamId', component: TeamEditComponent },
-  { path: 'editTeam/', component: TeamEditComponent },
-  { path: 'editTeam', component: TeamEditComponent },
+  { path: 'editTeam/',
+    component: TeamEditComponent,
+    canActivate: [AuthGuardService],
+    data: {authGuardRedirect: '/login',
+    role: userRoles.ADMIN}
+  },
+  { path: 'editTeam',
+    component: TeamEditComponent,
+    canActivate: [AuthGuardService],
+    data: {authGuardRedirect: '/login',
+    role: userRoles.ADMIN}
+  },
+  { path: 'editUser/:userId',
+    component: UserEditComponent,
+    canActivate: [AuthGuardService],
+    data: {authGuardRedirect: '/login',
+    role: userRoles.ADMIN}
+  },
+  { path: 'editUser/',
+    component: UserEditComponent,
+    canActivate: [AuthGuardService],
+    data: {authGuardRedirect: '/login',
+    role: userRoles.ADMIN}
+  },
+  { path: 'editUser',
+    component: UserEditComponent,
+    canActivate: [AuthGuardService],
+    data: {authGuardRedirect: '/login',
+    role: userRoles.ADMIN}
+  },
 ];
 
 @NgModule({

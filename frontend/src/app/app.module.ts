@@ -27,6 +27,7 @@ import { IndexComponent } from './components/index/index.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ScoreComponent } from './components/score/score.component';
 import { TeamEditComponent } from './components/admin-welcome-page/team/team-edit/team-edit.component';
+import { UserEditComponent } from './components/admin-welcome-page/users/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TeamEditComponent } from './components/admin-welcome-page/team/team-edi
     ToolbarComponent,
     ScoreComponent,
     TeamEditComponent,
+    UserEditComponent,
 
   ],
   imports: [

@@ -51,7 +51,6 @@ export class TeamEditComponent implements OnInit {
         team_name: this.inputs.team_name ? this.inputs.team_name : this.curTeam.team_name,
         team_alc_count: this.inputs.team_alc_count ? this.inputs.team_alc_count : this.curTeam.team_alc_count
       };
-      console.log(editedTeam);
       this.teamService.putSingleItem(editedTeam);
 
     } else {

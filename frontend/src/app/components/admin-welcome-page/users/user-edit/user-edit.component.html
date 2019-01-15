@@ -1,0 +1,22 @@
+<div class="back-button">
+    <button mat-raised-button routerLink="/admin/welcome" color="primary"> <mat-icon>arrow_back</mat-icon> Go back </button>
+  </div>
+  
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Select new User Role" [(value)]="this.inputs.user_role" >
+          <mat-option value="0">Admin</mat-option>
+          <mat-option value="1">Barkeeper</mat-option>
+          <mat-option value="2">Scrub</mat-option>
+          <mat-option value="3">Springer</mat-option>
+        </mat-select>
+    </mat-form-field>
+  </div>
+  
+  <button
+    mat-raised-button color="primary"
+    routerLink="/admin/welcome"
+    (click)="sendEdit()"
+  >
+    Edit now
+  </button>

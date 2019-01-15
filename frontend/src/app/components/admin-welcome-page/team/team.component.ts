@@ -14,8 +14,8 @@ export class TeamComponent implements OnInit {
   displayedColumns: string[] = ['team_name', 'alc_count', 'delete', 'dummyUpdate', 'edit'];
   dataSource: MatTableDataSource<Team>;
 
-  constructor(private teamService: TeamService,
-              private snackBar: SnackBarService) { }
+  constructor(  public teamService: TeamService,
+                private snackBar: SnackBarService) { }
 
   showAllTeams(): void {
     this.teamService.getAllItems().subscribe(

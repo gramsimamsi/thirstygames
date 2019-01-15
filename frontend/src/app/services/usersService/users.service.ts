@@ -10,6 +10,11 @@ import { SnackBarService } from '../snackBarService/snack-bar.service';
 export class UsersService extends BaseService<User> {
 
   apiURL = 'user';
+  userRoles = [
+    'Admin',
+    'Barkeeper',
+    'Scrub',
+    'Springer'];
 
   constructor(_httpClient: HttpClient, _snackBarService: SnackBarService) {
     super(_httpClient, _snackBarService);
@@ -22,5 +27,14 @@ export class UsersService extends BaseService<User> {
   postSingleItem(itemWithoutId): void {
     throw new Error('One does not simply create users via the userService, use createUserService instead!');
   }
+
+  roleIdToName(id: number): string {
+    return this.userRoles[id];
+  }
+
+  roleNameToId(name: string): number {
+    return this.userRoles.findIndex( roleName => roleName === name);
+  }
+
 }
 

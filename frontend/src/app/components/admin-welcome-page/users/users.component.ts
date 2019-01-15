@@ -13,18 +13,11 @@ export class UsersComponent implements OnInit {
 
   username;
   users: User[];
-  displayedColumns: string[] = ['user_name', 'user_role_edit'];
+  displayedColumns: string[] = ['user_name', 'user_role_edit', 'edit'];
   dataSource: MatTableDataSource<User>;
-  // userRoles = [userRoles['ADMIN'], userRoles['BARKEEPER']];
-  userRoles = [
-    'ADMIN',
-    'BARKEEPER',
-    'VIEWER',
-    'SEB_SPRINGER'];
 
-  constructor(private userService: UsersService,
-              private snackBar: SnackBarService
-  ) { }
+  constructor(public userService: UsersService,
+              private snackBar: SnackBarService) { }
 
   showAllUsers(): void {
     this.userService.getAllItems().subscribe(
