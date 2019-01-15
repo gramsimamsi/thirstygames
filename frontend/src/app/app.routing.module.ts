@@ -11,11 +11,13 @@ import { ScoreComponent } from './components/score/score.component';
 import { TeamEditComponent } from './components/admin-welcome-page/team/team-edit/team-edit.component';
 import { UserEditComponent } from './components/admin-welcome-page/users/user-edit/user-edit.component';
 import { TeaPotComponent } from './components/tea-pot/tea-pot.component';
+import { GuestPageComponent } from './components/guest-page/guest-page.component';
 
 const routes: Routes = [
   { path : '', component : IndexComponent},
   { path: 'login', component: IndexComponent},
   { path: 'score', component: ScoreComponent},
+  { path: 'noBarkeeperYet', component: GuestPageComponent},
   { path: 'admin/welcome',
     component: AdminWelcomePageComponent,
     canActivate: [AuthGuardService],
