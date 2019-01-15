@@ -61,8 +61,6 @@ const checkToken = (req, res, next) => {
 
 const isAdmin = (req, res, next) => {
   if (res.locals.user_role === userRoles.ADMIN ) {
-    // user is admin
-    console.log('Yes, we are ADMIN');
     next();
   } else {
     return res.status(403).json(
@@ -79,7 +77,6 @@ const isAdmin = (req, res, next) => {
 const isBarkeeper = (req, res, next) => {
   if (res.locals.user_role === userRoles.BARKEEPER
     || res.locals.user_role === userRoles.ADMIN) {
-    console.log('We are Barkeeper or Viewer');
     next();
   } else {
     return res.status(403).json(

@@ -41,8 +41,6 @@ users.single_user_post = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      // ToDo remove console.log()
-      console.log('User created successfully');
       res.status(201).json({
         '_id': createdUser._id,
         'user_name': createdUser.user_name,

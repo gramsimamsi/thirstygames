@@ -23,8 +23,6 @@ export class TeamComponent implements OnInit {
         this.dataSource = new MatTableDataSource(teams);
       },
       (error) => {
-        console.log('getallteams-subscription gave error!');
-        console.log(error);
         return this.snackBar.openSnackBar('Could not load Teams');
       }
   );

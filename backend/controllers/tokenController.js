@@ -12,14 +12,11 @@ token.token_refresh = (req, res) => {
   if (username && refreshToken) {
     userModel.findOne({user_name: username}).exec((err, user) => {
       if (err) {
-        // ToDo remove console.log()
-        console.log('token_refresh could not find user in db');
         res.status(500).json({
           // ToDo remove message
           message: 'COULD NOT REFRESH ACCESSTOKEN',
         }).send();
       } else {
-        // ToDo remove console.log()
         if (user.user_refresh_token === refreshToken) {
           const token = jwt.sign(
               {'username': username, 'userRole': user.user_role},
@@ -32,8 +29,6 @@ token.token_refresh = (req, res) => {
             refreshToken: refreshToken,
           }).send();
         } else {
-          // ToDo remove console.log()
-          console.log('token do not match');
           res.status(400).json({
             // ToDo remove message
             message: 'COULD NOT REFRESH ACCESSTOKEN',

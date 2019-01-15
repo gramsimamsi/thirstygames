@@ -11,17 +11,6 @@ class LoginHandler {
 
     if (username && password) {
       userModel.findOne({user_name: username}).exec(function(err, user) {
-        /*
-        if (err)
-        {
-           console.log("Error in LoginHandler.js findOne -> " + err.toString());
-           res.status(401).json({
-               success: false,
-               message: 'AUTHENTICATION FAILED -> WRONG USERNAME OR PASSWORD'
-           });
-           return;
-        }
-        */
 
         if (user) {
           user.comparePassword(password, user.user_password)
@@ -47,7 +36,7 @@ class LoginHandler {
                             + ' with new refreshToken');
                           res.status(401).json({
                             success: false,
-                            message: 'AUTHENTICATion FAILED -> WRONG INPUT',
+                            message: 'AUTHENTICATION FAILED -> WRONG INPUT',
                           });
                         } else {
                           res.status(200).json({
@@ -83,7 +72,6 @@ class LoginHandler {
       });
     } else {
       res.status(401);
-      console.log('Username ->' + username + ' Passwort ->' + password);
     }
   }
 

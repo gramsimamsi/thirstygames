@@ -26,7 +26,6 @@ export class AuthGuardService implements CanActivate {
     const token = localStorage.getItem('accessToken');
     const tokenUserRole = jwt_decode(token).userRole;
     const userRole = routeSnapShot.data.role;
-    // console.log("token -> " + token + " userRole -> " + userRole);
     return isUserLoggedIn$ && (tokenUserRole <= userRole);
   }
 }

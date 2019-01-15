@@ -20,14 +20,6 @@ const UserSchema = new Schema(
       // will be set by application automatically
     }
 );
-/*
-// Virtual for event's URL
-UserSchema
-    .virtual('url')
-    .get(function () {
-        return '/usercatalog/user/' + this._id;
-    });
-*/
 // create hock to hash password before save function is executed
 UserSchema.pre('save', function(next) {
   const user = this;

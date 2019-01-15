@@ -32,7 +32,6 @@ export class UsersComponent implements OnInit {
   updateSingleUser(user, value): void {
 
     user.user_role = value;
-    console.log(user);
     this.userService.putSingleItem(user);
   }
 
