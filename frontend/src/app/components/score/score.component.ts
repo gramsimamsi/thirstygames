@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { TeamService } from 'src/app/services/teamService/team.service';
 import { Team } from 'src/app/models/Team';
 import { scoreColorCodes } from 'src/environments/environment';
@@ -27,8 +27,7 @@ export class ScoreComponent implements OnInit {
   },
     animation: {
       onComplete: function () {
-        // console.log('Animation completed');
-      },
+        },
       onProgress: function () {}
   },
     responsive: true
@@ -55,7 +54,6 @@ export class ScoreComponent implements OnInit {
               label: team.team_name
             }
           );
-
           // tell the autoscaling y axis to increase its upper display limit if necessary
           if ((team.team_alc_count + 5) > this.barChartOptions.scales.yAxes[0].ticks.suggestedMax) {
             this.barChartOptions.scales.yAxes[0].ticks.suggestedMax = team.team_alc_count + 5;

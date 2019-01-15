@@ -1,11 +1,16 @@
-<mat-card>
+ <mat-card class="mat-card-class">
     <div style="display: block" *ngIf="barChartData.length > 0">
+      <!-- activate this if you want some cool particle effects-->
+      <!--app-particles></app-particles-->
+
       <canvas baseChart
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [legend]="barChartLegend"
-        [chartType]="barChartType"
-        [colors]="colors"></canvas>
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="colors"></canvas>
     </div>
-</mat-card>
+  </mat-card>
+
+

@@ -31,6 +31,7 @@ import { UserEditComponent } from './components/admin-welcome-page/users/user-ed
 import { GuestPageComponent } from './components/guest-page/guest-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { TeaPotComponent } from './components/tea-pot/tea-pot.component';
+import { ParticlesComponent } from './components/particles/particles.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { TeaPotComponent } from './components/tea-pot/tea-pot.component';
     GuestPageComponent,
     WelcomePageComponent,
     TeaPotComponent
+    ParticlesComponent
 
   ],
   imports: [
