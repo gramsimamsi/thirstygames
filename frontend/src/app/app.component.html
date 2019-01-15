@@ -1,21 +1,29 @@
 <div id="total-container">
-  <app-toolbar [navMenuRef]=idOfMatSidenav></app-toolbar>
-
-  <mat-sidenav-container>
-    <mat-sidenav #idOfMatSidenav>
-      <mat-action-list>
-        <button mat-list-item routerLink="/login" (click)="idOfMatSidenav.toggle()">Log in</button>
-        <button mat-list-item routerLink="/imATeaPot">demo tour</button>
-        <button mat-list-item routerLink="/barkeeper/welcome">barkeeper panel</button>
-        <button mat-list-item routerLink="/admin/welcome">admin panel</button>
-        <button mat-list-item routerLink="/score">team scores</button>
-        <button mat-list-item routerLink="/login" (click)="logout();idOfMatSidenav.toggle()">Log out</button>
-      </mat-action-list>
-    </mat-sidenav>
-    
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container> 
-</div>
+    <app-toolbar [navMenuRef]=idOfMatSidenav></app-toolbar>
   
+    <mat-sidenav-container>
+      <mat-sidenav #idOfMatSidenav>
+        <mat-action-list>
+          <button mat-list-item routerLink="/login" (click)="idOfMatSidenav.toggle()">Log in</button>
+  
+          <ng-container *ngIf="getUserRole() === this.userService.roleNameToId('Admin') ||
+                               getUserRole() === this.userService.roleNameToId('Barkeeper')">
+            <button mat-list-item routerLink="/barkeeper/welcome">barkeeper panel</button>
+          </ng-container>
+
+          <ng-container *ngIf="getUserRole() === this.userService.roleNameToId('Admin')">
+            <button mat-list-item routerLink="/admin/welcome">admin panel</button>
+          </ng-container>
+
+          <button mat-list-item routerLink="/imATeaPot">demo tour</button>
+          <button mat-list-item routerLink="/score">team scores</button>
+          <button mat-list-item routerLink="/login" (click)="logout();idOfMatSidenav.toggle()">Log out</button>
+          
+        </mat-action-list>
+      </mat-sidenav>
+      
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container> 
+  </div>
