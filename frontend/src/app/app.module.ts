@@ -28,6 +28,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ScoreComponent } from './components/score/score.component';
 import { TeamEditComponent } from './components/admin-welcome-page/team/team-edit/team-edit.component';
 import { UserEditComponent } from './components/admin-welcome-page/users/user-edit/user-edit.component';
+import { GuestPageComponent } from './components/guest-page/guest-page.component';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { UserEditComponent } from './components/admin-welcome-page/users/user-ed
     ScoreComponent,
     TeamEditComponent,
     UserEditComponent,
+    GuestPageComponent,
+    WelcomePageComponent
 
   ],
   imports: [
