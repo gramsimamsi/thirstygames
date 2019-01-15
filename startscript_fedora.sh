@@ -49,6 +49,7 @@ sleep 1
 if [ ${databaseFilled} -eq 0 ]
 then
     sudo docker exec thirstygames_wt_database bash -c "mongo thirstyGames --eval 'db.users.save({ \"user_name\" : \"admin\", \"user_password\" : \"\$2b\$10\$S0qzD5J2WE.POZGzNH2Kou8MU/jwjhu0tRMM8rLebcuK1Gn5YRaVy\", \"user_role\" : 0 })'"
+    sudo docker exec thirstygames_wt_database bash -c "mongo thirstyGames --eval 'db.users.save({ \"user_name\" : \"springer\", \"user_password\" : \"\$2b\$10\$u8T1.hO5gUpKCOF6OQRXveCEZ92NGzlMTyjATd2QpsbPtf8AZ.7o2\", \"user_role\" : 3 })'"
 
     drinksValid=0
     while [ $drinksValid -eq 0 ]
