@@ -12,8 +12,8 @@ module.exports = (webSocketServer) => {
 
   router.get(
       '/',
-      middleware.checkToken,
-      middleware.isBarkeeper,
+      // middleware.checkToken,
+      // middleware.isBarkeeper,
       teamController.all_teams_get);
 
   /*
