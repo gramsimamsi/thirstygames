@@ -10,6 +10,7 @@ import { BarkeeperWelcomePageComponent } from './components/barkeeper-welcome-pa
 import { ScoreComponent } from './components/score/score.component';
 import { TeamEditComponent } from './components/admin-welcome-page/team/team-edit/team-edit.component';
 import { UserEditComponent } from './components/admin-welcome-page/users/user-edit/user-edit.component';
+import { TeaPotComponent } from './components/tea-pot/tea-pot.component';
 
 const routes: Routes = [
   { path : '', component : IndexComponent},
@@ -63,6 +64,10 @@ const routes: Routes = [
     data: {authGuardRedirect: '/login',
     role: userRoles.ADMIN}
   },
+  {
+    path: 'imATeaPot',
+    component: TeaPotComponent,
+  }
 ];
 
 @NgModule({

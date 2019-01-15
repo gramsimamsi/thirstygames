@@ -54,9 +54,10 @@ export class LoginComponent implements OnInit {
         break;
       case userRoles.SEB_SPRINGER:
         // joa better do sth here :D
-            break;
+        this.router.navigateByUrl('imATeapot');
+        break;
       default:
-        this.router.navigateByUrl('viewer'); // Todo better add this router sooner or later :D
+        this.router.navigateByUrl('noBarkeeperYet');
         break;
     }
   }
