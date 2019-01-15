@@ -19,5 +19,17 @@ export const userRolesArray = [
   'Scrub',
   'Springer'];
 
+export const scoreColorCodes = [
+  {
+    backgroundColor: '#C98910'
+  },
+  {
+    backgroundColor: '#A8A8A8'
+  },
+  {
+    backgroundColor: '#965A38'
+  }
+];
+
 
 

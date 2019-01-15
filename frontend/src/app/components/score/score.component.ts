@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from 'src/app/services/teamService/team.service';
 import { Team } from 'src/app/models/Team';
+import { scoreColorCodes } from 'src/environments/environment';
 
 @Component({
   selector: 'app-score',
@@ -33,17 +34,7 @@ export class ScoreComponent implements OnInit {
     responsive: true
   };
   // hardcoded color codes for first, second and third place - all others are grey
-  public colors: Array<any> = [
-    {
-      backgroundColor: '#C98910'
-    },
-    {
-      backgroundColor: '#A8A8A8'
-    },
-    {
-      backgroundColor: '#965A38'
-    }
-  ];
+  public colors: Array<any> = scoreColorCodes;
 
   constructor(teamservice: TeamService) {
     this.teamservice = teamservice;
