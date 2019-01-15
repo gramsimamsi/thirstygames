@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: IndexComponent},
   { path: 'score', component: ScoreComponent},
   { path: 'noBarkeeperYet', component: GuestPageComponent},
+  { path: 'imATeaPot',  component: TeaPotComponent},
   { path: 'admin/welcome',
     component: AdminWelcomePageComponent,
     canActivate: [AuthGuardService],
@@ -28,7 +29,7 @@ const routes: Routes = [
     component: BarkeeperWelcomePageComponent,
     canActivate: [AuthGuardService],
     data: {authGuardRedirect: '/login',
-    role: userRoles.ADMIN}
+    role: userRoles.BARKEEPER}
   },
   { path: 'editTeam/:teamId',
     component: TeamEditComponent,
@@ -65,10 +66,6 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: {authGuardRedirect: '/login',
     role: userRoles.ADMIN}
-  },
-  {
-    path: 'imATeaPot',
-    component: TeaPotComponent,
   }
 ];
 
