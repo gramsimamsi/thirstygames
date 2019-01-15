@@ -1,5 +1,4 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-particles',
@@ -7,20 +6,13 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./particles.component.css']
 })
 export class ParticlesComponent implements AfterViewInit, OnDestroy {
-  number = 60;
+  number = 200;
   linkDistance = 120;
   linkWidth = 1;
   moveSpeed = 8;
-  size = 3;
-  repulseDistance = 140;
-  repulseDuration = 0.4;
+  size = 6;
   canvasHeight = 0;
   canvasWidth = 0;
-  interaction = {
-    status: 'mouseleave',
-    pos_x: 0,
-    pos_y: 0,
-  };
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
   particlesList: SingleParticle[] = [];
@@ -37,16 +29,6 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
     for (let i = 0; i < this.number; i++) {
       this.particlesList.push(this.createParticle());
     }
-    fromEvent(this.canvas, 'mousemove').subscribe((e: MouseEvent) => {
-      this.interaction.pos_x = e.offsetX;
-      this.interaction.pos_y = e.offsetY;
-      this.interaction.status = 'mousemove';
-    });
-    fromEvent(this.canvas, 'mouseleave').subscribe((e: MouseEvent) => {
-      this.interaction.pos_x = null;
-      this.interaction.pos_y = null;
-      this.interaction.status = 'mouseleave';
-    });
     this.render();
   }
 
@@ -87,7 +69,11 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
   }
 
   draw(p: SingleParticle) {
-    this.context.fillStyle = 'rgba(255,255,255, 1)';
+    /*const red = Math.trunc(this.getRandomArbitrary(0, 255)).toString();
+    const green = Math.trunc(this.getRandomArbitrary(0, 255)).toString();
+    const blue = Math.trunc(this.getRandomArbitrary(0, 255)).toString();
+    this.context.fillStyle = 'rgba(' + red + ', ' + green + ', ' + blue + ',1)';*/
+    this.context.fillStyle = 'rgba(0,0,255,0.3)';
     this.context.beginPath();
     this.context.arc(p.x, p.y, this.size, 0, Math.PI * 2, false);
     this.context.closePath();
@@ -137,34 +123,17 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
         p.y = this.canvasHeight + this.size;
         p.x = Math.random() * this.canvasWidth;
       }
-      if (this.interaction.status === 'mousemove') {
-        this.repulse(p);
-      }
       for (let j = i + 1; j < l; j++) {
         p2 = this.particlesList[j];
         this.linkParticles(p, p2);
       }
     }
   }
-
-  repulse(p: SingleParticle) {
-    const dx_mouse = p.x - this.interaction.pos_x,
-      dy_mouse = p.y - this.interaction.pos_y,
-      dist_mouse = Math.sqrt(Math.pow(dx_mouse, 2) + Math.pow(dy_mouse, 2));
-    const velocity = 100,
-      repulseFactor = Math.min(
-        Math.max((1 / this.repulseDistance)
-          * (-1 * Math.pow(dist_mouse / this.repulseDistance, 2) + 1)
-          * this.repulseDistance * velocity, 0), 50);
-    p.x = p.x + dx_mouse / dist_mouse * repulseFactor;
-    p.y = p.y + dy_mouse / dist_mouse * repulseFactor;
-  }
-
   linkParticles(p1: SingleParticle, p2: SingleParticle) {
     const dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
     if (dist <= this.linkDistance) {
       if (.7 - (dist / (1 / .7)) / this.linkDistance > 0) {
-        this.context.strokeStyle = 'rgba(255, 255,255, .2)';
+        this.context.strokeStyle = 'rgba(0, 0, 0, .2)';
         this.context.lineWidth = this.linkWidth;
         this.context.beginPath();
         this.context.moveTo(p1.x, p1.y);
@@ -182,6 +151,9 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  private getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
 
 }
 
