@@ -11,7 +11,7 @@ You can create "teams" who can compete with each other for the "My team drank mo
 
 ### On Linux
 
-To execute this script **on other ditributions than fedora** you have to install **docker** and **docker-compose**
+To execute this script **on other distributions than fedora** you have to install **docker** and **docker-compose**
 
 Run `./startscript.sh` in the top directory of the application
     
