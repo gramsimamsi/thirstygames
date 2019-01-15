@@ -35,8 +35,7 @@ users.single_user_post = (req, res, next) => {
     });
   } else {
     // create user and add to database
-    // Todo change role of newly created user to 2 or higher
-    req.body.user_role = 1;
+    req.body.user_role = 2;
 
     new UserModel(req.body).save((err, createdUser) => {
       if (err) {
