@@ -9,13 +9,9 @@ You can create "teams" who can compete with each other for the "My team drank mo
 
 ## Installation
 
-### On Ferdora
+### On Linux
 
-Run `./startscript_fedora.sh` in the top directory of the application
-
-### On other Linux distributions
-
-To execute this script you have to install **docker** and **docker-compose**
+To execute this script **on other ditributions than fedora** you have to install **docker** and **docker-compose**
 
 Run `./startscript.sh` in the top directory of the application
     
