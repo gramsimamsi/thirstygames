@@ -31,6 +31,42 @@
 </table>
 
 
+<ng-container *ngIf="this.deniedUsers.length > 0">
+  <mat-accordion>
+    <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              Denied Users
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+      <table mat-table [dataSource]="deniedDataSource" class="mat-elevation-z8" >
 
+        <!-- UserName -->
+        <ng-container matColumnDef="user_name">
+          <th mat-header-cell *matHeaderCellDef>User Name</th>
+          <td mat-cell *matCellDef="let user" class="row"> {{user.user_name}} </td>
+        </ng-container>
 
+        <!-- User Role -->
+        <ng-container matColumnDef="user_role_edit">
+          <th mat-header-cell *matHeaderCellDef>User Role</th>
+          <td mat-cell *matCellDef="let user" class="row">
+            {{this.userService.roleIdToName(user.user_role)}}
+          </td>
+        </ng-container>
 
+        <!-- Edit-button Column -->
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let user">
+              <button mat-button routerLink="/editUser/{{user._id}}"> <mat-icon>edit</mat-icon> </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-container>

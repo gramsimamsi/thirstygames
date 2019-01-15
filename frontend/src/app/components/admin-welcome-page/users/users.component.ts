@@ -13,17 +13,22 @@ export class UsersComponent implements OnInit {
 
   username;
   users: User[];
+  deniedUsers: User[];
   displayedColumns: string[] = ['user_name', 'user_role_edit', 'edit'];
   dataSource: MatTableDataSource<User>;
+  deniedDataSource: MatTableDataSource<User>;
 
   constructor(public userService: UsersService,
               private snackBar: SnackBarService) { }
 
-  showAllUsers(): void {
+  loadUsers(): void {
     this.userService.getAllItems().subscribe(
       users => {
         this.users = users;
-        this.dataSource = new MatTableDataSource(users);
+        this.deniedUsers = users.filter( (user: User) => user.user_role === this.userService.roleNameToId('Denied'));
+        const notDeniedUsers = users.filter( (user: User) => user.user_role !== this.userService.roleNameToId('Denied'));
+        this.dataSource = new MatTableDataSource(notDeniedUsers);
+        this.deniedDataSource = new MatTableDataSource(this.deniedUsers);
       },
       () => this.snackBar.openSnackBar('Could not load users')
     );
@@ -39,7 +44,7 @@ export class UsersComponent implements OnInit {
     this.users = [];
     this.username = sessionStorage.getItem('username');
     this.userService.init();
-    this.showAllUsers();
+    this.loadUsers();
 
   }
 
