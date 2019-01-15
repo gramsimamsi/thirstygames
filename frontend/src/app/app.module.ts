@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AppRoutingModule} from './app.routing.module';
 
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {environment} from '../environments/environment';
 import {BaseUrlInterceptor} from './Utilites/base-urlinterceptor';
 import {AccessTokenInterceptor} from './Utilites/accessToken-interceptor';
 
@@ -50,9 +49,8 @@ import { ParticlesComponent } from './components/particles/particles.component';
     UserEditComponent,
     GuestPageComponent,
     WelcomePageComponent,
-    TeaPotComponent
+    TeaPotComponent,
     ParticlesComponent
-
   ],
   imports: [
     BrowserModule,
