@@ -13,7 +13,7 @@ export class LoginServeService {
     private http: HttpClient,
   ) { }
 
-  private loginURL  =  'login'; /*'http://127.0.0.1:3000/login';*/
+  private loginURL  =  'login';
 
   submitLogin(username, password): Observable<any> {
     return this.http.post(this.loginURL, {'user_name' : username, 'user_password': password}, HttpClientHelper.httpOptionsApplicationJSON)

@@ -8,7 +8,7 @@ export class WebsocketService {
   constructor() { }
 
   private subject: Subject<MessageEvent>;
-  private webSocketURL = `ws://${window.location.hostname}:3000/`;
+  private webSocketURL = `wss://${window.location.hostname}:3000/`;
 
   public connect(): Subject<MessageEvent> {
     if (!this.subject) {
