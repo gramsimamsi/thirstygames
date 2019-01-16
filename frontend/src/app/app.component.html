@@ -1,9 +1,13 @@
-<div class="total-containerr">
-  <mat-sidenav-container fullscreen >
+<div class="total-container">
+  <app-toolbar [navMenuRef]=idOfMatSideNav class="example-toolbar"></app-toolbar>
 
-    <mat-sidenav #idOfMatSidenav>
+  <mat-sidenav-container class="example-sidenav-container"
+                          [style.marginTop.px]="0">
+    <mat-sidenav #idOfMatSideNav [mode]="'side'"
+                  [fixedInViewport]="false" fixedTopGap="56">
+
       <mat-action-list *ngIf="localStorage.getItem('accessToken')">
-        <button mat-list-item routerLink="/login" (click)="idOfMatSidenav.toggle()">Log in</button>
+        <button mat-list-item routerLink="/login" (click)="idOfMatSideNav.toggle()">Log in</button>
 
         <ng-container *ngIf="getUserRole() === this.userService.roleNameToId('Admin') ||
                               getUserRole() === this.userService.roleNameToId('Barkeeper')">
@@ -16,17 +20,13 @@
 
         <button mat-list-item routerLink="/imATeaPot">demo tour</button>
         <button mat-list-item routerLink="/score">team scores</button>
-        <button mat-list-item routerLink="/login" (click)="logout();idOfMatSidenav.toggle()">Log out</button>
-        
+        <button mat-list-item routerLink="/login" (click)="logout();idOfMatSideNav.toggle()">Log out</button>
+          
       </mat-action-list>
     </mat-sidenav>
-    
-    <mat-sidenav-content class="page-content" fullscreen>
-      <app-toolbar [navMenuRef]=idOfMatSidenav></app-toolbar>
-      <mat-card class="our-mat-card">
+
+    <mat-sidenav-content>
         <router-outlet></router-outlet>
-      </mat-card>
     </mat-sidenav-content>
-    
   </mat-sidenav-container>
 </div>
