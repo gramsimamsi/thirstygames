@@ -22,3 +22,10 @@ mat-sidenav {
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
 }
+
+.example-card
+{
+  text-align: center;
+  padding: 10%;
+  margin-bottom: 16px;
+}

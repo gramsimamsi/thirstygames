@@ -1,32 +1,26 @@
-<mat-card class="example-card">
-  <mat-card-content>
-    <form class="example-form" [formGroup]="inputForm">
-      <p>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username" formControlName="username" required="required" (keydown.enter)="addUser()">
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" type="password" formControlName="password" required="required" (keydown.enter)="addUser()">
-        <mat-error *ngIf="inputForm.hasError('required', ['password'])">
-          Please re-enter password
-        </mat-error>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password Confirmation" type="password" formControlName="confirmPassword" required="required" [errorStateMatcher]="matcher">
-          <mat-error *ngIf="inputForm.hasError('notSame')">
-            Passwords do not match
-          </mat-error>
-        </mat-form-field>
-      </p>
-    </form>
-  </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button on-click="addUser()" color="primary">Sign Up</button>
-    </mat-card-actions>
-</mat-card>
+<form class="example-form" [formGroup]="inputForm">
+  <p>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Username" formControlName="username" required="required" (keydown.enter)="addUser()">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" type="password" formControlName="password" required="required" (keydown.enter)="addUser()">
+    <mat-error *ngIf="inputForm.hasError('required', ['password'])">
+      Please re-enter password
+    </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password Confirmation" type="password" formControlName="confirmPassword" required="required" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="inputForm.hasError('notSame')">
+        Passwords do not match
+      </mat-error>
+    </mat-form-field>
+  </p>
+</form>
+  <button mat-raised-button on-click="addUser()" color="primary">Sign Up</button>
 
 
