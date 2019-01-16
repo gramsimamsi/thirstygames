@@ -11,7 +11,7 @@ import { SnackBarService } from 'src/app/services/snackBarService/snack-bar.serv
 })
 export class TeamComponent implements OnInit {
 
-  displayedColumns: string[] = ['team_name', 'alc_count', 'delete', 'dummyUpdate', 'edit'];
+  displayedColumns: string[] = ['team_name', 'alc_count', 'delete', 'edit'];
   dataSource: MatTableDataSource<Team>;
 
   constructor(  public teamService: TeamService,
@@ -32,10 +32,6 @@ export class TeamComponent implements OnInit {
     this.teamService.deleteSingleItem(team._id);
   }
 
-  updateSingleTeam(team): void {
-    team.team_alc_count = Math.floor(Math.random() * 100);
-    this.teamService.putSingleItem(team);
-  }
   ngOnInit() {
     this.teamService.init();
     this.showAllTeams();
