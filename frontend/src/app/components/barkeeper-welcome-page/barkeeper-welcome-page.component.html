@@ -1,0 +1,16 @@
+<mat-grid-list [cols]="this.teams.length" rowHeight="fit">
+  <mat-grid-tile *ngFor="let team of teams" [colspan]="1" [rowspan]="this.beverages.length">
+    <mat-grid-tile-header>
+      {{team.team_name}}
+    </mat-grid-tile-header>
+    <div>
+      <ng-container *ngFor="let bev of beverages">
+        <div>
+          <button mat-raised-button color="primary" class="drink-button" (click)="sendDrink(bev._id, team._id)">
+            {{bev.beverage_name}}
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

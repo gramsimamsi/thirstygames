@@ -1,0 +1,43 @@
+<div class="back-button">
+    <button mat-raised-button routerLink="/admin/welcome" color="primary"> <mat-icon>arrow_back</mat-icon> Go back </button>
+</div>
+<div>
+  <mat-form-field>
+    <input matInput [placeholder]="this.getTeamIdFromURL() ? this.curTeam.team_name : 'Team name here' " 
+                    [formControl]="teamNameFormControl"
+                    [(ngModel)]='inputs.team_name'>
+    <mat-error *ngIf="teamNameFormControl.hasError('required')">
+      Please enter a team name
+    </mat-error>
+  </mat-form-field>
+</div>
+
+<ng-container *ngIf="this.getTeamIdFromURL()">
+  <div>
+    <mat-form-field>
+      <input matInput   [placeholder]="this.getTeamIdFromURL() ? this.curTeam.team_alc_count : 'Current alc count here' "
+                        [(ngModel)]='inputs.team_alc_count'>
+    </mat-form-field>
+  </div>
+</ng-container>
+
+<div *ngIf="!this.getTeamIdFromURL()">
+  <button 
+    [disabled]="teamNameFormControl.hasError('required')"
+    mat-raised-button color="primary"
+    (click)="sendEdit()"
+    routerLink="/admin/welcome"
+  >
+  Add now
+  </button>
+</div>
+
+<div *ngIf="this.getTeamIdFromURL()">
+  <button
+    mat-raised-button color="primary"
+    (click)="sendEdit()"
+    routerLink="/admin/welcome"
+  >
+  Edit now
+  </button>
+</div>

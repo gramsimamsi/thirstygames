@@ -1,0 +1,22 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+  <!-- BeverageName -->
+  <ng-container matColumnDef="beverage_name">
+    <th mat-header-cell *matHeaderCellDef>Beverage Name</th>
+    <td mat-cell *matCellDef="let beverage" class="row"> {{beverage.beverage_name}} </td>
+  </ng-container>
+
+  <!-- Beverage Role-->
+  <ng-container matColumnDef="beverage_alc">
+    <th mat-header-cell *matHeaderCellDef> Alcohol</th>
+    <td mat-cell *matCellDef="let beverage" class="row"> {{beverage.beverage_alc}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  </tr>
+</table>

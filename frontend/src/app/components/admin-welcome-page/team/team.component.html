@@ -1,0 +1,43 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+  <!-- TeamName -->
+  <ng-container matColumnDef="team_name">
+    <th mat-header-cell *matHeaderCellDef>Team Name</th>
+    <td mat-cell *matCellDef="let team" class="row"> {{team.team_name}} </td>
+  </ng-container>
+
+  <!-- Alc Count-->
+  <ng-container matColumnDef="alc_count">
+    <th mat-header-cell *matHeaderCellDef>Alc Count</th>
+    <td mat-cell *matCellDef="let team" class="row"> {{team.team_alc_count}} </td>
+  </ng-container>
+
+  <!-- Delete Button Column -->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef class="item"></th>
+    <td mat-cell *matCellDef="let team" class="user-button" class="row">
+      <button mat-button on-click="this.teamService.deleteSingleItem(team._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Edit-button Column -->
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let team">
+        <button mat-button routerLink="/editTeam/{{team._id}}"> <mat-icon>edit</mat-icon> </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div id="add-button">
+    <button mat-fab color="primary" routerLink="/editTeam"><mat-icon>add</mat-icon></button>
+</div>

@@ -1,0 +1,29 @@
+version: '3' # specify docker-compose version
+
+# Define the services/ containers to be run
+services:
+
+  frontend:
+    container_name: thirstygames_wt_frontend
+    restart: always
+    build: ./frontend # specify the directory of the Dockerfile
+    ports:
+      - "4200:443" # specify port mapping
+
+  backend:
+    container_name: thirstygames_wt_backend
+    restart: always
+    build: ./backend # specify the directory of the Dockerfile
+    ports:
+      - "3000:3000" #specify ports mapping
+    links:
+      - database # link this service to the database service
+
+  database:
+    image: mongo # specify image to build container from
+    container_name: thirstygames_wt_database
+    restart: always
+    volumes:
+      - ./data:/data/db
+    expose:
+      - "27017" # "private" container -> only accessible on this port to others in this compose network!
