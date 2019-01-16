@@ -10,8 +10,12 @@ import { UsersService } from './services/usersService/users.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  localStorage;
 
-  constructor(public location: Location, public snackBarService: SnackBarService, public userService: UsersService) { }
+  constructor(public location: Location, public snackBarService: SnackBarService, public userService: UsersService) {
+    // has to be assigned this way, app.component.html cannot access it otherwise...
+    this.localStorage = localStorage;
+   }
 
   getUserRole(): number {
     return jwt_decode(localStorage.getItem('accessToken')).userRole;

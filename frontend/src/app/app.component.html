@@ -1,9 +1,10 @@
 <div id="total-container">
     <app-toolbar [navMenuRef]=idOfMatSidenav></app-toolbar>
-  
+
     <mat-sidenav-container>
+
       <mat-sidenav #idOfMatSidenav>
-        <mat-action-list>
+        <mat-action-list *ngIf="localStorage.getItem('accessToken')">
           <button mat-list-item routerLink="/login" (click)="idOfMatSidenav.toggle()">Log in</button>
   
           <ng-container *ngIf="getUserRole() === this.userService.roleNameToId('Admin') ||
@@ -25,5 +26,6 @@
       <mat-sidenav-content>
         <router-outlet></router-outlet>
       </mat-sidenav-content>
-    </mat-sidenav-container> 
+      
+    </mat-sidenav-container>
   </div>
