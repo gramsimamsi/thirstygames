@@ -24,7 +24,6 @@ const tokenRouter = require('./routes/token');
 const mongoose = require('mongoose');
 
 // connection setup -> remove hardcoded credentials *later*
-// ToDo Docker link wieder aktivieren
 const mongoDB = 'mongodb://database/thirstyGames';
 // const mongoDB = 'mongodb://thirsty_game:Sj18538aNpi9kCEK3T8laF8LmJI7c13g@ds213053.mlab.com:13053/thirsty_game';
 mongoose.connect(mongoDB, {useNewUrlParser: true});
