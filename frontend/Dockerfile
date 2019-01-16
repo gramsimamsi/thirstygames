@@ -18,6 +18,10 @@ COPY --from=node /usr/src/app/dist/frontend /usr/share/nginx/html
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
+COPY ./sslcert/client.crt /etc/nginx/ssl/
+
+COPY ./sslcert/client.key /etc/nginx/ssl/
+
 EXPOSE 4200
 
 CMD [ "nginx", "-g", "daemon off;" ]

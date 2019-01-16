@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const ssl = false; // Toggle between https (true) and http (false)
+const ssl = true; // Toggle between https (true) and http (false)
 const express = require('express');
 const appFunction = require('../app');
 const debug = require('debug')('demo:server');
@@ -19,8 +19,8 @@ let app = express();
  */
 
 const credentials = {
-  key: fs.readFileSync('sslcert/server.key', 'utf8'),
-  cert: fs.readFileSync('sslcert/server.cert', 'utf8'),
+  key: fs.readFileSync('sslcert/client.key', 'utf8'),
+  cert: fs.readFileSync('sslcert/client.crt', 'utf8'),
 };
 
 /**
@@ -45,12 +45,7 @@ app = appFunction(app, webSocketServer);
  * Get port from environment and store in Express.
  */
 
-let httpPort;
-if (ssl) {
-  httpPort = normalizePort(process.env.PORT || '3443');
-} else {
-  httpPort = normalizePort(process.env.PORT || '3000');
-}
+const httpPort = normalizePort(process.env.PORT || '3000');
 app.set('port', httpPort);
 
 /**
